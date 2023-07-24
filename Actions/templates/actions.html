@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Action List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+<body>
+    <h1>Action List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>NR</th>
+                <th>Datum</th>
+                <th>Action Type</th>
+                <th>Betrag</th>
+                <th>Kunde ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for action in actions %}
+            <tr>
+                <td>{{ action.nr }}</td>
+                <td>{{ action.datum }}</td>
+                <td>{{ action.actionstyp }}</td>
+                <td>{{ action.betrag }}</td>
+                <td>{{ action.kunde_id }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
