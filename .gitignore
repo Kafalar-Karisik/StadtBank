@@ -1,0 +1,17 @@
+.venv/
+.vscode/
+
+#They are our Datas.
+bank.db
+
+#Local other files
+transform.py
+convert.py
+count.py
+count.txt
+bank.bat
+
+#Vim Temps
+*~
+
+__pycache__/
