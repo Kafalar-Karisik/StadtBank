@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Table Example</title>
+    <title>Customers</title>
 
     {% load static %}
     <link
@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../../">Home</a></li>
+                <li class="breadcrumb-item"><a href="../../../">Home</a></li>
                 <li class="breadcrumb-item"><a href="../">Customers</a></li>
                 <li class="breadcrumb-item active">1</li>
               </ol>
@@ -38,15 +38,15 @@
       <section class="content">
         <div class="container-fluid">
           <div class="row">
-
+      
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">{{main.name}}</h3>
                 </div>
                 <div class="card-body">
-                  ID: {{main.nr}}
-                  
+                  <p><strong>ID:</strong> {{main.nr}}</p>
+                  <p><strong>Saldo:</strong> {{main.saldo}}</p>
                 </div>
               </div>
             </div>
@@ -120,5 +120,7 @@
         animation: spin 1s linear infinite;
       }
     </style>
+
+    
   </body>
 </html>
