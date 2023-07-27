@@ -1,8 +1,9 @@
-from django.views import View
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.views import View
+
 from Actions.models import Customer, Action
-from django.http import Http404
+from .forms import CustomerF
 
 # Create your views here.
 def index(request):
@@ -21,6 +22,9 @@ class Customers(View):
     def get(self, request):
         kunden = Customer.objects.all()
         return render(request, 'customers.html', {'customers': kunden})
+    
+def Panel(request):
+    return render(request,"panel.html")
 
 
 class DetailView(View):
@@ -45,3 +49,20 @@ class DetailView(View):
             # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
 
+
+
+def payIn(request):
+
+    if request.method == "POST":
+        form = CustomerF(request.POST)
+
+        if form.is_valid():
+            datas = form.cleaned_data
+            target = Customer.objects.get(nr=datas["nr"])
+            target.saldo += datas["ammount"]
+            target.save()
+
+        else:
+            pass
+    
+    return HttpResponseRedirect("../panel/")

@@ -1,0 +1,10 @@
+<form action="../pay-in/" method="post">
+    {% csrf_token %}
+    <label for="nr">Your NR: </label>
+    <input id="nr" type="float" name="nr" required>
+    <br>
+    <label for="ammount">Ammount: </label>
+    <input id="ammount" type="float" name="ammount" required>
+    <br>
+    <input type="submit" value="OK" required>
+</form>
