@@ -1,4 +1,6 @@
-# StadtBank
+# >>> I'm working now on other Branch(Django-Version) <<<
+
+## StadtBank
 A Basic Bank System for RolePlay Game with Kids :D
 
 
