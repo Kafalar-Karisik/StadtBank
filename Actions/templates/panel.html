@@ -1,10 +1,12 @@
-<form action="../pay-in/" method="post">
+<form method="post" action="../">
     {% csrf_token %}
-    <label for="nr">Your NR: </label>
-    <input id="nr" type="float" name="nr" required>
+    <label for="nr">NR:</label>
+    <input type="text" id="nr" name="nr" required>
+    <button type="button" onclick="function()">Check</button> <!--Not Working-->
     <br>
-    <label for="ammount">Ammount: </label>
-    <input id="ammount" type="float" name="ammount" required>
+    <label for="amount">Amount:</label>
+    <input type="text" id="amount" name="amount" required>
     <br>
-    <input type="submit" value="OK" required>
+    <input type="submit" value="Pay In" formaction="../pay-in/">
+    <input type="submit" value="Pay Out" formaction="../pay-out/">
 </form>
