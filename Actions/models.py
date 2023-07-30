@@ -17,12 +17,12 @@ class Action(models.Model):
     id = models.AutoField(primary_key=True)
     nr = models.IntegerField()
     datum = models.DateTimeField(auto_now_add=True)
-    actiontype = models.TextField()
-    betrag = models.FloatField()
-    kunde = models.ForeignKey('Action', on_delete=models.CASCADE)
+    actiontype = models.TextField(choices=[('payin', 'PayIn'),('payout', 'PayOut'),('transferI', 'Transfer In'),('transferO', 'Transfer Out')])
+    amount = models.FloatField()
+    related_nr = models.FloatField(null=True)
 
     def __str__(self):
         return f"Action {self.id}"
 
     class Meta:
-        db_table = 'actions'
+        db_table = 'transactions'

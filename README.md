@@ -21,10 +21,8 @@ CREATE TABLE "actions" (
     "nr"    integer NOT NULL,
     "datum" datetime NOT NULL,
     "actiontype"    text NOT NULL,
-    "betrag"    real NOT NULL,
-    "kunde_id"  integer NOT NULL,
-    PRIMARY KEY("id" AUTOINCREMENT),
-    FOREIGN KEY("kunde_id") REFERENCES "actions"("id") DEFERRABLE INITIALLY DEFERRED
+    "amount"    real NOT NULL,
+    PRIMARY KEY("id" AUTOINCREMENT)
 );
 ```
 
