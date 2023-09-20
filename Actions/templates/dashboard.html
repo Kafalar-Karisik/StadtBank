@@ -97,8 +97,8 @@
                         <td>{{ action.id }}</td>
                         <td>{{ action.nr }}</td>
                         <td>{{ action.datum }}</td>
-                        <td>{{ action.actiontype }}</td>
-                        <td>{{ action.betrag }}</td>
+                        <td>{{ action.get_actiontype_display }}</td>
+                        <td>{{ action.amount }}</td>
                       </tr>
                       {% endfor %} {% else %}
                       <td>No Action</td>
