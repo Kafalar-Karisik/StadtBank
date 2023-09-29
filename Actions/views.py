@@ -27,7 +27,9 @@ class Customers(View):
 
 
 def Panel(request):
-    return render(request, "panel.html")
+    customers = Customer.objects.all()
+    actions = Action.objects.all()
+    return render(request, "dash.html", {'customers': customers, 'actions': actions}) #panel.html
 
 
 class DetailView(View):
