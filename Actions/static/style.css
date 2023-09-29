@@ -1,25 +1,6 @@
+@import 'bulma/css/bulma.css';
+@import "Font-Awesome/css/all.min.css";
+
 :root {
   background-color: #F5F5F5;
 }
-
-table {
-    width: 100%;
-    background-color: #A0522D;
-    border-collapse: collapse;
-    border-width: 3px;
-    border-color: #E6D2AF;
-    border-style: solid;
-    color: #FFFFFF;
-  }
-  
-  table td, table th {
-    border-width: 3px;
-    border-color: #E6D2AF;
-    border-style: solid;
-    padding: 10px;
-  }
-  
-  table thead {
-    background-color: #C19A6B;
-  }
-  
