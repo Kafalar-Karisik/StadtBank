@@ -26,13 +26,8 @@ class Customers(View):
         return render(request, 'customers.html', {'customers': kunden})
 
 
-def Panel(request):
-    customers = Customer.objects.all()
-    actions = Action.objects.all()
-    return render(request, "dash.html", {'customers': customers, 'actions': actions}) #panel.html
 
-
-class DetailView(View):
+class CustomerDV(View): #DetailView
     """ID, Numer, Datum, Type, Betrag"""
 
     def get(self, request, nr):
@@ -50,7 +45,7 @@ class DetailView(View):
 
             data = {"nr": nr, "name": name, "saldo": saldo}
 
-            return render(request, 'balance.html', {'main': data, 'actions': table})
+            return render(request, 'customer.html', {'main': data, 'actions': table})
         except Http404:
             # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
@@ -74,7 +69,7 @@ def payIn(request):
         else:
             print("NotValid")
             
-    return HttpResponseRedirect("../panel/")
+    return HttpResponseRedirect("/.")
 
 def payOut(request):
 
@@ -94,4 +89,4 @@ def payOut(request):
         else:
             print("NotValid")
             
-    return HttpResponseRedirect("../panel/")
+    return HttpResponseRedirect("/.")

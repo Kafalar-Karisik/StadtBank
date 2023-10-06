@@ -9,6 +9,10 @@ refreshIcon.addEventListener("click", function () {
 });
 
 
-function customerDet(nr) {
-    window.location.href = window.location.origin + "/main/customers/" + nr
+function customerDetails(nr) {
+    window.location.href = window.location.origin + "/customers/" + nr
+}
+
+function actionDetails(nr) {
+  window.location.href = window.location.origin + "/actions/" + nr
 }
