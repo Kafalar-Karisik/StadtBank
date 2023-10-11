@@ -1,36 +1,73 @@
 # StadtBank
 
-## A basic Bank system with Django and Database
+## Setup
 
-### Data Samples
+### Create Environment (Optional)
 
-All Of the Customer Datas in the `customer` table in [`db.sqlite3`](db.sqlite3) are Random created with [`bin/randCus.py`](bin/randCus.py)
+To create a virtual environment, run the following command:
 
-### Admin GUI
+```shell
+python -m venv .venv
+python -m pip install -r requirements.txt
+```
 
-#### Change it
+## Create Database
 
-Username: ``admin``
-Password: ``pass``
+To set up the database, perform the following steps:
 
-### Data Forms
+1. Generate migration files:
+
+```shell
+python manage.py makemigrations Actions
+python manage.py makemigrations Customers
+```
+
+2. Apply the migrations:
+
+```shell
+python manage.py migrate
+```
+
+## Data Samples
+
+You can use the bin/randCus.py script to generate sample data in the db.sqlite3 database.
+
+## Data Tables
+
+Here are the SQL definitions for the database tables:
+
+### Actions Table
 
 ```sql
+
 CREATE TABLE "actions" (
-    "id"    integer NOT NULL,
-    "nr"    integer NOT NULL,
-    "datum" datetime NOT NULL,
-    "actiontype"    text NOT NULL,
-    "amount"    real NOT NULL,
-    PRIMARY KEY("id" AUTOINCREMENT)
+    "id"           integer PRIMARY KEY AUTOINCREMENT,
+    "nr"           integer NOT NULL,
+    "datum"        datetime NOT NULL,
+    "actiontype"   text NOT NULL,
+    "amount"       real NOT NULL,
+    "related_nr"   real
 );
 ```
 
+### Customers Table
+
 ```sql
+
 CREATE TABLE "customers" (
-    "nr"    integer NOT NULL,
-    "name"  text NOT NULL,
-    "saldo" real NOT NULL,
-    PRIMARY KEY("nr")
+    "nr"     integer PRIMARY KEY NOT NULL,
+    "name"   text NOT NULL,
+    "saldo"  real NOT NULL
 );
 ```
+
+## Admin GUI
+
+To access the admin GUI, you need to create a superuser account first. Run the following command:
+
+```shell
+
+python manage.py createsuperuser
+```
+
+Note: Please ensure that your database migrations are applied before running the `createsuperuser` command.
