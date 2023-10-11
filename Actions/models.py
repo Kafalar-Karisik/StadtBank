@@ -21,8 +21,9 @@ class Action(models.Model):
     amount = models.FloatField()
     related_nr = models.FloatField(null=True)
 
+
     def __str__(self):
         return f"Action {self.id}"
 
     class Meta:
-        db_table = 'transactions'
+        db_table = 'actions'
