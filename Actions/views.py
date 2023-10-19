@@ -1,4 +1,5 @@
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+"""Django Module(s)"""
+from django.http import Http404, HttpResponseRedirect #HttpResponse,
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 
@@ -9,28 +10,35 @@ from .forms import CustomerF
 
 
 def index(request):
+    """Index Page"""
     customers = Customer.objects.all()
     actions = Action.objects.all()
     return render(request, 'dashboard.html', {'customers': customers, 'actions': actions})
 
 
 class Actions(View):
+    """Actions Page"""
     def get(self, request):
+        """Actions.get"""
         transaktionen = Action.objects.all()
         return render(request, 'actions.html', {'actions': transaktionen})
 
 
 class Customers(View):
+    """Customers Page"""
     def get(self, request):
+        """Customers.get"""
         kunden = Customer.objects.all()
         return render(request, 'customers.html', {'customers': kunden})
 
 
 
-class CustomerDV(View): #DetailView
-    """ID, Numer, Datum, Type, Betrag"""
+class CustomerDV(View):
+    """Customer Detail View page"""
+    #ID, Numer, Datum, Type, Betrag
 
     def get(self, request, nr):
+        """CustomerDV.get"""
         try:
             customer = get_object_or_404(Customer, nr=nr)
             saldo = customer.saldo
@@ -51,7 +59,8 @@ class CustomerDV(View): #DetailView
             return render(request, '404.html')
 
 
-def payIn(request):
+def pay_in(request):
+    """payIn API"""
 
     if request.method == "POST":
         form = CustomerF(request.POST)
@@ -68,10 +77,11 @@ def payIn(request):
 
         else:
             print("NotValid")
-            
+
     return HttpResponseRedirect("/.")
 
-def payOut(request):
+def pay_out(request):
+    """PayOut API"""
 
     if request.method == "POST":
         form = CustomerF(request.POST)
@@ -88,5 +98,5 @@ def payOut(request):
 
         else:
             print("NotValid")
-            
+
     return HttpResponseRedirect("/.")
