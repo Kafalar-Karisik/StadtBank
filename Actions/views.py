@@ -7,7 +7,7 @@ from Actions.models import Customer, Action
 from .forms import CustomerF
 
 # Create your views here.
-
+# pylint: disable=no-member
 
 def index(request):
     """Index Page"""
