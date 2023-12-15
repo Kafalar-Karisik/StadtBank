@@ -35,13 +35,13 @@ class Customers(View):
 
 class CustomerDV(View):
     """Customer Detail View page"""
-    #ID, Numer, Datum, Type, Betrag
+    #ID, Numer, Date, Type, Balance
 
     def get(self, request, nr):
         """CustomerDV.get"""
         try:
             customer = get_object_or_404(Customer, nr=nr)
-            saldo = customer.saldo
+            saldo = customer.balance
             name = customer.name
 
             actions = Action.objects.filter(nr=nr)
@@ -49,11 +49,32 @@ class CustomerDV(View):
             table = []
             if actions:
                 table = actions.values_list(
-                    'id', 'nr', 'datum', 'actiontype', 'betrag')
+                    'id', 'nr', 'date', 'type', 'amount')
 
             data = {"nr": nr, "name": name, "saldo": saldo}
 
             return render(request, 'customer.html', {'main': data, 'actions': table})
+        except Http404:
+            # Handle the case when no Transaktionen object is found
+            return render(request, '404.html')
+
+
+
+class ActionDV(View):
+    """Action Detail View page"""
+        #ID, Numer, Date, ActionType, amount, related_nr
+
+    def get(self, request, id):
+        """ActionDV.get"""
+        try:
+            action = get_object_or_404(Action, id=id)
+            ammount = action.amount 
+            customer = get_object_or_404(Customer,nr=action.nr)
+            date = action.date
+            actiontype = action.type
+            releated_nr = action.related_nr
+
+            return render(request, 'action.html', {'id': id, 'nr': action.nr, 'customer': customer, 'date': date, 'type': actiontype, 'releated': releated_nr})
         except Http404:
             # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
@@ -68,7 +89,7 @@ def pay_in(request):
         if form.is_valid():
             datas = form.cleaned_data
             target = Customer.objects.get(nr=datas["nr"])
-            target.saldo += datas["amount"]
+            target.balance += datas["amount"]
             target.save()
 
             action = Action(
@@ -89,7 +110,7 @@ def pay_out(request):
         if form.is_valid():
             datas = form.cleaned_data
             target = Customer.objects.get(nr=datas["nr"])
-            target.saldo -= datas["amount"]
+            target.balance -= datas["amount"]
             target.save()
 
             action = Action(
@@ -100,3 +121,10 @@ def pay_out(request):
             print("NotValid")
 
     return HttpResponseRedirect("/.")
+
+
+class Settings(View):
+    """Settings Page"""
+    def get(self, request):
+        """Settings.get"""
+        return render(request, 'settings.html')

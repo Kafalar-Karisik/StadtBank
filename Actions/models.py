@@ -6,7 +6,7 @@ class Customer(models.Model):
     """Customer Class"""
     nr = models.IntegerField(primary_key=True)
     name = models.TextField()
-    saldo = models.FloatField()
+    balance = models.FloatField()
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -20,13 +20,12 @@ class Action(models.Model):
     """Action Class"""
     id = models.AutoField(primary_key=True)
     nr = models.IntegerField()
-    datum = models.DateTimeField(auto_now_add=True)
-    actiontype = models.TextField(choices=[('payin', 'Pay In'),
+    date = models.DateTimeField(auto_now_add=True)
+    type = models.TextField(choices=[('payin', 'Pay In'),
                                            ('payout', 'Pay Out'),
-                                           ('transferI', 'Transfer In'),
-                                           ('transferO', 'Transfer Out')])
+                                           ('transfer', 'Transfer')])
     amount = models.FloatField()
-    related_nr = models.FloatField(null=True)
+    related_nr = models.IntegerField(null=True)
 
     def __str__(self):
         return f"Action {self.id}"
