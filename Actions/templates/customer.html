@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer ({{main.nr}}/{{main.name}})</title>
+    <title>Customer ({{main.nr}}/{{main.customer}})</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <style>
@@ -70,7 +70,7 @@
                             <tr>
                                 <td>{{ action.id }}</td>
                                 <td>{{ action.nr }}</td>
-                                <td>{{ action.datum }}</td>
+                                <td>{{ action.date }}</td>
                                 <td>{{ action.actiontype }}</td>
                                 <td>{{ action.betrag }}</td>
                             </tr>

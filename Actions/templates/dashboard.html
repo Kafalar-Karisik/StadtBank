@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>StadtBank</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="icon" type="image/ico" href="{% static 'favicon.ico' %}" />
   </head>
   <body>
     <nav
@@ -35,10 +37,7 @@
       <div class="container">
         <div class="columns">
           <div class="column is-half">
-            <div
-              class="card"
-              style="max-height: calc(100vh - 150px); overflow-y: scroll"
-            >
+            <div class="card" style="max-height: calc(100vh - 150px); overflow-y: scroll">
               <header class="card-header">
                 <p class="card-header-title">Customer List</p>
                 <a href="#" class="card-header-icon" aria-label="refresh">
@@ -60,7 +59,7 @@
                       <tr onclick="customerDetails({{customer.nr}})">
                         <td>{{ customer.nr }}</td>
                         <td>{{ customer.name }}</td>
-                        <td>{{ customer.saldo }}</td>
+                        <td>{{ customer.balance }}</td>
                       </tr>
                       {% endfor %} {% else %}
                       <td colspan="3">No Customer</td>
@@ -73,7 +72,7 @@
           </div>
 
           <div class="column is-half">
-            <div class="card">
+            <div class="card" style="max-height: calc(100vh - 150px); overflow-y: scroll">
               <header class="card-header">
                 <p class="card-header-title">Actions</p>
                 <a href="#" class="card-header-icon" aria-label="refresh">
@@ -90,6 +89,7 @@
                         <th>Date</th>
                         <th>Action Type</th>
                         <th>Amount</th>
+                        <th>Releated</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -97,9 +97,10 @@
                       <tr onclick="actionDetails({{action.id}})">
                         <td>{{ action.id }}</td>
                         <td>{{ action.nr }}</td>
-                        <td>{{ action.datum }}</td>
-                        <td>{{ action.get_actiontype_display }}</td>
+                        <td>{{ action.date|date:"j M" }}</td>
+                        <td>{{ action.get_type_display }}</td>
                         <td>{{ action.amount }}</td>
+                        <td>{{ action.related_nr }}</th>
                       </tr>
                       {% endfor %} {% else %}
                       <td colspan="5">No Action</td>
