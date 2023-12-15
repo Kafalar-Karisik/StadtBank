@@ -19,16 +19,16 @@ To set up the database, perform the following steps:
 
 1. Generate migration files:
 
-```shell
-python manage.py makemigrations Actions
-python manage.py makemigrations Customers
-```
+    ```shell
+    python manage.py makemigrations Actions
+    python manage.py makemigrations Customers
+    ```
 
 2. Apply the migrations:
 
-```shell
-python manage.py migrate
-```
+    ```shell
+    python manage.py migrate
+    ```
 
 ## Data Samples
 
@@ -43,23 +43,24 @@ Here are the SQL definitions for the database tables:
 ```sql
 
 CREATE TABLE "actions" (
-    "id"           integer PRIMARY KEY AUTOINCREMENT,
-    "nr"           integer NOT NULL,
-    "datum"        datetime NOT NULL,
-    "actiontype"   text NOT NULL,
-    "amount"       real NOT NULL,
-    "related_nr"   real
+    "id"    integer NOT NULL,
+    "nr"    integer NOT NULL,
+    "amount"    real NOT NULL,
+    "date"  datetime NOT NULL,
+    "type"  text NOT NULL,
+    "related_nr"    integer,
+    PRIMARY KEY("id" AUTOINCREMENT)
 );
 ```
 
 ### Customers Table
 
 ```sql
-
 CREATE TABLE "customers" (
-    "nr"     integer PRIMARY KEY NOT NULL,
-    "name"   text NOT NULL,
-    "saldo"  real NOT NULL
+    "nr"    integer NOT NULL,
+    "name"  text NOT NULL,
+    "balance"   real NOT NULL,
+    PRIMARY KEY("nr")
 );
 ```
 

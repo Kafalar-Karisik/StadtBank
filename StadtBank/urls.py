@@ -4,7 +4,6 @@ from django.urls import include, path
 
 from Actions import views as urls
 
-
 urlpatterns = [
     path('', urls.index),
     path('', include("Actions.urls")),
