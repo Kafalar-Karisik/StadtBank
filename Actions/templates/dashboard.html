@@ -98,12 +98,12 @@
                         <td>{{ action.id }}</td>
                         <td>{{ action.nr }}</td>
                         <td>{{ action.date|date:"j M" }}</td>
-                        <td>{{ action.get_type_display }}</td>
+                        <td>{{ action.type}}</td>
                         <td>{{ action.amount }}</td>
-                        <td>{{ action.related_nr }}</th>
+                        <td>{{ action.related_nr|default:"-"  }}</th>
                       </tr>
                       {% endfor %} {% else %}
-                      <td colspan="5">No Action</td>
+                      <td colspan="6">No Action</td>
                       {% endif %}
                     </tbody>
                   </table>
