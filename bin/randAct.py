@@ -42,15 +42,14 @@ for _ in range(randint(0,33)):
             nr = randint(0, len(customers_data))
             amount = cursor.execute(f"SELECT balance FROM customers WHERE nr = {randint(0, len(customers_data))};").fetchone()[0]
             releated_nr = randint(0, len(customers_data))
-            query = [
-                f"INSERT INTO actions (nr, type, amount, date, related_nr) VALUES ({nr}, 'transfer', {amount}, '{datetime.now()}', {releated_nr});"]
+            query = [f"INSERT INTO actions (nr, type, amount, date, related_nr) VALUES ({nr}, 'transfer', {amount}, '{datetime.now()}', {releated_nr});"]
 
     print("\n".join(query))
     for que in query:
         cursor.execute(que)
-        conn.commit()
 
 
+conn.commit()
     
 # Close the cursor and connection to the database
 cursor.close()

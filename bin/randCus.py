@@ -14,10 +14,12 @@ cursor = conn.cursor()
 for _ in range(50):
     last_name = fake.last_name()
     first_name = fake.first_name()
-    saldo = round(random.uniform(0, 100), 2)
+    balance = random.randint(0, 100)
 
     # Veriyi tabloya ekle
-    query = f"INSERT INTO customers (name, balance) VALUES ('{last_name}, {first_name}', {saldo})"
+    query = f"INSERT INTO customers (name, balance) VALUES ('{last_name}, {first_name}', {balance})"
+    
+    print(query)
     cursor.execute(query)
 
 

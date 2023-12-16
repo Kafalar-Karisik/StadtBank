@@ -6,7 +6,7 @@ class Customer(models.Model):
     """Customer Class"""
     nr = models.IntegerField(primary_key=True)
     name = models.TextField()
-    balance = models.FloatField()
+    balance = models.ImageField()
 
     def __str__(self) -> str:
         return f"{self.name}"
