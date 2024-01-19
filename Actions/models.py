@@ -22,8 +22,8 @@ class Action(models.Model):
     nr = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     type = models.TextField(choices=[('payin', 'Pay In'),
-                                           ('payout', 'Pay Out'),
-                                           ('transfer', 'Transfer')])
+                                     ('payout', 'Pay Out'),
+                                     ('transfer', 'Transfer')])
     amount = models.FloatField()
     related_nr = models.IntegerField(null=True)
 

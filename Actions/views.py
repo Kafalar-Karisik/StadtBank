@@ -1,13 +1,15 @@
 """Django Module(s)"""
-from django.http import Http404, HttpResponseRedirect #HttpResponse,
-from django.shortcuts import render, get_object_or_404
+from django.http import Http404, HttpResponseRedirect  # HttpResponse,
+from django.shortcuts import get_object_or_404, render
 from django.views import View
 
-from Actions.models import Customer, Action
+from Actions.models import Action, Customer
+
 from .forms import CustomerF
 
 # Create your views here.
 # pylint: disable=no-member
+
 
 def index(request):
     """Index Page"""
@@ -18,6 +20,7 @@ def index(request):
 
 class Actions(View):
     """Actions Page"""
+
     def get(self, request):
         """Actions.get"""
         transaktionen = Action.objects.all()
@@ -26,16 +29,16 @@ class Actions(View):
 
 class Customers(View):
     """Customers Page"""
+
     def get(self, request):
         """Customers.get"""
         kunden = Customer.objects.all()
         return render(request, 'customers.html', {'customers': kunden})
 
 
-
 class CustomerDV(View):
     """Customer Detail View page"""
-    #ID, Numer, Date, Type, Balance
+    # ID, Numer, Date, Type, Balance
 
     def get(self, request, nr):
         """CustomerDV.get"""
@@ -59,22 +62,24 @@ class CustomerDV(View):
             return render(request, '404.html')
 
 
-
 class ActionDV(View):
     """Action Detail View page"""
-        #ID, Numer, Date, ActionType, amount, related_nr
+    # ID, Numer, Date, ActionType, amount, related_nr
 
-    def get(self, request, id):
+    def get(self, request, _id):
         """ActionDV.get"""
         try:
-            action = get_object_or_404(Action, id=id)
-            ammount = action.amount 
-            customer = get_object_or_404(Customer,nr=action.nr)
+            action = get_object_or_404(Action, id=_id)
+            amount = action.amount
+            customer = get_object_or_404(Customer, nr=action.nr)
             date = action.date
             actiontype = action.type
             releated_nr = action.related_nr
-
-            return render(request, 'action.html', {'id': id, 'nr': action.nr, 'customer': customer, 'date': date, 'type': actiontype, 'releated': releated_nr})
+            return render(request, 'action.html', {
+                'id': id, 'nr': action.nr,
+                'customer': customer, 'date': date,
+                'type': actiontype, 'releated': releated_nr,
+                'amount': amount})
         except Http404:
             # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
@@ -101,6 +106,7 @@ def pay_in(request):
 
     return HttpResponseRedirect("/.")
 
+
 def pay_out(request):
     """PayOut API"""
 
@@ -125,6 +131,7 @@ def pay_out(request):
 
 class Settings(View):
     """Settings Page"""
+
     def get(self, request):
         """Settings.get"""
         return render(request, 'settings.html')

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer ({{main.nr}}/{{main.customer}})</title>
+    <title>Customer ({{main.nr}}/{{main.name}})</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <style>
@@ -68,11 +68,11 @@
                             {% if actions %}
                             {% for action in actions %}
                             <tr>
-                                <td>{{ action.id }}</td>
-                                <td>{{ action.nr }}</td>
-                                <td>{{ action.date }}</td>
-                                <td>{{ action.actiontype }}</td>
-                                <td>{{ action.betrag }}</td>
+                                <td>{{ action.0 }}</td>
+                                <td>{{ action.1 }}</td>
+                                <td>{{ action.2|date:"j M" }}</td>
+                                <td>{{ action.3 }}</td>
+                                <td>{{ action.4 }}</td>
                             </tr>
                             {% endfor %}
                             {% else %}
@@ -91,7 +91,7 @@
 <script src="{% static 'scripts.js' %}"></script>
 
 <style>
-    @keyframes spin {
+@keyframes spin {
         0% {
             transform: rotate(0deg);
         }

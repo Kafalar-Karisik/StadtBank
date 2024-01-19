@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Action ({{main.nr}}/{{main.name}})</title>
+    <title>Action {{ id }}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <style>
@@ -17,14 +17,14 @@
     <section class="section">
         <div class="columns is-vcentered">
             <div class="column is-half">
-                <h1 class="title">Actions</h1>
+                <h1 class="title">Action</h1>
             </div>
             <div class="column is-half">
                 <nav class="breadcrumb is-right" aria-label="breadcrumbs">
                     <ul>
                         <li><a href="../../../">Home</a></li>
-                        <li><a href="../">Customers</a></li>
-                        <li class="is-active"><a href="#" aria-current="page">1</a></li>
+                        <li><a href="../">Actions</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">{{ id }}</a></li>
                     </ul>
                 </nav>
             </div>
@@ -36,12 +36,12 @@
             <div class="column is-half">
                 <div class="card">
                     <header class="card-header">
-                        <p class="card-header-title">{{ main.name }}</p>
+                        <p class="card-header-title">{{ customer.name }}</p>
                     </header>
                     <div class="card-content">
                         <div class="content">
-                            <p><strong>ID:</strong> {{ main.nr }}</p>
-                            <p><strong>Saldo:</strong> {{ main.saldo }}</p>
+                            <p><strong>ID:</strong> {{ customer.nr }}</p>
+                            <p><strong>Saldo:</strong> {{ customer.balance }}</p>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <ion-icon name="refresh-outline" id="refresh" style="float: right; font-size: 200%"></ion-icon>
                     </header>
                     <div class="card-content table-container">
-                        <table class="table is-bordered">
+                        <table class="table is-stripted">
                             <thead>
                             <tr>
                                 <th>Action ID</th>
@@ -62,23 +62,18 @@
                                 <th>Date</th>
                                 <th>Action Type</th>
                                 <th>Amount</th>
-                                
+                                <th>Releated User</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% if actions %}
-                            {% for action in actions %}
                             <tr>
-                                <td>{{ action.id }}</td>
-                                <td>{{ action.nr }}</td>
-                                <td>{{ action.datum }}</td>
-                                <td>{{ action.get_type_display }}</td>
-                                <td>{{ action.betrag }}</td>
+                                <td>{{ id }}</td>
+                                <td>{{ nr }}</td>
+                                <td>{{ date }}</td>
+                                <td>{{ type }}</td>
+                                <td>{{ amount }}</td>
+                                <td>{{ releated }}</td>
                             </tr>
-                            {% endfor %}
-                            {% else %}
-                            <td>No Action</td>
-                            {% endif %}
                             </tbody>
                         </table>
                     </div>

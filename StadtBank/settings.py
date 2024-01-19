@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+
 from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,8 +29,8 @@ SECRET_KEY = get_random_secret_key()
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "10.0.0.21",
-    "127.0.0.1", 
+    "*",
+    "127.0.0.1",
     "localhost",
 ]
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',  # DEBUG
+    'compressor',  # new
 ]
 
 MIDDLEWARE = [
@@ -83,9 +85,9 @@ ROOT_URLCONF = 'StadtBank.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # DEBUG
         'DIRS': [],
-        'APP_DIRS': True,
+        'APP_DIRS': True,  # DEBUG
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -153,3 +155,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'Actions', 'static')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Django Compressor
+COMPRESS_ROOT = BASE_DIR / 'static'
+
+COMPRESS_ENABLED = True
+
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)

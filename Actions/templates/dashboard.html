@@ -37,16 +37,21 @@
       <div class="container">
         <div class="columns">
           <div class="column is-half">
-            <div class="card" style="max-height: calc(100vh - 150px); overflow-y: scroll">
+            <div
+              class="card"
+              style="max-height: calc(100vh - 150px); overflow-y: scroll"
+            >
               <header class="card-header">
                 <p class="card-header-title">Customer List</p>
                 <a href="#" class="card-header-icon" aria-label="refresh">
                   <i class="fas fa-sync"></i>
                 </a>
               </header>
-              <div class="card-content">
+              <div
+                class="card-content max-h-[calc(100vh-150px)] overflow-y-scroll"
+              >
                 <div class="table-container">
-                  <table class="table is-bordered is-fullwidth">
+                  <table class="table-auto">
                     <thead>
                       <tr>
                         <th>Customer Number</th>
@@ -72,7 +77,10 @@
           </div>
 
           <div class="column is-half">
-            <div class="card" style="max-height: calc(100vh - 150px); overflow-y: scroll">
+            <div
+              class="card"
+              style="max-height: calc(100vh - 150px); overflow-y: scroll"
+            >
               <header class="card-header">
                 <p class="card-header-title">Actions</p>
                 <a href="#" class="card-header-icon" aria-label="refresh">
@@ -81,7 +89,7 @@
               </header>
               <div class="card-content">
                 <div class="table-container">
-                  <table class="table is-bordered is-fullwidth">
+                  <table class="table is-stripted is-fullwidth">
                     <thead>
                       <tr>
                         <th>Action ID</th>
@@ -100,7 +108,7 @@
                         <td>{{ action.date|date:"j M" }}</td>
                         <td>{{ action.type}}</td>
                         <td>{{ action.amount }}</td>
-                        <td>{{ action.related_nr|default:"-"  }}</th>
+                        <td>{{ action.related_nr|default:"-" }}</td>
                       </tr>
                       {% endfor %} {% else %}
                       <td colspan="6">No Action</td>

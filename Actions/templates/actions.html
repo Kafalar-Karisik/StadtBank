@@ -6,7 +6,7 @@
     <!--<link rel="stylesheet" href="{% static 'style.css' %}" />-->
     <link
       rel="stylesheet"
-      href="{% static 'adminlte/css/adminlte.min.css' %}"
+      href="{% static 'style.css' %}"
     />
     <style>
       .table-container {
@@ -62,10 +62,10 @@
                       {% for action in actions %}
                       <tr>
                         <td>{{ action.nr }}</td>
-                        <td>{{ action.datum }}</td>
-                        <td>{{ action.actionstyp }}</td>
-                        <td>{{ action.betrag }}</td>
-                        <td>{{ action.kunde_id }}</td>
+                        <td>{{ action.date }}</td>
+                        <td>{{ action.type }}</td>
+                        <td>{{ action.amount }}</td>
+                        <td>{{ action.related_nr }}</td>
                       </tr>
                       {% endfor %}
                     </tbody>
@@ -80,15 +80,6 @@
     </div>
 
     <script src="{% static 'scripts.js' %}"></script>
-    <script src="{% static 'adminlte/js/adminlte.min.js' %}"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
 
     <style>
       @keyframes spin {
