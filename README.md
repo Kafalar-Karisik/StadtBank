@@ -10,6 +10,21 @@ To create a virtual environment, run the following command:
 
 ```shell
 python -m venv .venv
+source .vennv/scripts/activate
+```
+
+*or*
+
+```shell
+python -m venv .venv
+.venv\scripts\activate
+```
+
+### Install Requirements
+
+Install the required Python Modules
+
+```shell
 python -m pip install -r requirements.txt
 ```
 
@@ -17,24 +32,23 @@ python -m pip install -r requirements.txt
 
 To set up the database, perform the following steps:
 
-1. Generate migration files:
-
-    ```shell
-    python manage.py makemigrations Actions
-    python manage.py makemigrations Customers
-    ```
-
-2. Apply the migrations:
+1. Show up to migration files:
 
     ```shell
     python manage.py migrate
     ```
 
+2. Apply the migrations:
+
+    ```shell
+    python manage.py sqlmigrate Bank 0001
+    ```
+
 ## Data Samples
 
-You can use the bin/randCus.py script to generate sample data in the db.sqlite3 database.
+You can use the [bin/randCus.py](bin/randCus.py) and [bin/randAct.py](bin/randAct.py) for generate sample data for your database.
 
-## Data Tables
+## Model Formats
 
 Here are the SQL definitions for the database tables:
 
@@ -64,13 +78,28 @@ CREATE TABLE "customers" (
 );
 ```
 
+## Running Server
+
+After all setup you can run the Program with
+
+```shell
+./manage.py runserver"
+```
+
+*or*
+
+```shell
+manage.py runserver"
+```
+
 ## Admin GUI
 
 To access the admin GUI, you need to create a superuser account first. Run the following command:
 
 ```shell
-
 python manage.py createsuperuser
 ```
+For access you nedd to go `http://IP_ADRESS/admin`
 
-Note: Please ensure that your database migrations are applied before running the `createsuperuser` command.
+
+> ***Note: Please ensure that your database migrations are applied before running the `createsuperuser` command.***
