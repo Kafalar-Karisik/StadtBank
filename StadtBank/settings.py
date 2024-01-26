@@ -29,7 +29,6 @@ SECRET_KEY = get_random_secret_key()
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "*",
     "127.0.0.1",
     "localhost",
 ]
@@ -50,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',  # DEBUG
-    'compressor',  # new
 ]
 
 MIDDLEWARE = [
@@ -155,9 +153,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "statics/"
+STATIC_URL = "static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'Actions', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'Bank', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -171,3 +169,10 @@ COMPRESS_ROOT = BASE_DIR / 'static'
 COMPRESS_ENABLED = True
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
+# Security
+# manage.py check --deploy
+
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
