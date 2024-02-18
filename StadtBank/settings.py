@@ -163,13 +163,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'Bank', 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Django Compressor
-COMPRESS_ROOT = BASE_DIR / 'static'
-
-COMPRESS_ENABLED = True
-
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
-
 # Security
 # manage.py check --deploy
 
