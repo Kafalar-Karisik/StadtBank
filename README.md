@@ -1,6 +1,6 @@
 # StadtBank
 
-[![Pylint](https://github.com/Kafalar-Karisik/StadtBank/actions/workflows/pylint.yml/badge.svg)](https://github.com/Kafalar-Karisik/StadtBank/actions/workflows/pylint.yml)
+[![Pylint](https://github.com/Kafalar-Karisik/StadtBank/actions/workflows/pylint.yml/badge.svg?branch=Django-Tailwind)](https://github.com/Kafalar-Karisik/StadtBank/actions/workflows/pylint.yml)
 
 ## Setup
 
