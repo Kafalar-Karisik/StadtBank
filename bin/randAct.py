@@ -1,6 +1,7 @@
 import sqlite3
-from random import randint
 from datetime import datetime
+from random import randint
+
 # Connect to the SQLite database
 conn = sqlite3.connect('db.sqlite3')
 
@@ -29,20 +30,24 @@ cursor.execute(query)
 customers_data = cursor.fetchall()
 
 # Print the customer data
-#for customer in customers_data:
+# for customer in customers_data:
 #    print(customer)
 
-for _ in range(randint(0,33)):
+for _ in range(randint(0, 33)):
     type = randint(1, 3)
     if type == 1:
-        query = [f"INSERT INTO actions (nr, type, amount, date) VALUES ({randint(0, len(customers_data))}, 'payin', {randint(0,100)}, '{datetime.now()}');"]
+        query = [f"INSERT INTO actions (nr, type, amount, date) VALUES ({randint(
+            1, len(customers_data))}, 'payin', {randint(0, 100)}, '{datetime.now()}');"]
     if type == 2:
-        query = [f"INSERT INTO actions (nr, type, amount, date) VALUES ({randint(0, len(customers_data))}, 'payout', {cursor.execute(f"SELECT balance FROM customers WHERE nr = {randint(0, len(customers_data))};").fetchone()[0]}, '{datetime.now()}');"]
+        query = [f"INSERT INTO actions (nr, type, amount, date) VALUES ({randint(1, len(customers_data))}, 'payout', {cursor.execute(
+            f"SELECT balance FROM customers WHERE nr = {randint(0, len(customers_data))};").fetchone()[0]}, '{datetime.now()}');"]
     if type == 3:
         nr = randint(0, len(customers_data))
-        amount = cursor.execute(f"SELECT balance FROM customers WHERE nr = {randint(0, len(customers_data))};").fetchone()[0]
-        releated_nr = randint(0, len(customers_data))
-        query = [f"INSERT INTO actions (nr, type, amount, date, related_nr) VALUES ({nr}, 'transfer', {amount}, '{datetime.now()}', {releated_nr});"]
+        amount = cursor.execute(f"""SELECT balance FROM customers WHERE nr = {
+                                randint(1, len(customers_data))};""").fetchone()[0]
+        releated_nr = randint(1, len(customers_data))
+        query = [f"""INSERT INTO actions (nr, type, amount, date, related_nr) VALUES ({
+            nr}, 'transfer', {amount}, '{datetime.now()}', {releated_nr});"""]
 
     print("\n".join(query))
     for que in query:
@@ -50,7 +55,7 @@ for _ in range(randint(0,33)):
 
 
 conn.commit()
-    
+
 # Close the cursor and connection to the database
 cursor.close()
 conn.close()
