@@ -13,7 +13,7 @@ python -m venv .venv
 source .vennv/scripts/activate
 ```
 
-*or*
+_or_
 
 ```shell
 python -m venv .venv
@@ -34,15 +34,15 @@ To set up the database, perform the following steps:
 
 1. Show up to migration files:
 
-    ```shell
-    python manage.py migrate
-    ```
+   ```shell
+   python manage.py migrate
+   ```
 
 2. Apply the migrations:
 
-    ```shell
-    python manage.py sqlmigrate Bank 0001
-    ```
+   ```shell
+   python manage.py sqlmigrate Bank 0001
+   ```
 
 ## Data Samples
 
@@ -83,13 +83,13 @@ CREATE TABLE "customers" (
 After all setup you can run the Program with
 
 ```shell
-./manage.py runserver"
+./manage.py runserver
 ```
 
-*or*
+_or_
 
 ```shell
-manage.py runserver"
+manage.py runserver
 ```
 
 ## Admin GUI
@@ -99,7 +99,7 @@ To access the admin GUI, you need to create a superuser account first. Run the f
 ```shell
 python manage.py createsuperuser
 ```
+
 For access you nedd to go `http://IP_ADRESS/admin`
 
-
-> ***Note: Please ensure that your database migrations are applied before running the `createsuperuser` command.***
+> **_Note: Please ensure that your database migrations are applied before running the `createsuperuser` command._**
