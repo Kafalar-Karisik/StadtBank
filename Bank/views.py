@@ -15,7 +15,18 @@ def index(request):
     """Index Page"""
     customers = Customer.objects.all()
     actions = Action.objects.all()
-    return render(request, 'dashboard.html', {'customers': customers, 'actions': actions})
+
+    names = {"customers": [], "actions": [[], []]}
+
+    for i in actions:
+        try:
+            names["actions"][1].append(
+                customers.get(nr=i.related_nr).name)
+        except:
+            names["actions"][1].append("")
+            pass
+
+    return render(request, 'dashboard.html', {'customers': customers, 'actions': actions, 'names': names})
 
 
 class Actions(View):

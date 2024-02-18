@@ -1,1 +1,108 @@
-Hello World!
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>StadtBank</title>
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- Breadcrumb and Header -->
+    <div class="flex items-center justify-between bg-orange-900 p-4 text-white">
+      <h1 class="text-2xl font-bold">StadtBank</h1>
+
+      <!-- Breadcrumb -->
+      <nav>
+        <ol class="flex list-none">
+          <li><a href="" class="text-gray-200">Dashboard</a></li>
+          <!--
+            <li><a href="#" class="text-blue-200">Home</a></li>
+          <li class="mx-2">/</li>
+          <li class="text-gray-200">Current Page</li>
+          -->
+        </ol>
+      </nav>
+    </div>
+
+    <div class="container mx-auto mt-4">
+      <h2 class="mb-2 p-1 text-2xl font-bold">Dashboard</h2>
+    </div>
+
+    <!-- Tables -->
+    <div class="container mx-auto mt-4 flex h-screen flex-wrap">
+      <!-- Customers -->
+      <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
+        <h3 class="mb-2 text-lg font-bold">Customers</h3>
+        <table
+          class="w-full table-auto rounded-md border bg-white"
+          style="overflow-y: scroll"
+        >
+          <thead>
+            <tr>
+              <th class="border p-2">ID</th>
+              <th class="border p-2">Name</th>
+              <th class="border p-2">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if customers %} {% for customer in customers %}
+            <tr>
+              <td class="border p-2">{{customer.nr}}</td>
+              <td class="border p-2">{{customer.name}}</td>
+              <td class="border p-2">{{customer.balance}}</td>
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+              <td class="border p-2">No Customer Data available.</td>
+              <!-- TODO: Make it for both Rows -->
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Actions -->
+      <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
+        <h3 class="mb-2 text-lg font-bold">Actions</h3>
+        <table class="w-full border bg-white">
+          <thead>
+            <tr>
+              <th class="border p-2">ID</th>
+              <th class="border p-2">Customer</th>
+              <th class="border p-2">Amount</th>
+              <th class="border p-2">Type</th>
+              <th class="border p-2">Releated</th>
+              <th class="border p-2">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if actions %} {% for action in actions %}
+            <tr class="">
+              <td class="border p-2">{{action.id}}</td>
+              <td class="group relative border p-2">
+                <!-- TODO: Make it better-->
+                <p
+                  class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
+                >
+                  {{action.nr}}
+                </p>
+                {{action.getNames.0}}
+              </td>
+              <td class="border p-2">{{action.amount}}</td>
+              <td class="border p-2">{{action.type}}</td>
+              <td class="border p-2">{{action.getNames.1| default:""}}</td>
+              <!-- TODO: Hover ID-->
+              <td class="border p-2">{{action.date}}</td>
+            </tr>
+            {% endfor %} {% else %}
+            <td class="border p-2">No Action Data available.</td>
+            <!-- TODO: Make it for both Rows -->
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
