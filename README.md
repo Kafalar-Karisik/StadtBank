@@ -10,7 +10,7 @@ To create a virtual environment, run the following command:
 
 ```shell
 python -m venv .venv
-source .vennv/scripts/activate
+source .venv/bin/activate
 ```
 
 _or_
