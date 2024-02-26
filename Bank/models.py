@@ -1,4 +1,4 @@
-"""Django Module(s)"""
+"""Bank/models.py"""
 from django.db import models
 
 
