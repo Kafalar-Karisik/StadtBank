@@ -5,7 +5,7 @@ from django.views import View
 
 from Bank.models import Action, Customer
 
-from .forms import CustomerF
+from .forms import CustomerF, TransferF
 
 # Create your views here.
 # pylint: disable=no-member
@@ -22,11 +22,12 @@ def index(request):
         try:
             names["actions"][1].append(
                 customers.get(nr=i.related_nr).name)
-        except:
+        except Customer.DoesNotExist:
             names["actions"][1].append("")
-            pass
 
-    return render(request, 'dashboard.html', {'customers': customers, 'actions': actions, 'names': names})
+    return render(request, 'dashboard.html', {'customers': customers,
+                                              'actions': actions,
+                                              'names': names})
 
 
 class Actions(View):
@@ -34,8 +35,7 @@ class Actions(View):
 
     def get(self, request):
         """Actions.get"""
-        transaktionen = Action.objects.all()
-        return render(request, 'actions.html', {'actions': transaktionen})
+        return render(request, 'actions.html', {'actions': Action.objects.all()})
 
 
 class Customers(View):
@@ -43,8 +43,7 @@ class Customers(View):
 
     def get(self, request):
         """Customers.get"""
-        kunden = Customer.objects.all()
-        return render(request, 'customers.html', {'customers': kunden})
+        return render(request, 'customers.html', {'customers': Customer.objects.all()})
 
 
 class CustomerDV(View):
@@ -59,15 +58,16 @@ class CustomerDV(View):
             name = customer.name
 
             actions = Action.objects.filter(nr=nr)
+            customerNames = Customer.objects.all()
 
-            table = []
-            if actions:
-                table = actions.values_list(
-                    'id', 'nr', 'date', 'type', 'amount')
+            names = []
+            for i in actions:
+                try:
+                    names.append(customerNames.get(nr=i.related_nr).name)
+                except Customer.DoesNotExist:
+                    names.append("")
 
-            data = {"nr": nr, "name": name, "saldo": saldo}
-
-            return render(request, 'customer.html', {'main': data, 'actions': table})
+            return render(request, 'customer.html', {'customer': {"nr": nr, "name": name, "saldo": saldo}, 'actions': actions})
         except Http404:
             # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
@@ -97,6 +97,14 @@ class ActionDV(View):
         except Http404:
             # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
+
+
+class Pay(View):
+    """Pay Page"""
+
+    def get(self, request):
+        """Pay.get"""
+        return render(request, 'pay.html')
 
 
 def pay_in(request):
@@ -141,6 +149,20 @@ def pay_out(request):
             print("NotValid")
 
     return HttpResponseRedirect("/.")
+
+
+def transfer(request):
+    """Transfer API"""
+    if request.method == "POST":
+        form = TransferF(request.POST)
+
+        if form.is_valid():
+            datas = form.cleaned_data
+            customer = Customer.objects.get(nr=datas["nr"])
+            customer1 = Customer.objects.get(nr=datas["releated_nr"])
+            amount = datas["amount"]
+            customer.balance -= amount
+            customer1.balance += amount
 
 
 class Settings(View):

@@ -26,6 +26,7 @@ class Action(models.Model):
                                      ('transfer', 'Transfer')])
     amount = models.FloatField()
     related_nr = models.IntegerField(null=True)
+    before = models.IntegerField(null=True)
 
     def __str__(self):
         return f"Action {self.id}"

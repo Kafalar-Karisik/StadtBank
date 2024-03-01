@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>Your Website</title>
+  </head>
+
+  <body class="h-screen bg-gray-100">
+    <!-- Breadcrumb and Header -->
+    <div class="flex items-center bg-green-800 p-4 text-white">
+      <h1 class="text-3xl font-bold">StadtBank</h1>
+
+      <a href="/" class="pl-3 text-gray-200">Dashboard</a>
+      <a href="./customers" class="pl-3 text-gray-200">Customers</a>
+      <a href="./Action" class="pl-3 text-gray-200">Actions</a>
+      <a href="./pay" class="pl-3 text-gray-200">Pay</a>
+
+      <!-- Breadcrumb -->
+      <nav class="ml-auto">
+        <ol class="flex list-none">
+          <li><a href="../" class="text-blue-200">Home</a></li>
+          <li class="mx-2">/</li>
+          <li class="text-gray-200">Pay</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="container mx-auto mt-4">
+      <h2 class="mb-2 p-1 text-2xl font-bold">Action</h2>
+    </div>
+
+    <!-- Body -->
+    <div class="container mx-auto mt-8 flex">
+      <!-- Right Side -->
+      <div class="w-1/2 pr-4">
+        <!-- Name and Amount Inputs -->
+        <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
+        <div class="mb-4">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            placeholder="Name/ID"
+          />
+        </div>
+        <div class="mb-4">
+          <input
+            type="text"
+            id="amount"
+            name="amount"
+            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            placeholder="Amount"
+          />
+        </div>
+
+        <!-- Pay In and Pay Out Buttons -->
+        <div class="flex">
+          <button
+            class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+          >
+            Pay In
+          </button>
+          <button
+            class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+          >
+            Pay Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Left Side -->
+      <div class="w-1/2 pl-4">
+        <!-- Two Name Inputs and Amount Input -->
+        <h3 class="text-2x1 mb-2 p-1 font-bold">Transfer</h3>
+        <div class="mb-4">
+          <input
+            type="text"
+            id="name1"
+            name="name1"
+            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            placeholder="From"
+          />
+        </div>
+        <div class="mb-4">
+          <input
+            type="text"
+            id="name2"
+            name="name2"
+            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            placeholder="To"
+          />
+        </div>
+        <div class="mb-4">
+          <input
+            type="text"
+            id="transferAmount"
+            name="transferAmount"
+            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            placeholder="Amount"
+          />
+        </div>
+
+        <!-- Transfer Button -->
+        <button
+          class="rounded-md bg-blue-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+        >
+          Transfer
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

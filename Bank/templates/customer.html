@@ -8,7 +8,7 @@
     <title>StadtBank</title>
   </head>
 
-  <body class="h-screen bg-gray-100">
+  <body class="bg-gray-100">
     <!-- Breadcrumb and Header -->
     <div class="flex items-center bg-green-800 p-4 text-white">
       <h1 class="text-3xl font-bold">StadtBank</h1>
@@ -21,15 +21,12 @@
       <!-- Breadcrumb -->
       <nav class="ml-auto">
         <ol class="flex list-none">
-          <li>
-            <a href="" class="pl-1 text-end text-sm text-gray-200">Dashboard</a>
-          </li>
+          <li><a href="" class="text-gray-200">Dashboard</a></li>
           <!--
             <li><a href="#" class="text-blue-200">Home</a></li>
           <li class="mx-2">/</li>
           <li class="text-gray-200">Current Page</li>
           -->
-          <!-- Add more breadcrumb items as needed -->
         </ol>
       </nav>
     </div>
@@ -38,87 +35,44 @@
       <h2 class="mb-2 p-1 text-2xl font-bold">Dashboard</h2>
     </div>
 
-    <!-- Tables -->
-    <div
-      class="container mx-auto mt-4 flex max-h-screen flex-wrap overflow-y-scroll p-4"
-    >
-      <!-- Customers -->
+    <div class="container mx-auto mt-4 flex h-screen flex-wrap">
+      <!-- Customer -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <h3 class="mb-2 text-lg font-bold">Customers</h3>
-        <table class="w-full table-auto rounded border bg-white">
-          <thead>
-            <tr>
-              <th class="border p-2">ID</th>
-              <th class="border p-2">Name</th>
-              <th class="border p-2">Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% if customers %} {% for customer in customers %}
-            <tr onclick="customerDet('{{customer.nr}}');">
-              <td class="border p-2">{{customer.nr}}</td>
-              <td class="border p-2">{{customer.name}}</td>
-              <td class="border p-2">{{customer.balance}}</td>
-            </tr>
-            {% endfor %} {% else %}
-            <tr>
-              <td class="border p-2" colspan="3">
-                No Customer Data available.
-              </td>
-
-              {% endif %}
-            </tr>
-          </tbody>
-        </table>
+        <h3 class="mb-2 text-lg font-bold">{{customer.name}}</h3>
+        <!--Customer Infos-->
       </div>
 
       <!-- Actions -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
         <h3 class="mb-2 text-lg font-bold">Actions</h3>
-        <table class="w-full table-auto rounded border bg-white">
+        <table class="w-full border bg-white">
           <thead>
             <tr>
               <th class="border p-2">ID</th>
-              <th class="border p-2">Customer</th>
               <th class="border p-2">Amount</th>
               <th class="border p-2">Type</th>
-              <th class="border p-2">Before</th>
-              <th class="border p-2">Related</th>
+              <th class="border p-2">Releated</th>
               <th class="border p-2">Date</th>
             </tr>
           </thead>
           <tbody>
-            <!-- Set the height as needed -->
             {% if actions %} {% for action in actions %}
-            <tr>
+            <tr class="">
               <td class="border p-2">{{action.id}}</td>
-              <td
-                class="group relative border p-2"
-                onclick="customerDet('{{action.nr}}');"
-              >
-                <!-- TODO: Make it better-->
-                {{action.getNames.0}}
-                <p
-                  class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
-                >
-                  {{action.nr}}
-                </p>
-              </td>
               <td class="border p-2">{{action.amount}}</td>
               <td class="border p-2">{{action.type}}</td>
-              <td class="border p-2">{{action.before}}</td>
               <td
                 class="relatie group border p-2"
                 {%
                 if
-                action.related_nr
+                customer.related_nr
                 %}
                 onclick="customerDet('{{action.related_nr}}');"
                 {%
                 endif
                 %}
               >
-                {{action.getNames.1| default:""}} {% if action.related_nr %}
+                {{action.getNames.1| default:""}} {% if customer.related_nr %}
                 <p
                   class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
@@ -130,15 +84,14 @@
               <td class="border p-2">{{action.date}}</td>
             </tr>
             {% endfor %} {% else %}
-            <tr>
-              <td class="border p-2" colspan="7">No Action Data available.</td>
-
-              {% endif %}
-            </tr>
+            <td class="border p-2" colspan="6">No Action Data available.</td>
+            <!-- TODO: Make it for both Rows -->
+            {% endif %}
           </tbody>
         </table>
       </div>
     </div>
+
     <script src="{% static 'index.js' %}"></script>
   </body>
 </html>
