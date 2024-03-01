@@ -6,7 +6,7 @@ class Customer(models.Model):
     """Customer Class"""
     nr = models.IntegerField(primary_key=True)
     name = models.TextField()
-    balance = models.ImageField()
+    balance = models.FloatField()
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -18,9 +18,9 @@ class Customer(models.Model):
 
 class Action(models.Model):
     """Action Class"""
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True, auto_created=True)
     nr = models.IntegerField()
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now=True)
     type = models.TextField(choices=[('payin', 'Pay In'),
                                      ('payout', 'Pay Out'),
                                      ('transfer', 'Transfer')])
@@ -31,6 +31,7 @@ class Action(models.Model):
         return f"Action {self.id}"
 
     def getNames(self):
+        """Action.getNames Function"""
         try:
             return Customer.objects.get(nr=self.nr).name, Customer.objects.get(nr=self.related_nr).name
         except:
