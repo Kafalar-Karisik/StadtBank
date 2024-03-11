@@ -13,22 +13,14 @@
     <div class="flex items-center bg-green-800 p-4 text-white">
       <h1 class="text-3xl font-bold">StadtBank</h1>
 
-      <a href="/" class="pl-3 text-gray-200">Dashboard</a>
-      <a href="./customers" class="pl-3 text-gray-200">Customers</a>
-      <a href="./Action" class="pl-3 text-gray-200">Actions</a>
-      <a href="./pay" class="pl-3 text-gray-200">Pay</a>
+      <div id="menuList" class="flex items-start"></div>
 
       <!-- Breadcrumb -->
       <nav class="ml-auto">
         <ol class="flex list-none">
           <li>
-            <a href="" class="pl-1 text-end text-sm text-gray-200">Dashboard</a>
+            <a href="" class="pl-1 text-end text-sm text-gray-200">Home</a>
           </li>
-          <!--
-            <li><a href="#" class="text-blue-200">Home</a></li>
-          <li class="mx-2">/</li>
-          <li class="text-gray-200">Current Page</li>
-          -->
           <!-- Add more breadcrumb items as needed -->
         </ol>
       </nav>
@@ -39,13 +31,22 @@
     </div>
 
     <!-- Tables -->
-    <div
-      class="container mx-auto mt-4 flex max-h-screen flex-wrap overflow-y-scroll p-4"
-    >
+    <div class="container mx-auto mt-4 flex flex-wrap p-4">
       <!-- Customers -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <h3 class="mb-2 text-lg font-bold">Customers</h3>
-        <table class="w-full table-auto rounded border bg-white">
+        <div class="flex items-center p-3">
+          <h3 class="mb-2 w-fit pr-3 text-lg font-bold">Customers</h3>
+          <input
+            type="text"
+            class="search-input bg-whites rounded-sm"
+            id="customerSearchInput"
+            placeholder="Search"
+          />
+        </div>
+        <table
+          id="customer-table"
+          class="w-full table-auto rounded border bg-white"
+        >
           <thead>
             <tr>
               <th class="border p-2">ID</th>
@@ -65,17 +66,19 @@
               <td class="border p-2" colspan="3">
                 No Customer Data available.
               </td>
-
-              {% endif %}
             </tr>
+            {% endif %}
           </tbody>
         </table>
       </div>
 
       <!-- Actions -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <h3 class="mb-2 text-lg font-bold">Actions</h3>
-        <table class="w-full table-auto rounded border bg-white">
+        <h3 class="mb-2 p-3 text-lg font-bold">Actions</h3>
+        <table
+          id="actions-table"
+          class="w-full table-auto rounded border bg-white"
+        >
           <thead>
             <tr>
               <th class="border p-2">ID</th>
@@ -106,7 +109,7 @@
               </td>
               <td class="border p-2">{{action.amount}}</td>
               <td class="border p-2">{{action.type}}</td>
-              <td class="border p-2">{{action.before}}</td>
+              <td class="border p-2">{{action.before | default:"-"}}</td>
               <td
                 class="relatie group border p-2"
                 {%
@@ -118,7 +121,7 @@
                 endif
                 %}
               >
-                {{action.getNames.1| default:""}} {% if action.related_nr %}
+                {{action.getNames.1 | default:""}} {% if action.related_nr %}
                 <p
                   class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
@@ -127,14 +130,13 @@
                 {% endif %}
               </td>
               <!-- TODO: Hover ID-->
-              <td class="border p-2">{{action.date}}</td>
+              <td class="border p-2">{{action.date| date:"j.m l"}}</td>
             </tr>
             {% endfor %} {% else %}
             <tr>
               <td class="border p-2" colspan="7">No Action Data available.</td>
-
-              {% endif %}
             </tr>
+            {% endif %}
           </tbody>
         </table>
       </div>

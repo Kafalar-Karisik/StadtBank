@@ -13,10 +13,7 @@
     <div class="flex items-center bg-green-800 p-4 text-white">
       <h1 class="text-3xl font-bold">StadtBank</h1>
 
-      <a href="/" class="pl-3 text-gray-200">Dashboard</a>
-      <a href="./customers" class="pl-3 text-gray-200">Customers</a>
-      <a href="./Action" class="pl-3 text-gray-200">Actions</a>
-      <a href="./pay" class="pl-3 text-gray-200">Pay</a>
+      <div id="menuList" class="flex items-start"></div>
 
       <!-- Breadcrumb -->
       <nav class="ml-auto">
@@ -40,6 +37,7 @@
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
         <h3 class="mb-2 text-lg font-bold">{{customer.name}}</h3>
         <!--Customer Infos-->
+        <h4 class="mb-2 text-lg font-bold">Balance: {{customer.balance}}</h4>
       </div>
 
       <!-- Actions -->

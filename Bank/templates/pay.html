@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <title>Your Website</title>
+    <title>Stadt Bank</title>
   </head>
 
   <body class="h-screen bg-gray-100">
@@ -13,10 +13,7 @@
     <div class="flex items-center bg-green-800 p-4 text-white">
       <h1 class="text-3xl font-bold">StadtBank</h1>
 
-      <a href="/" class="pl-3 text-gray-200">Dashboard</a>
-      <a href="./customers" class="pl-3 text-gray-200">Customers</a>
-      <a href="./Action" class="pl-3 text-gray-200">Actions</a>
-      <a href="./pay" class="pl-3 text-gray-200">Pay</a>
+      <div id="menuList" class="flex items-start"></div>
 
       <!-- Breadcrumb -->
       <nav class="ml-auto">
@@ -34,8 +31,8 @@
 
     <!-- Body -->
     <div class="container mx-auto mt-8 flex">
-      <!-- Right Side -->
-      <div class="w-1/2 pr-4">
+      <!-- Left Side -->
+      <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
         <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
         <div class="mb-4">
@@ -43,16 +40,17 @@
             type="text"
             id="name"
             name="name"
-            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
             placeholder="Name/ID"
           />
+          <p id="checkText"></p>
         </div>
         <div class="mb-4">
           <input
-            type="text"
+            type="number"
             id="amount"
             name="amount"
-            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
             placeholder="Amount"
           />
         </div>
@@ -72,8 +70,8 @@
         </div>
       </div>
 
-      <!-- Left Side -->
-      <div class="w-1/2 pl-4">
+      <!-- Right Side -->
+      <div class="w-1/2 p-4">
         <!-- Two Name Inputs and Amount Input -->
         <h3 class="text-2x1 mb-2 p-1 font-bold">Transfer</h3>
         <div class="mb-4">
@@ -81,7 +79,7 @@
             type="text"
             id="name1"
             name="name1"
-            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
             placeholder="From"
           />
         </div>
@@ -90,7 +88,7 @@
             type="text"
             id="name2"
             name="name2"
-            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
             placeholder="To"
           />
         </div>
@@ -99,7 +97,7 @@
             type="text"
             id="transferAmount"
             name="transferAmount"
-            class="w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
             placeholder="Amount"
           />
         </div>
@@ -112,5 +110,6 @@
         </button>
       </div>
     </div>
+    <script src="{% static 'index.js' %}"></script>
   </body>
 </html>
