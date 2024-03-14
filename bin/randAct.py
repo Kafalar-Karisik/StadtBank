@@ -26,14 +26,22 @@ for _ in range(randint(0, 33)):
     action_type = randint(1, 3)
     customer = randint(1, len(customers_data))
     if action_type == 1:
-        query = [f"INSERT INTO actions (nr, type, amount,before,date) VALUES ({customer}, 'payin', {randint(0, 100)},{cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").fetchone()[0]}, '{datetime.now()}');"]
+        query = [f"""INSERT INTO actions (nr, type, amount,before,date) VALUES ({customer}, 'payin', {randint(0, 100)},{
+            cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").fetchone()[0]}, '{datetime.now()}');"""]
     if action_type == 2:
-        query = [f"INSERT INTO actions (nr, type, amount, before, date) VALUES ({customer}, 'payout', {randint(1, int(cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").fetchone()[0]))}, {int(cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").fetchone()[0])}, '{datetime.now()}');"]
+        query = [f"""INSERT INTO actions (nr, type, amount, before, date) VALUES ({customer}, 'payout', {
+            randint(1,
+                    int(cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").
+                        fetchone()[0]))}, {int(cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").
+                                               fetchone()[0])}, '{datetime.now()}');"""]
     if action_type == 3:
         nr = randint(0, len(customers_data))
-        amount = cursor.execute(f"""SELECT balance FROM customers WHERE nr = {randint(1, len(customers_data))};""").fetchone()[0]
+        amount = cursor.execute(f"""SELECT balance FROM customers WHERE nr = {
+                                randint(1, len(customers_data))};""").fetchone()[0]
         releated_nr = randint(1, len(customers_data))
-        query = [f"INSERT INTO actions (nr, type, amount, date, related_nr) VALUES ({nr}, 'transfer', {amount}, '{datetime.now()}', {releated_nr});"]
+
+        query = [f"""INSERT INTO actions (nr, type, amount, date, related_nr) VALUES ({
+            nr}, 'transfer', {amount}, '{datetime.now()}', {releated_nr});"""]
 
     print("\n".join(query))
     for que in query:
