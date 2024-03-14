@@ -24,7 +24,7 @@ class Action(models.Model):
     type = models.TextField(choices=[('payin', 'Pay In'),
                                      ('payout', 'Pay Out'),
                                      ('transfer', 'Transfer')])
-    amount = models.FloatField()
+    amount = models.IntegerField()
     related_nr = models.IntegerField(null=True)
     before = models.IntegerField(null=True)
 
