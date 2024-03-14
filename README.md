@@ -38,12 +38,6 @@ To set up the database, perform the following steps:
    python manage.py migrate
    ```
 
-2. Apply the migrations:
-
-   ```shell
-   python manage.py sqlmigrate Bank 0001
-   ```
-
 ## Data Samples
 
 You can use the [bin/randCus.py](bin/randCus.py) and [bin/randAct.py](bin/randAct.py) for generate sample data for your database.
@@ -59,11 +53,12 @@ Here are the SQL definitions for the database tables:
 CREATE TABLE "actions" (
     "id"    integer NOT NULL,
     "nr"    integer NOT NULL,
-    "amount"    real NOT NULL,
     "date"  datetime NOT NULL,
     "type"  text NOT NULL,
+    "amount"    integer NOT NULL,
     "related_nr"    integer,
-    PRIMARY KEY("id" AUTOINCREMENT)
+    "before"    integer,
+    PRIMARY KEY("id")
 );
 ```
 
@@ -73,7 +68,7 @@ CREATE TABLE "actions" (
 CREATE TABLE "customers" (
     "nr"    integer NOT NULL,
     "name"  text NOT NULL,
-    "balance"   real NOT NULL,
+    "balance"   integer NOT NULL,
     PRIMARY KEY("nr")
 );
 ```
