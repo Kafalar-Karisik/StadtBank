@@ -10,7 +10,13 @@ class CustomerF(forms.Form):
 
 class TransferF(forms.Form):
     """Transfer Form"""
-    nr = forms.ImageField()
+    nr = forms.IntegerField()
     type = "transfer"
     amount = forms.FloatField()
     releated_nr = forms.IntegerField()
+
+
+class PayForm(forms.Form):
+    customer = forms.IntegerField()
+    type = forms.CharField()
+    amount = forms.IntegerField()

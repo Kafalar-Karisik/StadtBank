@@ -5,7 +5,7 @@ from django.views import View
 
 from Bank.models import Action, Customer
 
-from .forms import CustomerF, TransferF
+from .forms import CustomerF, PayForm, TransferF
 
 # Create your views here.
 # pylint: disable=no-member
@@ -139,6 +139,36 @@ def pay_out(request):
             print("NotValid")
 
     return HttpResponseRedirect("/.")
+
+
+def pay(request):
+    if request.method == "POST":
+        form = PayForm(request.POST)
+        if form.is_valid():
+            type = request.POST.get("type")
+            if type == "payin":
+                datas = form.cleaned_data
+                target = Customer.objects.get(nr=datas["customer"])
+                before = target.balance
+                target.balance += datas["amount"]
+                target.save()
+
+                action = Action(
+                    nr=datas["customer"], type="payin", amount=datas["amount"], before=before)
+                action.save()
+
+            elif type == "payout":
+                datas = form.cleaned_data
+                target = Customer.objects.get(nr=datas["customer"])
+                before = target.balance
+                target.balance -= datas["amount"]
+                target.save()
+
+                action = Action(
+                    nr=datas["customer"], type="payout", amount=datas["amount"], before=before)
+                action.save()
+
+    return HttpResponseRedirect("../pay")
 
 
 def transfer(request):

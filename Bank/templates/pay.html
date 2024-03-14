@@ -34,40 +34,51 @@
       <!-- Left Side -->
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
-        <div class="mb-4">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-            placeholder="Name/ID"
-          />
-          <p id="checkText"></p>
-        </div>
-        <div class="mb-4">
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-            placeholder="Amount"
-          />
-        </div>
+        <form method="post" action="{% url 'Bank:pay'%}">
+          {% csrf_token %}
+          <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
+          <div class="mb-4">
+            <input
+              type="text"
+              id="customer"
+              name="customer"
+              class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              placeholder="Name/ID"
+            />
+            <p id="checkText"></p>
+            <!-- TODO: Add Name/User Check on write-->
+          </div>
+          <div class="mb-4">
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              placeholder="Amount"
+            />
+          </div>
 
-        <!-- Pay In and Pay Out Buttons -->
-        <div class="flex">
-          <button
-            class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-          >
-            Pay In
-          </button>
-          <button
-            class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-          >
-            Pay Out
-          </button>
-        </div>
+          <!-- Pay In and Pay Out Buttons -->
+          <div class="flex">
+            <button
+              class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+              type="submit"
+              value="payin"
+              name="type"
+            >
+              Pay In
+            </button>
+
+            <button
+              class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+              type="submit"
+              value="payout"
+              name="type"
+            >
+              Pay Out
+            </button>
+          </div>
+        </form>
       </div>
 
       <!-- Right Side -->
