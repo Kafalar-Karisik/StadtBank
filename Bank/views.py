@@ -54,20 +54,10 @@ class CustomerDV(View):
         """CustomerDV.get"""
         try:
             customer = get_object_or_404(Customer, nr=nr)
-            balance = customer.balance
-            name = customer.name
 
             actions = Action.objects.filter(nr=nr)
-            customerNames = Customer.objects.all()
 
-            names = []
-            for i in actions:
-                try:
-                    names.append(customerNames.get(nr=i.related_nr).name)
-                except Customer.DoesNotExist:
-                    names.append("")
-
-            return render(request, 'customer.html', {'customer': {"nr": nr, "name": name, "balance": balance}, 'actions': actions})
+            return render(request, 'customer.html', {'customer': customer, 'actions': actions})
         except Http404:
             # Handle the case when no Transaktionen object is found
             return render(request, '404.html')

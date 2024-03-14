@@ -49,6 +49,7 @@
               <th class="border p-2">ID</th>
               <th class="border p-2">Amount</th>
               <th class="border p-2">Type</th>
+              <th class="border p-2">Before</th>
               <th class="border p-2">Releated</th>
               <th class="border p-2">Date</th>
             </tr>
@@ -59,6 +60,7 @@
               <td class="border p-2">{{action.id}}</td>
               <td class="border p-2">{{action.amount}}</td>
               <td class="border p-2">{{action.type}}</td>
+              <td class="border p-2">{{action.before|default:""}}</td>
               <td
                 class="relatie group border p-2"
                 {%
