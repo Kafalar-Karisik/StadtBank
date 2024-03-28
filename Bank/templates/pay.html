@@ -18,7 +18,7 @@
       <!-- Breadcrumb -->
       <nav class="ml-auto">
         <ol class="flex list-none">
-          <li><a href="../" class="text-blue-200">Home</a></li>
+          <li><a href="/" class="text-blue-200">Home</a></li>
           <li class="mx-2">/</li>
           <li class="text-gray-200">Pay</li>
         </ol>
@@ -34,7 +34,7 @@
       <!-- Left Side -->
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        <form method="post" action="{% url 'Bank:pay'%}">
+        <form method="post" action="{% url 'Bank:pay' %}">
           {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
           <div class="mb-4">
@@ -84,41 +84,46 @@
       <!-- Right Side -->
       <div class="w-1/2 p-4">
         <!-- Two Name Inputs and Amount Input -->
-        <h3 class="text-2x1 mb-2 p-1 font-bold">Transfer</h3>
-        <div class="mb-4">
-          <input
-            type="text"
-            id="name1"
-            name="name1"
-            class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-            placeholder="From"
-          />
-        </div>
-        <div class="mb-4">
-          <input
-            type="text"
-            id="name2"
-            name="name2"
-            class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-            placeholder="To"
-          />
-        </div>
-        <div class="mb-4">
-          <input
-            type="text"
-            id="transferAmount"
-            name="transferAmount"
-            class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-            placeholder="Amount"
-          />
-        </div>
+        <form method="post" action="{% url 'Bank:transfer' %}">
+          {% csrf_token %}
+          <h3 class="text-2x1 mb-2 p-1 font-bold">Transfer</h3>
 
-        <!-- Transfer Button -->
-        <button
-          class="rounded-md bg-blue-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-        >
-          Transfer
-        </button>
+          <div class="mb-4">
+            <input
+              type="text"
+              id="nr"
+              name="nr"
+              class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              placeholder="From"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              id="related_nr"
+              name="related_nr"
+              class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              placeholder="To"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              id="amount"
+              name="amount"
+              class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              placeholder="Amount"
+            />
+          </div>
+
+          <!-- Transfer Button -->
+          <button
+            class="rounded-md bg-blue-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+          >
+            Transfer
+          </button>
+          <input type="hidden" name="type" value="transfer" />
+        </form>
       </div>
     </div>
     <script src="{% static 'index.js' %}"></script>

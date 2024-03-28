@@ -97,6 +97,14 @@ class Pay(View):
         return render(request, 'pay.html')
 
 
+class Credit(View):
+    """Credit Page"""
+
+    def get(self, request):
+        """Credit.get"""
+        return render(request, 'credit.html')
+
+
 def pay_in(request):
     """payIn API"""
 
@@ -168,7 +176,7 @@ def pay(request):
                     nr=datas["customer"], type="payout", amount=datas["amount"], before=before)
                 action.save()
 
-    return HttpResponseRedirect("../pay")
+    return HttpResponseRedirect("./#")
 
 
 def transfer(request):
@@ -179,10 +187,20 @@ def transfer(request):
         if form.is_valid():
             datas = form.cleaned_data
             customer = Customer.objects.get(nr=datas["nr"])
-            customer1 = Customer.objects.get(nr=datas["releated_nr"])
+            customer1 = Customer.objects.get(nr=datas["related_nr"])
             amount = datas["amount"]
             customer.balance -= amount
             customer1.balance += amount
+            customer.save()
+            customer1.save()
+
+            action = Action(
+                nr=datas["nr"], related_nr=datas["related_nr"], type="transfer", amount=datas["amount"]
+            )
+            action.save()
+        else:
+            print("Not Valid")
+    return HttpResponseRedirect("./#")
 
 
 class Settings(View):

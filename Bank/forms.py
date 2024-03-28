@@ -13,7 +13,7 @@ class TransferF(forms.Form):
     nr = forms.IntegerField()
     type = "transfer"
     amount = forms.FloatField()
-    releated_nr = forms.IntegerField()
+    related_nr = forms.IntegerField()
 
 
 class PayForm(forms.Form):

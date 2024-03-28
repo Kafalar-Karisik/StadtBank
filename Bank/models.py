@@ -4,9 +4,10 @@ from django.db import models
 
 class Customer(models.Model):
     """Customer Class"""
-    nr = models.IntegerField(primary_key=True)
-    name = models.TextField()
-    balance = models.IntegerField()
+    nr = models.IntegerField(
+        primary_key=True, unique=True, auto_created=False)
+    name = models.TextField(unique=True, help_text="Customer Name")
+    balance = models.IntegerField(null=True)
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -24,7 +25,7 @@ class Action(models.Model):
     type = models.TextField(choices=[('payin', 'Pay In'),
                                      ('payout', 'Pay Out'),
                                      ('transfer', 'Transfer')])
-    amount = models.IntegerField()
+    amount = models.IntegerField(null=True)
     related_nr = models.IntegerField(null=True)
     before = models.IntegerField(null=True)
 
