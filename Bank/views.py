@@ -18,13 +18,6 @@ def index(request):
 
     names = {"customers": [], "actions": [[], []]}
 
-    for i in actions:
-        try:
-            names["actions"][1].append(
-                customers.get(nr=i.related_nr).name)
-        except Customer.DoesNotExist:
-            names["actions"][1].append("")
-
     return render(request, 'dashboard.html', {'customers': customers,
                                               'actions': actions,
                                               'names': names})
@@ -55,7 +48,7 @@ class CustomerDV(View):
         try:
             customer = get_object_or_404(Customer, nr=nr)
 
-            actions = Action.objects.filter(nr=nr)
+            actions = Action.objects.filter(customer=nr)
 
             return render(request, 'customer.html', {'customer': customer, 'actions': actions})
         except Http404:
@@ -65,7 +58,7 @@ class CustomerDV(View):
 
 class ActionDV(View):
     """Action Detail View page"""
-    # ID, Numer, Date, ActionType, amount, related_nr
+    # ID, Numer, Date, ActionType, amount, related
 
     def get(self, request, nr):
         """CustomerDV.get"""
@@ -91,10 +84,11 @@ class ActionDV(View):
 
 class Pay(View):
     """Pay Page"""
+    customers = Customer.objects.all()
 
     def get(self, request):
         """Pay.get"""
-        return render(request, 'pay.html')
+        return render(request, 'pay.html', {'customers': self.customers})
 
 
 class Credit(View):
@@ -156,13 +150,13 @@ def pay(request):
             type = request.POST.get("type")
             if type == "payin":
                 datas = form.cleaned_data
-                target = Customer.objects.get(nr=datas["customer"])
+                target = datas["customer"]
                 before = target.balance
                 target.balance += datas["amount"]
                 target.save()
 
                 action = Action(
-                    nr=datas["customer"], type="payin", amount=datas["amount"], before=before)
+                    customer=datas["customer"], type="payin", amount=datas["amount"], before=before)
                 action.save()
 
             elif type == "payout":
@@ -173,10 +167,12 @@ def pay(request):
                 target.save()
 
                 action = Action(
-                    nr=datas["customer"], type="payout", amount=datas["amount"], before=before)
+                    customer=datas["customer"], type="payout", amount=datas["amount"], before=before)
                 action.save()
+        else:
+            print("NONOno")
 
-    return HttpResponseRedirect("./#")
+    return HttpResponseRedirect("/#")
 
 
 def transfer(request):
@@ -186,8 +182,8 @@ def transfer(request):
 
         if form.is_valid():
             datas = form.cleaned_data
-            customer = Customer.objects.get(nr=datas["nr"])
-            customer1 = Customer.objects.get(nr=datas["related_nr"])
+            customer = datas["nr"]
+            customer1 = datas["related"]
             amount = datas["amount"]
             customer.balance -= amount
             customer1.balance += amount
@@ -195,7 +191,7 @@ def transfer(request):
             customer1.save()
 
             action = Action(
-                nr=datas["nr"], related_nr=datas["related_nr"], type="transfer", amount=datas["amount"]
+                nr=datas["nr"], related=datas["related"], type="transfer", amount=datas["amount"]
             )
             action.save()
         else:

@@ -97,14 +97,14 @@
               <td class="border p-2">{{action.id}}</td>
               <td
                 class="group relative border p-2"
-                onclick="customerDet('{{action.nr}}');"
+                onclick="customerDet('{{action.customer.nr}}');"
               >
                 <!-- TODO: Make it better-->
-                {{action.getNames.0}}
+                {{action.customer.name}}
                 <p
                   class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
-                  {{action.nr}}
+                  {{action.customer.nr}}
                 </p>
               </td>
               <td class="border p-2">{{action.amount}}</td>
@@ -114,23 +114,23 @@
                 class="relatie group border p-2"
                 {%
                 if
-                action.related_nr
+                action.related.nr
                 %}
-                onclick="customerDet('{{action.related_nr}}');"
+                onclick="customerDet('{{action.related.nr}}');"
                 {%
                 endif
                 %}
               >
-                {{action.getNames.1 | default:""}} {% if action.related_nr %}
+                {% if action.related %} {{action.related.name | default:""}}
                 <p
                   class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
-                  {{action.related_nr}}
+                  {{action.related.nr }}
                 </p>
                 {% endif %}
               </td>
               <!-- TODO: Hover ID-->
-              <td class="border p-2">{{action.date| date:"j.m l"}}</td>
+              <td class="border p-2">{{action.date| date:"l (j.m)"}}</td>
             </tr>
             {% endfor %} {% else %}
             <tr>

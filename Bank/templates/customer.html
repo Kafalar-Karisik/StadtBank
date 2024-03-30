@@ -71,11 +71,11 @@
                 endif
                 %}
               >
-                {{action.getNames.1| default:""}} {% if customer.related_nr %}
+                {% if customer.related %} {{action.related.name| default:""}}
                 <p
                   class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
-                  {{action.related_nr}}
+                  {{action.related.nr}}
                 </p>
                 {% endif %}
               </td>

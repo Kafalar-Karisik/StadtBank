@@ -1,6 +1,8 @@
 """Django Module(s)"""
 from django import forms
 
+from .models import Customer
+
 
 class CustomerF(forms.Form):
     """Customer From"""
@@ -13,10 +15,10 @@ class TransferF(forms.Form):
     nr = forms.IntegerField()
     type = "transfer"
     amount = forms.FloatField()
-    related_nr = forms.IntegerField()
+    related = forms.IntegerField()
 
 
 class PayForm(forms.Form):
-    customer = forms.IntegerField()
+    customer = forms.ModelChoiceField(Customer.objects.all())
     type = forms.CharField()
     amount = forms.IntegerField()

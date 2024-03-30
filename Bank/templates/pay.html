@@ -38,18 +38,31 @@
           {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
           <div class="mb-4">
+            <!--
             <input
               type="text"
               id="customer"
               name="customer"
               class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="Name/ID"
-            />
-            <p id="checkText"></p>
+            />-->
+            <select
+              required
+              name="customer"
+              id="customer"
+              class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
+            >
+              {% for customer in customers%}
+              <option value="{{customer.nr}}">
+                {{customer.name}} | {{customer.nr}}
+              </option>
+              {%endfor%}
+            </select>
             <!-- TODO: Add Name/User Check on write-->
           </div>
           <div class="mb-4">
             <input
+              required
               type="number"
               id="amount"
               name="amount"
@@ -89,6 +102,7 @@
           <h3 class="text-2x1 mb-2 p-1 font-bold">Transfer</h3>
 
           <div class="mb-4">
+            <!--
             <input
               type="text"
               id="nr"
@@ -96,18 +110,46 @@
               class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="From"
             />
+            -->
+            <select
+              required
+              name="nr"
+              id="nr"
+              class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
+            >
+              {% for customer in customers%}
+              <option value="{{customer.nr}}">
+                {{customer.name}} | {{customer.nr}}
+              </option>
+              {%endfor%}
+            </select>
           </div>
           <div class="mb-4">
+            <!--
             <input
               type="text"
-              id="related_nr"
-              name="related_nr"
+              id="related"
+              name="related"
               class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="To"
             />
+            -->
+            <select
+              required
+              name="related"
+              id="related"
+              class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
+            >
+              {% for customer in customers%}
+              <option value="{{customer.nr}}">
+                {{customer.name}} | {{customer.nr}}
+              </option>
+              {%endfor%}
+            </select>
           </div>
           <div class="mb-4">
             <input
+              required
               type="text"
               id="amount"
               name="amount"

@@ -15,8 +15,8 @@ for _ in range(random.randint(25, 75)):
     balance = random.randint(0, 100)
 
     # Veriyi tabloya ekle
-    query = f"INSERT INTO customers (name, balance) VALUES ('{
-        last_name}, {first_name}', {balance})"
+    query = f"""INSERT INTO customers (name, balance, credits) VALUES ('{
+        first_name} {last_name}', {balance}, 0)"""
 
     print(query)
     cursor.execute(query)
