@@ -8,9 +8,9 @@
     <title>StadtBank</title>
   </head>
 
-  <body class="bg-gray-100">
+  <body>
     <!-- Breadcrumb and Header -->
-    <div class="flex items-center bg-green-800 p-4 text-white">
+    <div id="header" class="flex items-center p-4">
       <h1 class="text-3xl font-bold">StadtBank</h1>
 
       <div id="menuList" class="flex items-start"></div>
@@ -58,8 +58,8 @@
             <tr class="">
               <td class="border p-2">{{action.id}}</td>
               <td class="border p-2">{{action.amount}}</td>
-              <td class="border p-2">{{action.type}}</td>
-              <td class="border p-2">{{action.before|default:""}}</td>
+              <td class="border p-2">{{action.get_type_display}}</td>
+              <td class="border p-2">{{action.before|default_if_none:"-"}}</td>
               <td
                 class="relatie group border p-2"
                 {%
@@ -71,7 +71,8 @@
                 endif
                 %}
               >
-                {% if customer.related %} {{action.related.name| default:""}}
+                {% if customer.related %} {{action.related.name|
+                default_if_none:""}}
                 <p
                   class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >

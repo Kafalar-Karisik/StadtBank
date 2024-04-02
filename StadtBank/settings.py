@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_random_secret_key()
+SECRET_KEY = get_random_secret_key()  # I don't know what this thing do :)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -163,9 +163,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'Bank', 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+LOGIN_URL = '/login'
+
 # Security
 # manage.py check --deploy
 
 # SECURE_SSL_REDIRECT = True
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "'https,http")
+# SECURE_HSTS_SECONDS =

@@ -12,13 +12,17 @@ class CustomerF(forms.Form):
 
 class TransferF(forms.Form):
     """Transfer Form"""
-    nr = forms.IntegerField()
+    nr = forms.ModelChoiceField(Customer.objects.all())
     type = "transfer"
     amount = forms.FloatField()
-    related = forms.IntegerField()
+    related = forms.ModelChoiceField(Customer.objects.all())
 
 
-class PayForm(forms.Form):
+class PayF(forms.Form):
     customer = forms.ModelChoiceField(Customer.objects.all())
     type = forms.CharField()
     amount = forms.IntegerField()
+
+
+class newCustomerF(forms.Form):
+    name = forms.CharField()

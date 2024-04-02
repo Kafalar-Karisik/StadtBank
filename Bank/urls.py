@@ -10,6 +10,9 @@ urlpatterns = [
     path("customers/<int:nr>", views.CustomerDV.as_view()),
     path("pay", views.Pay.as_view(), name="Pay In/Out"),
     path("paying", views.pay, name="pay"),
+    path("newCustomer", views.newCustomer, name="newCustomer"),
     path("transfer", views.transfer, name="transfer"),
-    path("credit", views.Credit.as_view(), name="Credit System")
+    path("credit", views.Credit.as_view(), name="Credit System"),
+    path("login", views.Login.as_view(), name="login"),
+    path("newPassw", views.newWorkerPass, name="newWorkerPass")
 ]

@@ -7,8 +7,8 @@ class Customer(models.Model):
     """Customer Class"""
     nr = models.IntegerField(
         primary_key=True, unique=True, auto_created=False)
-    name = models.TextField(unique=True, help_text="Customer Name")
-    balance = models.IntegerField(null=True)
+    name = models.TextField()
+    balance = models.IntegerField(default=0)
     credits = models.IntegerField(default=0, null=True)
 
     def __str__(self) -> str:
@@ -36,13 +36,6 @@ class Action(models.Model):
 
     def __str__(self):
         return f"Action {self.id}"
-
-    def getNames(self):
-        """Action.getNames Function"""
-        try:
-            return Customer.objects.get(nr=self.customer).name, Customer.objects.get(nr=self.related).name
-        except:
-            return Customer.objects.get(nr=self.customer).name, None
 
     class Meta:
         """Action.Meta Class"""

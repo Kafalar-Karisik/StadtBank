@@ -8,9 +8,9 @@
     <title>StadtBank</title>
   </head>
 
-  <body class="h-screen bg-gray-100">
+  <body class="h-screen">
     <!-- Breadcrumb and Header -->
-    <div class="flex items-center bg-green-800 p-4 text-white">
+    <div id="header" class="flex items-center p-4">
       <h1 class="text-3xl font-bold">StadtBank</h1>
 
       <div id="menuList" class="flex items-start"></div>
@@ -32,7 +32,7 @@
     <!-- Tables -->
     <div class="container mx-auto mt-4 flex flex-wrap p-4">
       <!-- Customers -->
-      <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
+      <div class="w-1/2 p-4">
         <div class="flex items-center p-3">
           <h3 class="mb-2 w-fit pr-3 text-lg font-bold">Customers</h3>
           <input
@@ -70,8 +70,27 @@
           </tbody>
         </table>
       </div>
-      <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <!--Here will come user Managment-->
+      <div class="w-1/2 p-4 pt-20">
+        <form method="post" action="{% url 'Bank:newCustomer' %}">
+          {% csrf_token %}
+          <h3 class="text-2x1 m-2 p-1 font-bold">New Customer</h3>
+          <div class="m-4">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              placeholder="Name"
+            />
+          </div>
+          <div class="m-4">
+            <button
+              class="rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+            >
+              Create
+            </button>
+          </div>
+        </form>
       </div>
     </div>
     <script src="{% static 'index.js' %}"></script>

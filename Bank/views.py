@@ -1,11 +1,16 @@
 """Django Module(s)"""
-from django.http import Http404, HttpResponseRedirect  # HttpResponse,
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.http import (Http404, HttpResponse,  # HttpResponse,
+                         HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, render
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 
 from Bank.models import Action, Customer
+from bin import TOTP
 
-from .forms import CustomerF, PayForm, TransferF
+from .forms import CustomerF, PayF, TransferF, newCustomerF
 
 # Create your views here.
 # pylint: disable=no-member
@@ -16,11 +21,8 @@ def index(request):
     customers = Customer.objects.all()
     actions = Action.objects.all()
 
-    names = {"customers": [], "actions": [[], []]}
-
     return render(request, 'dashboard.html', {'customers': customers,
-                                              'actions': actions,
-                                              'names': names})
+                                              'actions': actions})
 
 
 class Actions(View):
@@ -143,9 +145,10 @@ def pay_out(request):
     return HttpResponseRedirect("/.")
 
 
+@login_required
 def pay(request):
     if request.method == "POST":
-        form = PayForm(request.POST)
+        form = PayF(request.POST)
         if form.is_valid():
             type = request.POST.get("type")
             if type == "payin":
@@ -161,7 +164,7 @@ def pay(request):
 
             elif type == "payout":
                 datas = form.cleaned_data
-                target = Customer.objects.get(nr=datas["customer"])
+                target = datas["customer"]
                 before = target.balance
                 target.balance -= datas["amount"]
                 target.save()
@@ -172,7 +175,7 @@ def pay(request):
         else:
             print("NONOno")
 
-    return HttpResponseRedirect("/#")
+    return HttpResponseRedirect("/pay")
 
 
 def transfer(request):
@@ -191,17 +194,46 @@ def transfer(request):
             customer1.save()
 
             action = Action(
-                nr=datas["nr"], related=datas["related"], type="transfer", amount=datas["amount"]
+                customer=datas["nr"], related=datas["related"], type="transfer", amount=datas["amount"]
             )
             action.save()
         else:
             print("Not Valid")
-    return HttpResponseRedirect("./#")
+    return HttpResponseRedirect("/pay")
 
 
-class Settings(View):
-    """Settings Page"""
+def newCustomer(request):
+    """NewCustomer API"""
+    if request.method == "POST":
+        form = newCustomerF(request.POST)
+
+        if form.is_valid():
+            datas = form.cleaned_data
+            customer = Customer(name=datas["name"])
+
+            customer.save()
+    return HttpResponseRedirect("/customers")
+
+
+class Login(View):
+    """Login Page"""
 
     def get(self, request):
-        """Settings.get"""
-        return render(request, 'settings.html')
+        """Login.get"""
+        return render(request, 'login.html')
+
+    def post(self, request):
+        passw = request.POST["passw"]
+        user = authenticate(request, username="worker", password=f"{passw}Z")
+        if user is not None:
+            login(request, user)
+        return HttpResponseRedirect("/pay")
+
+
+@csrf_exempt
+def newWorkerPass(request):
+    if request.method == "POST":
+        passw = TOTP.newWorkerPassword()
+        return HttpResponse(passw)
+    else:
+        return HttpResponseRedirect("/")

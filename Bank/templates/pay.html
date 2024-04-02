@@ -8,9 +8,9 @@
     <title>Stadt Bank</title>
   </head>
 
-  <body class="h-screen bg-gray-100">
+  <body class="h-screen">
     <!-- Breadcrumb and Header -->
-    <div class="flex items-center bg-green-800 p-4 text-white">
+    <div id="header" class="flex items-center p-4">
       <h1 class="text-3xl font-bold">StadtBank</h1>
 
       <div id="menuList" class="flex items-start"></div>
@@ -29,6 +29,7 @@
       <h2 class="mb-2 p-1 text-2xl font-bold">Action</h2>
     </div>
 
+    {% if user.is_authenticated %}
     <!-- Body -->
     <div class="container mx-auto mt-8 flex">
       <!-- Left Side -->
@@ -52,7 +53,8 @@
               id="customer"
               class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
             >
-              {% for customer in customers%}
+              <option selected disabled hidden>Select Customer</option>
+              {% for customer in customers %}
               <option value="{{customer.nr}}">
                 {{customer.name}} | {{customer.nr}}
               </option>
@@ -117,6 +119,7 @@
               id="nr"
               class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
             >
+              <option value="" selected disabled hidden>Select Customer</option>
               {% for customer in customers%}
               <option value="{{customer.nr}}">
                 {{customer.name}} | {{customer.nr}}
@@ -140,6 +143,7 @@
               id="related"
               class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
             >
+              <option value="" selected disabled hidden>Select Customer</option>
               {% for customer in customers%}
               <option value="{{customer.nr}}">
                 {{customer.name}} | {{customer.nr}}
@@ -168,6 +172,11 @@
         </form>
       </div>
     </div>
+    {% else %}
+    <script>
+      document.location = "/login";
+    </script>
+    {% endif %}
     <script src="{% static 'index.js' %}"></script>
   </body>
 </html>
