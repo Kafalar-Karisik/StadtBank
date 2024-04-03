@@ -18,8 +18,8 @@ except:
     exit(-1)
 
 
-User.objects.create_superuser(
-    username="admin", email="", password="password")  # Please Change it
+# User.objects.create_superuser(
+#    username="admin", email="", password="password")  # Please Change it
 
 User.objects.create_user("worker", "", "").save()
 print(newWorkerPassword())

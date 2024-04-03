@@ -2,6 +2,8 @@
 
 [![Pylint](https://github.com/Kafalar-Karisik/StadtBank/actions/workflows/pylint.yml/badge.svg?branch=Django-Tailwind)](https://github.com/Kafalar-Karisik/StadtBank/actions/workflows/pylint.yml)
 
+[Documents](https://kafalar-karisik.github.io/StadtBank/)
+
 ## Setup
 
 ### Create Environment (Optional)
@@ -30,52 +32,56 @@ python -m pip install -r requirements.txt
 
 ## Create Database
 
-To set up the database, perform the following steps:
+To set up the database, perform the following step:
 
-1. Show up to migration files:
+- Show up to migration files:
 
-   ```shell
-   python manage.py migrate
-   ```
+  ```shell
+  python manage.py migrate
+  ```
 
 ## Data Samples
 
-You can use the [bin/randCus.py](bin/randCus.py) and [bin/randAct.py](bin/randAct.py) for generate sample data for your database.
+You can use the [bin/randCus.py](bin/randCus.py) and [bin/randAct.py](bin/randAct.py) for generating sample data for your database.
 
-## Model Formats
+## Models
 
 Here are the SQL definitions for the database tables:
 
-### Actions Table
+### Customer
 
-```sql
-
-CREATE TABLE "actions" (
-    "id"    integer NOT NULL,
-    "nr"    integer NOT NULL,
-    "date"  datetime NOT NULL,
-    "type"  text NOT NULL,
-    "amount"    integer NOT NULL,
-    "related_nr"    integer,
-    "before"    integer,
-    PRIMARY KEY("id")
-);
+```python
+nr = models.IntegerField(primary_key=True, unique=True, auto_created=False)
+name = models.TextField()
+balance = models.IntegerField(default=0)
+credits = models.IntegerField(default=0, null=True)
 ```
 
-### Customers Table
+### Action
 
-```sql
-CREATE TABLE "customers" (
-    "nr"    integer NOT NULL,
-    "name"  text NOT NULL,
-    "balance"   integer NOT NULL,
-    PRIMARY KEY("nr")
-);
+```python
+id = models.IntegerField(primary_key=True, auto_created=True)
+customer = models.ForeignKey(Customer, related_name="action_customer", on_delete=models.CASCADE)
+date = models.DateTimeField(auto_now=True)
+type = models.TextField(choices=[('payin', 'Pay In'),
+                                ('payout', 'Pay Out'),
+                                ('transfer', 'Transfer')])
+amount = models.IntegerField(null=True)
+related = models.ForeignKey(Customer, related_name="action_related", on_delete=models.CASCADE, null=True)
+before = models.IntegerField(null=True)
+```
+
+### Credit
+
+```python
+customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+amount = models.IntegerField()
+date = models.DateTimeField(auto_now_add=True)
 ```
 
 ## Running Server
 
-After all setup you can run the Program with
+After all setup, you can run the program with:
 
 ```shell
 ./manage.py runserver
@@ -84,8 +90,10 @@ After all setup you can run the Program with
 _or_
 
 ```shell
-manage.py runserver
+python manage.py runserver
 ```
+
+> Use `--insecure` if you can't get Static Files
 
 ## Admin GUI
 
@@ -95,6 +103,8 @@ To access the admin GUI, you need to create a superuser account first. Run the f
 python manage.py createsuperuser
 ```
 
-For access you nedd to go `http://IP_ADRESS/admin`
+> or you can run [bin/TOTP.py](bin/TOTP.py) for Account Setup
 
-> **_Note: Please ensure that your database migrations are applied before running the `createsuperuser` command._**
+For access, you need to go to `http://IP_ADDRESS/admin`
+
+> **Note:** Please ensure that your database migrations are applied before running the `createsuperuser` command.

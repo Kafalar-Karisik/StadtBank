@@ -10,6 +10,7 @@ Welcome to StadtBank's documentation!
    :maxdepth: 3
    :caption: Contents:
 
+   source/README.rst
    modules.rst
 
 
