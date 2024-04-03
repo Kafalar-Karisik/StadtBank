@@ -47,7 +47,7 @@ To set up the database, perform the following step:
 Data Samples
 ~~~~~~~~~~~~
 
-You can use the `bin/randCus.py` and `bin/randAct.py` for generating sample data for your database.
+You can use the ``bin/randCus.py`` and ``bin/randAct.py`` for generating sample data for your database.
 
 Models
 ------
@@ -89,7 +89,7 @@ Credit
    date = models.DateTimeField(auto_now_add=True)
 
 Running Server
-~~~~~~~~~~~~~~
+------
 
 After all setup, you can run the program with:
 
@@ -103,10 +103,10 @@ _or_
 
    python manage.py runserver
 
-> Use `--insecure` if you can't get Static Files
+> Use ``--insecure`` if you can't get Static Files
 
 Admin GUI
-~~~~~~~~~
+------
 
 To access the admin GUI, you need to create a superuser account first. Run the following command:
 
@@ -114,8 +114,8 @@ To access the admin GUI, you need to create a superuser account first. Run the f
 
    python manage.py createsuperuser
 
-> or you can run `bin/TOTP.py` for Account Setup
+> or you can run ``bin/TOTP.py`` for Account Setup
 
-For access, you need to go to `http://IP_ADDRESS/admin`
+For access, you need to go to ``http://IP_ADDRESS/admin``
 
 > **Note:** Please ensure that your database migrations are applied before running the `createsuperuser` command.
