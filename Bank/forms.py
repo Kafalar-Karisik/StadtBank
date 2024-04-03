@@ -19,10 +19,12 @@ class TransferF(forms.Form):
 
 
 class PayF(forms.Form):
+    """Pay Form"""
     customer = forms.ModelChoiceField(Customer.objects.all())
     type = forms.CharField()
     amount = forms.IntegerField()
 
 
 class newCustomerF(forms.Form):
+    """New Customer Form"""
     name = forms.CharField()

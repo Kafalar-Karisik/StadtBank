@@ -16,7 +16,7 @@ from .forms import CustomerF, PayF, TransferF, newCustomerF
 # pylint: disable=no-member
 
 
-def index(request):
+def index(request) -> HttpResponse:
     """Index Page"""
     customers = Customer.objects.all()
     actions = Action.objects.all()
@@ -28,7 +28,7 @@ def index(request):
 class Actions(View):
     """Actions Page"""
 
-    def get(self, request):
+    def get(self, request) -> HttpResponse:
         """Actions.get"""
         return render(request, 'actions.html', {'actions': Action.objects.all()})
 
@@ -36,16 +36,15 @@ class Actions(View):
 class Customers(View):
     """Customers Page"""
 
-    def get(self, request):
+    def get(self, request) -> HttpResponse:
         """Customers.get"""
         return render(request, 'customers.html', {'customers': Customer.objects.all()})
 
 
 class CustomerDV(View):
     """Customer Detail View page"""
-    # ID, Numer, Date, Type, Balance
 
-    def get(self, request, nr):
+    def get(self, request, nr) -> HttpResponse:
         """CustomerDV.get"""
         try:
             customer = get_object_or_404(Customer, nr=nr)
@@ -54,15 +53,13 @@ class CustomerDV(View):
 
             return render(request, 'customer.html', {'customer': customer, 'actions': actions})
         except Http404:
-            # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
 
 
 class ActionDV(View):
     """Action Detail View page"""
-    # ID, Numer, Date, ActionType, amount, related
 
-    def get(self, request, nr):
+    def get(self, request, nr) -> HttpResponse:
         """CustomerDV.get"""
         try:
             customer = get_object_or_404(Customer, nr=nr)
@@ -80,7 +77,6 @@ class ActionDV(View):
 
             return render(request, 'customer.html', {'main': data, 'actions': table})
         except Http404:
-            # Handle the case when no Transaktionen object is found
             return render(request, '404.html')
 
 
@@ -88,7 +84,7 @@ class Pay(View):
     """Pay Page"""
     customers = Customer.objects.all()
 
-    def get(self, request):
+    def get(self, request) -> HttpResponse:
         """Pay.get"""
         return render(request, 'pay.html', {'customers': self.customers})
 
@@ -96,13 +92,13 @@ class Pay(View):
 class Credit(View):
     """Credit Page"""
 
-    def get(self, request):
+    def get(self, request) -> HttpResponse:
         """Credit.get"""
         return render(request, 'credit.html')
 
 
-def pay_in(request):
-    """payIn API"""
+def pay_in(request) -> HttpResponseRedirect:
+    """payIn API (Not Used)"""
 
     if request.method == "POST":
         form = CustomerF(request.POST)
@@ -123,8 +119,8 @@ def pay_in(request):
     return HttpResponseRedirect("/.")
 
 
-def pay_out(request):
-    """PayOut API"""
+def pay_out(request) -> HttpResponseRedirect:
+    """PayOut API (Not Used)"""
 
     if request.method == "POST":
         form = CustomerF(request.POST)
@@ -146,7 +142,8 @@ def pay_out(request):
 
 
 @login_required
-def pay(request):
+def pay(request) -> HttpResponseRedirect:
+    """Pay API"""
     if request.method == "POST":
         form = PayF(request.POST)
         if form.is_valid():
@@ -172,13 +169,11 @@ def pay(request):
                 action = Action(
                     customer=datas["customer"], type="payout", amount=datas["amount"], before=before)
                 action.save()
-        else:
-            print("NONOno")
 
     return HttpResponseRedirect("/pay")
 
 
-def transfer(request):
+def transfer(request) -> HttpResponseRedirect:
     """Transfer API"""
     if request.method == "POST":
         form = TransferF(request.POST)
@@ -197,12 +192,11 @@ def transfer(request):
                 customer=datas["nr"], related=datas["related"], type="transfer", amount=datas["amount"]
             )
             action.save()
-        else:
-            print("Not Valid")
+
     return HttpResponseRedirect("/pay")
 
 
-def newCustomer(request):
+def newCustomer(request) -> HttpResponseRedirect:
     """NewCustomer API"""
     if request.method == "POST":
         form = newCustomerF(request.POST)
@@ -223,6 +217,7 @@ class Login(View):
         return render(request, 'login.html')
 
     def post(self, request):
+        """Login.post"""
         passw = request.POST["passw"]
         user = authenticate(request, username="worker", password=f"{passw}Z")
         if user is not None:
@@ -231,7 +226,8 @@ class Login(View):
 
 
 @csrf_exempt
-def newWorkerPass(request):
+def newWorkerPass(request) -> HttpResponse:
+    """New Worker Password API"""
     if request.method == "POST":
         passw = TOTP.newWorkerPassword()
         return HttpResponse(passw)

@@ -1,5 +1,4 @@
 """Bank/models.py"""
-
 from django.db import models
 
 
@@ -11,7 +10,8 @@ class Customer(models.Model):
     balance = models.IntegerField(default=0)
     credits = models.IntegerField(default=0, null=True)
 
-    def __str__(self) -> str:
+    def __str__(self):
+        """Customer.__str__"""
         return f"{self.name} | {self.nr}"
 
     class Meta:
@@ -35,6 +35,7 @@ class Action(models.Model):
     before = models.IntegerField(null=True)
 
     def __str__(self):
+        """Action.__str__"""
         return f"Action {self.id}"
 
     class Meta:
@@ -43,6 +44,7 @@ class Action(models.Model):
 
 
 class Credit(models.Model):
+    """Credit Class"""
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     amount = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
