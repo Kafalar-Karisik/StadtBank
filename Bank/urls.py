@@ -14,5 +14,5 @@ urlpatterns = [
     path("transfer", views.transfer, name="transfer"),
     path("credit", views.Credit.as_view(), name="Credit System"),
     path("login", views.Login.as_view(), name="login"),
-    path("newPassw", views.newWorkerPass, name="newWorkerPass")
+    path("newPass", views.newWorkerPass, name="newWorkerPass")
 ]
