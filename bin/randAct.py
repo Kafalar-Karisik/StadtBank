@@ -1,55 +1,51 @@
 """bin/randAct.py"""
-import sqlite3
+import os
+import random
+import sys
 from datetime import datetime
 from random import randint
 
-# Connect to the SQLite database
-conn = sqlite3.connect('db.sqlite3')
-
-# Create a cursor object to execute SQL queries
-cursor = conn.cursor()
-
-# Define the query to select customer data
-query = "SELECT * FROM customers;"
-
-# Execute the query
-cursor.execute(query)
-
-# Fetch all the results
-customers_data = cursor.fetchall()
-
-# Print the customer data
-# for customer in customers_data:
-#    print(customer)
-
-for _ in range(randint(0, 33)):
-    action_type = randint(1, 3)
-    customer = randint(1, len(customers_data))
-    if action_type == 1:
-        query = [f"""INSERT INTO actions (nr, type, amount,before,date) VALUES ({customer}, 'payin', {randint(0, 100)},{
-            cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").fetchone()[0]}, '{datetime.now()}');"""]
-    if action_type == 2:
-        query = [f"""INSERT INTO actions (nr, type, amount, before, date) VALUES ({customer}, 'payout', {
-            randint(1,
-                    int(cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").
-                        fetchone()[0]))}, {int(cursor.execute(f"SELECT balance FROM customers WHERE nr = {customer};").
-                                               fetchone()[0])}, '{datetime.now()}');"""]
-    if action_type == 3:
-        nr = randint(0, len(customers_data))
-        amount = cursor.execute(f"""SELECT balance FROM customers WHERE nr = {
-                                randint(1, len(customers_data))};""").fetchone()[0]
-        releated_nr = randint(1, len(customers_data))
-
-        query = [f"""INSERT INTO actions (nr, type, amount, date, related_nr) VALUES ({
-            nr}, 'transfer', {amount}, '{datetime.now()}', {releated_nr});"""]
-
-    print("\n".join(query))
-    for que in query:
-        cursor.execute(que)
+import django
+from faker import Faker
 
 
-conn.commit()
+def randAct(stop: int = 0):
+    for _ in range(random.randint(20, 30) if stop == 0 else stop):
+        action_type = randint(1, 3)
+        customer = Customer.objects.get(
+            nr=randint(1, Customer.objects.count()))
 
-# Close the cursor and connection to the database
-cursor.close()
-conn.close()
+        if action_type == 1:
+            Action(customer=customer, type="payin",
+                   amount=randint(1, 100), before=customer.balance).save()
+
+        if action_type == 2:
+            try:
+                amount = randint(1, customer.balance)
+                Action(customer=customer, type="payout",
+                       amount=randint(1, customer.balance), before=customer.balance).save()
+            except ValueError:
+                pass
+
+        if action_type == 3:
+            related = Customer.objects.get(
+                nr=randint(1, Customer.objects.count()))
+            try:
+                amount = randint(1, customer.balance)
+
+                Action(customer=customer, related=related,
+                       type="transfer", amount=amount).save()
+            except ValueError:
+                pass
+
+
+if __name__ == "__main__":
+    fake = Faker()
+    sys.path.append(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..')))
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                          'StadtBank.settings')
+    django.setup()
+
+    from Bank.models import Action, Customer
+    randAct()

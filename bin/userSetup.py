@@ -4,18 +4,15 @@ import sys
 import django
 
 sys.path.append(os.path.abspath(os.path.join(
-    os.path.dirname(__file__), '..')))  # Go to Top dir
+    os.path.dirname(__file__), '..'))) 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                      'StadtBank.settings')  # Import Project
+                      'StadtBank.settings')
 django.setup()
 
-try:
-    from django.contrib.auth.models import Group, Permission, User
-    from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Group, Permission, User
+from django.contrib.contenttypes.models import ContentType
 
-    from bin.TOTP import newWorkerPassword
-except:
-    exit(-1)
+from bin.TOTP import newWorkerPassword
 
 
 # User.objects.create_superuser(

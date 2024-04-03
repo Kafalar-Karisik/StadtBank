@@ -1,26 +1,28 @@
 """Requirements"""
+import os
 import random
-import sqlite3
+import sys
 
+import django
 from faker import Faker
 
-fake = Faker()
 
-conn = sqlite3.connect('db.sqlite3')
-cursor = conn.cursor()
+def randCus(stop: int = 0):
+    for _ in range(random.randint(25, 75) if stop == 0 else stop):
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        balance = random.randint(0, 100)
 
-for _ in range(random.randint(25, 75)):
-    last_name = fake.last_name()
-    first_name = fake.first_name()
-    balance = random.randint(0, 100)
-
-    # Veriyi tabloya ekle
-    query = f"""INSERT INTO customers (name, balance, credits) VALUES ('{
-        first_name} {last_name}', {balance}, 0)"""
-
-    print(query)
-    cursor.execute(query)
+        Customer(name=f"{first_name} {last_name}", balance=balance).save()
 
 
-conn.commit()
-conn.close()
+if __name__ == "__main__":
+    fake = Faker()
+    sys.path.append(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..')))
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                          'StadtBank.settings')
+    django.setup()
+
+    from Bank.models import Customer
+    randCus()
