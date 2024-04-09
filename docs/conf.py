@@ -41,6 +41,7 @@ html_theme_options = {
     "repository_branch": "Django-Tailwind",
     'use_repository_button': True,
     'use_issues_button': False,
+    'navigation_with_keys': False
 }
 html_title = "StadtBank"
 
