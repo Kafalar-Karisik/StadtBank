@@ -18,11 +18,9 @@ from .forms import CustomerF, PayF, TransferF, newCustomerF
 
 def index(request) -> HttpResponse:
     """Index Page"""
-    customers = Customer.objects.all()
-    actions = Action.objects.all()
 
-    return render(request, 'dashboard.html', {'customers': customers,
-                                              'actions': actions})
+    return render(request, 'dashboard.html', {'customers': Customer.objects.all(),
+                                              'actions': Action.objects.select_related('customer', 'related').all()})
 
 
 class Actions(View):
