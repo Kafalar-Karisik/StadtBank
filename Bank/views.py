@@ -194,6 +194,7 @@ def transfer(request) -> HttpResponseRedirect:
     return HttpResponseRedirect("/pay")
 
 
+@login_required
 def newCustomer(request) -> HttpResponseRedirect:
     """NewCustomer API"""
     if request.method == "POST":
@@ -212,7 +213,7 @@ class Login(View):
 
     def get(self, request):
         """Login.get"""
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'next': request.GET["next"]})
 
     def post(self, request):
         """Login.post"""
@@ -220,7 +221,7 @@ class Login(View):
         user = authenticate(request, username="worker", password=f"{passw}Z")
         if user is not None:
             login(request, user)
-        return HttpResponseRedirect("/pay")
+        return HttpResponseRedirect(request.GET["next"])
 
 
 @csrf_exempt
