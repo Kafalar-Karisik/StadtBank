@@ -2,14 +2,14 @@ import os
 import sys
 
 import django
-from django.contrib.auth.models import Group, Permission, User
-from django.contrib.contenttypes.models import ContentType
 
 sys.path.append(os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..')))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'StadtBank.settings')
 django.setup()
+
+from django.contrib.auth.models import Group, Permission, User
 
 from bin.TOTP import newWorkerPassword
 
