@@ -35,7 +35,6 @@
       <!-- Left Side -->
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        {% endif %}
         <form method="post" action="{% url 'Bank:pay' %}?next=pay">
           {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
@@ -175,7 +174,7 @@
     </div>
     {% else %}
     <script>
-      document.location = "/login";
+      document.location = "/login?next=/pay";
     </script>
     {% endif %}
     <script src="{% static 'index.js' %}"></script>

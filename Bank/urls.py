@@ -12,7 +12,8 @@ urlpatterns = [
     path("paying", views.pay, name="pay"),
     path("newCustomer", views.newCustomer, name="newCustomer"),
     path("transfer", views.transfer, name="transfer"),
-    path("credit", views.Credit.as_view(), name="Credit System"),
+    path("creditManagment", views.CreditManagment.as_view(), name="Credit System"),
+    path("credit", views.credit, name="credit"),
     path("login", views.Login.as_view(), name="login"),
     path("newPass", views.newWorkerPass, name="newWorkerPass")
 ]

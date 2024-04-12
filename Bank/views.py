@@ -7,10 +7,10 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
-from Bank.models import Action, Customer
+from Bank.models import Action, Credit, Customer
 from bin import TOTP
 
-from .forms import CustomerF, PayF, TransferF, newCustomerF
+from .forms import CreditF, CustomerF, PayF, TransferF, newCustomerF
 
 # Create your views here.
 # pylint: disable=no-member
@@ -87,12 +87,13 @@ class Pay(View):
         return render(request, 'pay.html', {'customers': self.customers})
 
 
-class Credit(View):
+class CreditManagment(View):
     """Credit Page"""
+    customers = Customer.objects.all()
 
     def get(self, request) -> HttpResponse:
         """Credit.get"""
-        return render(request, 'credit.html')
+        return render(request, 'credit.html', {'customers': self.customers})
 
 
 def pay_in(request) -> HttpResponseRedirect:
@@ -153,9 +154,8 @@ def pay(request) -> HttpResponseRedirect:
                 target.balance += datas["amount"]
                 target.save()
 
-                action = Action(
-                    customer=datas["customer"], type="payin", amount=datas["amount"], before=before)
-                action.save()
+                Action(customer=datas["customer"], type="payin",
+                       amount=datas["amount"], before=before).save()
 
             elif type == "payout":
                 datas = form.cleaned_data
@@ -164,9 +164,8 @@ def pay(request) -> HttpResponseRedirect:
                 target.balance -= datas["amount"]
                 target.save()
 
-                action = Action(
-                    customer=datas["customer"], type="payout", amount=datas["amount"], before=before)
-                action.save()
+                Action(customer=datas["customer"], type="payout",
+                       amount=datas["amount"], before=before).save()
 
     return HttpResponseRedirect("/pay")
 
@@ -208,20 +207,34 @@ def newCustomer(request) -> HttpResponseRedirect:
     return HttpResponseRedirect("/customers")
 
 
+@login_required
+def credit(request) -> HttpResponseRedirect:
+    if request.method == "POST":
+        form = CreditF(request)
+        if form.is_valid():
+            datas = form.cleaned_data
+            target = datas["customer"]
+            amount = datas["amount"]
+
+            Credit(customer=target, amount=amount).save()
+            target.credit = target.credit + amount
+    return HttpResponseRedirect("/creditManagment")
+
+
 class Login(View):
     """Login Page"""
 
     def get(self, request):
         """Login.get"""
-        return render(request, 'login.html', {'next': request.GET["next"]})
+        return render(request, 'login.html', {'next': request.GET["next"]} if "next" in request.GET else None)
 
     def post(self, request):
         """Login.post"""
         passw = request.POST["passw"]
-        user = authenticate(request, username="worker", password=f"{passw}Z")
+        user = authenticate(request, username="worker", password=passw)
         if user is not None:
             login(request, user)
-        return HttpResponseRedirect(request.GET["next"])
+        return HttpResponseRedirect(request.GET["next"] if "next" in request.GET else "/")
 
 
 @csrf_exempt

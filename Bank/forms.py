@@ -25,6 +25,12 @@ class PayF(forms.Form):
     amount = forms.IntegerField()
 
 
+class CreditF(forms.Form):
+    """Credit Form"""
+    customer = forms.ModelChoiceField(Customer.objects.all())
+    amount = forms.IntegerField()
+
+
 class newCustomerF(forms.Form):
     """New Customer Form"""
     name = forms.CharField()

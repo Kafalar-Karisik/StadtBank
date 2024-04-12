@@ -113,15 +113,9 @@
                 {{action.before | default_if_none:"-"}}
               </td>
               <td
-                class="relatie group border p-2"
-                {%
-                if
-                action.related.nr
-                %}
+                class="relatie group border p-2"{% if action.related.nr %}
                 onclick="customerDet('{{action.related.nr}}');"
-                {%
-                endif
-                %}
+                {% endif %}
               >
                 {% if action.related %} {{action.related.name | default:""}}
                 <p
