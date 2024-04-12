@@ -1,11 +1,10 @@
+from bin.TOTP import newWorkerPassword
 import os
 import sys
 
 import django
 from django.contrib.auth.models import Group, Permission, User
 from django.contrib.contenttypes.models import ContentType
-
-from bin.TOTP import newWorkerPassword
 
 sys.path.append(os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..')))
