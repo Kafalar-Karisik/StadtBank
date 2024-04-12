@@ -1,4 +1,3 @@
-from bin.TOTP import newWorkerPassword
 import os
 import sys
 
@@ -12,6 +11,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'StadtBank.settings')
 django.setup()
 
+from bin.TOTP import newWorkerPassword
 
 # User.objects.create_superuser(
 #    username="admin", email="", password="password")  # Please Change it
