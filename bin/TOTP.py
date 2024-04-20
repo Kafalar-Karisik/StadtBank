@@ -6,11 +6,11 @@ except:
     pass
 
 
-# curl -X POST http://127.0.0.1/newPassw
+# curl -X POST http://127.0.0.1/newPass
 
 
 def newWorkerPassword() -> str:
-    """Change Worker password with the last 5 character of current timestamp (It is not ONE TIME Password!!!)"""
+    """Change Worker password. It will return the new Password"""
     passw = str(int(time.time()))[-5:]
     user = User.objects.get(username="worker")
     user.set_password(passw)

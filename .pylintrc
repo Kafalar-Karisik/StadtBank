@@ -1,5 +1,7 @@
 [MAIN]
 
+# pylint --rcfile StadtBank\.pylintrc .\StadtBank
+
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
 # only in one or another interpreter, leading to false positives when analysed.
@@ -46,13 +48,13 @@ fail-under=10
 #from-stdin=
 
 # Files or directories to be skipped. They should be base names, not paths.
-ignore=CVS,manage.py,admin.py
+ignore=manage.py,admin.py,migrations
 
 # Add files or directories matching the regular expressions patterns to the
 # ignore-list. The regex matches against paths and can be in Posix or Windows
 # format. Because '\\' represents the directory delimiter on Windows systems,
 # it can't be used as an escape character.
-ignore-paths=bin,.,
+ignore-paths=
 
 # Files or directories matching the regular expression patterns are skipped.
 # The regex matches against base names, not paths. The default value ignores
@@ -421,20 +423,20 @@ confidence=HIGH,
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
-disable=raw-checker-failed,
-        bad-inline-option,
-        locally-disabled,
-        invalid-name,
-        file-ignored,
-        too-few-public-methods,
-        suppressed-message,
-        useless-suppression,
-        import-error,
-        deprecated-pragma,
-        use-symbolic-message-instead,
-        use-implicit-booleaness-not-comparison-to-string,
-        use-implicit-booleaness-not-comparison-to-zero,
-
+disable=bad-inline-option,
+      deprecated-pragma,
+      file-ignored,
+      import-error,
+      invalid-name,
+      locally-disabled,
+      no-member,
+      raw-checker-failed,
+      suppressed-message,
+      too-few-public-methods,
+      use-implicit-booleaness-not-comparison-to-string,
+      use-implicit-booleaness-not-comparison-to-zero,
+      use-symbolic-message-instead,
+      useless-suppression
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
@@ -579,8 +581,7 @@ ignore-on-opaque-inference=yes
 ignored-checks-for-mixins=no-member,
                           not-async-context-manager,
                           not-context-manager,
-                          attribute-defined-outside-init,
-                          unused-import
+                          attribute-defined-outside-init
 
 # List of class names for which member attributes should not be checked (useful
 # for classes with dynamically set attributes). This supports the use of
