@@ -59,7 +59,7 @@ ogp_image = "https://opengraph.githubassets.com/6271a1f0466d012fbbf634faea54b216
 ogp_custom_meta_tags = [
     '<meta name="description" content="Basic Bank System with Web GUI and database">',
 ]
-# ogp_enable_meta_description = True
+ogp_enable_meta_description = False
 
 
 # Django Setup
