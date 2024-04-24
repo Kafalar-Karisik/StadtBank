@@ -57,7 +57,7 @@ ogp_image = "https://opengraph.githubassets.com/6271a1f0466d012fbbf634faea54b216
 # ogp_description_length = 300
 # ogp_type = "article"
 ogp_custom_meta_tags = [
-    '<meta name="description" content="Basic Bank System with Web GUI and database">',
+    '<meta property="og:description" content="Basic Bank System with Web GUI and database"> <!--Overwrite-->',
 ]
 ogp_enable_meta_description = False
 
