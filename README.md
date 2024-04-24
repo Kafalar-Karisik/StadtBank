@@ -4,18 +4,22 @@
 
 [Documents](https://kafalar-karisik.github.io/StadtBank/)
 
+Basic Bank System with Web GUI and database
+
 ## Setup
 
 ### Create Environment (Optional)
 
 To create a virtual environment, run the following command:
 
+#### Activate virtual environment (for Unix-based systems)
+
 ```shell
 python -m venv .venv
 source .venv/bin/activate
 ```
 
-_or_
+#### Activate virtual environment (for Windows)
 
 ```shell
 python -m venv .venv
@@ -47,12 +51,6 @@ You can use the [bin/randCus.py](bin/randCus.py) and [bin/randAct.py](bin/randAc
 ## Running Server
 
 After all setup, you can run the program with:
-
-```shell
-./manage.py runserver
-```
-
-_or_
 
 ```shell
 python manage.py runserver

@@ -54,6 +54,7 @@ source_suffix = '.rst'
 
 ogp_site_url = "https://kafalar-karisik.github.io/StadtBank/"
 ogp_image = "https://opengraph.githubassets.com/6271a1f0466d012fbbf634faea54b21639eff616dbdd86109debc296a45803d8/Kafalar-Karisik/StadtBank"
+ogp_description = "Basic Bank System with Web GUI and database"
 # ogp_description_length = 300
 # ogp_type = "article"
 # ogp_custom_meta_tags = [
