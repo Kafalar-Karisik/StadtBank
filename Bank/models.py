@@ -52,3 +52,17 @@ class Credit(models.Model):
     class Meta:
         """Action.Meta Class"""
         db_table = 'credits'
+
+
+class Setting(models.Model):
+    """Setting Class"""
+    key = models.CharField(max_length=100, unique=True)
+    value = models.JSONField()
+
+    def __str__(self):
+        """Action.__str__"""
+        return f"{self.key}"
+
+    class Meta:
+        """Setting.Meta Class"""
+        db_table = 'settings'
