@@ -250,7 +250,7 @@ class Login(View):
 def newWorkerPass(request) -> HttpResponse:
     """New Worker Password API"""
     if request.method == "POST":
-        passw = TOTP.newWorkerPassword()
+        passw = TOTP.newWorkerPassword(request.POST['password'])
         return HttpResponse(passw)
 
     return HttpResponseRedirect("/")

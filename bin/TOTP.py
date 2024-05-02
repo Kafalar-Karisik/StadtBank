@@ -8,14 +8,32 @@ except:
 
 # curl -X POST http://127.0.0.1/newPass
 
+class TOTPError(Exception):
+    pass
 
-def newWorkerPassword() -> str:
+
+# You can customize it with your Super User Account
+def newWorkerPassword(adminPass: str):
     """Change Worker password. It will return the new Password"""
-    passw = str(int(time.time()))[-5:]
-    user = User.objects.get(username="worker")
-    user.set_password(passw)
-    user.save()
-    return passw
+    if User.objects.filter(username='admin', is_superuser=True).exists():
+        # If there is, prompt for the password
+        admin_password = input(
+            "Enter the password for the superuser 'admin': ")
+
+        # Retrieve the user with the username "admin"
+        admin_user = User.objects.get(username='admin')
+
+        # Check if the provided password is correct
+        if admin_user.check_password(admin_password):
+            passw = str(int(time.time()))[-5:]
+            user = User.objects.get(username="worker")
+            user.set_password(passw)
+            user.save()
+            return passw
+        else:
+            raise TOTPError("Incorrect password for superuser 'admin'.")
+    else:
+        raise TOTPError("There is no superuser with the username 'admin'.")
 
 
 if __name__ == "__main__":
@@ -29,4 +47,4 @@ if __name__ == "__main__":
                           'StadtBank.settings')
     django.setup()
     from django.contrib.auth.models import User
-    print(newWorkerPassword())
+    print(newWorkerPassword(input("Enter Admin Password:")))
