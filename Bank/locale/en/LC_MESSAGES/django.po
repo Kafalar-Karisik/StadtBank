@@ -1,0 +1,153 @@
+# StadtBank Multi Lanugages - EN
+# (C) Copyright 2024, Kafalar Karışık. 
+# This file is distributed under the same license as the StadtBank package.
+# Kafalar Karışık <orsmes6145@gmail.com>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-01 12:04+0200\n"
+"PO-Revision-Date: 2024-04-27 11:30+0200\n"
+"Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\Bank\templates\credit.html:21 .\Bank\templates\customer.html:21
+#: .\Bank\templates\customers.html:21 .\Bank\templates\dashboard.html:21
+#: .\Bank\templates\pay.html:21
+msgid "home"
+msgstr "Home"
+
+#: .\Bank\templates\credit.html:23 .\Bank\templates\credit.html:29
+msgid "credit"
+msgstr "Credit"
+
+#: .\Bank\templates\credit.html:58 .\Bank\templates\pay.html:50
+#: .\Bank\templates\pay.html:92 .\Bank\templates\pay.html:162
+#: .\Bank\templates\pay.html:188
+msgid "selectcustomer"
+msgstr "Select Customer"
+
+#: .\Bank\templates\credit.html:75 .\Bank\templates\customer.html:49
+#: .\Bank\templates\dashboard.html:80 .\Bank\templates\pay.html:66
+#: .\Bank\templates\pay.html:109 .\Bank\templates\pay.html:204
+msgid "amount"
+msgstr "Amount"
+
+#: .\Bank\templates\credit.html:87
+msgid "givecredit"
+msgstr "Give credit"
+
+#: .\Bank\templates\credit.html:94 .\Bank\templates\dashboard.html:71
+msgid "actions"
+msgstr "Actions"
+
+#: .\Bank\templates\credit.html:98 .\Bank\templates\customer.html:48
+#: .\Bank\templates\customers.html:51 .\Bank\templates\dashboard.html:47
+#: .\Bank\templates\dashboard.html:78
+msgid "id"
+msgstr "ID"
+
+#: .\Bank\templates\credit.html:99 .\Bank\templates\customers.html:52
+#: .\Bank\templates\customers.html:83 .\Bank\templates\dashboard.html:48
+msgid "name"
+msgstr "Name"
+
+#: .\Bank\templates\customer.html:23 .\Bank\templates\customers.html:23
+#: .\Bank\templates\customers.html:29 .\Bank\templates\customers.html:37
+#: .\Bank\templates\dashboard.html:33
+msgid "customers"
+msgstr "Customers"
+
+#: .\Bank\templates\customer.html:31 .\Bank\templates\dashboard.html:27
+msgid "dashboard"
+msgstr "Dashboard"
+
+#: .\Bank\templates\customer.html:39 .\Bank\templates\customers.html:53
+#: .\Bank\templates\dashboard.html:49
+msgid "balance"
+msgstr "Balance"
+
+#: .\Bank\templates\customer.html:44
+msgid "Actions"
+msgstr "Actions"
+
+#: .\Bank\templates\customer.html:50 .\Bank\templates\dashboard.html:81
+msgid "type"
+msgstr "Type"
+
+#: .\Bank\templates\customer.html:51 .\Bank\templates\dashboard.html:82
+msgid "before"
+msgstr "Before balance"
+
+#: .\Bank\templates\customer.html:52 .\Bank\templates\dashboard.html:83
+msgid "releated"
+msgstr "Releated Customer"
+
+#: .\Bank\templates\customer.html:53 .\Bank\templates\dashboard.html:84
+msgid "date"
+msgstr "Date"
+
+#: .\Bank\templates\customer.html:87 .\Bank\templates\dashboard.html:124
+msgid "noactiondata"
+msgstr "No Action Data avaiable."
+
+#: .\Bank\templates\customers.html:42 .\Bank\templates\dashboard.html:38
+msgid "search"
+msgstr "Search"
+
+#: .\Bank\templates\customers.html:66 .\Bank\templates\dashboard.html:62
+msgid "nocustomerdata"
+msgstr "No Customer Data avaiable."
+
+#: .\Bank\templates\customers.html:76
+msgid "newcustomer"
+msgstr "New Customer"
+
+#: .\Bank\templates\customers.html:90
+msgid "create"
+msgstr "Create"
+
+#: .\Bank\templates\dashboard.html:79
+msgid "customer"
+msgstr "Customer"
+
+#: .\Bank\templates\login.html:29 .\Bank\templates\login.html:63
+msgid "login"
+msgstr "Login"
+
+#: .\Bank\templates\login.html:42
+msgid "please"
+msgstr "Please"
+
+#: .\Bank\templates\login.html:49
+msgid "enterpassword"
+msgstr "Enter Password"
+
+#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:75
+msgid "pay"
+msgstr "Pay"
+
+#: .\Bank\templates\pay.html:29
+msgid "action"
+msgstr "Action"
+
+#: .\Bank\templates\pay.html:41
+msgid "salary"
+msgstr "Salary"
+
+#: .\Bank\templates\pay.html:122
+msgid "payin"
+msgstr "Pay-in"
+
+#: .\Bank\templates\pay.html:131
+msgid "payout"
+msgstr "Pay-out"
+
+#: .\Bank\templates\pay.html:143 .\Bank\templates\pay.html:212
+msgid "transfer"
+msgstr "Transfer"

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
+    {% load i18n %} {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>StadtBank</title>
   </head>
@@ -18,24 +18,24 @@
       <nav class="ml-auto">
         <ol class="flex list-none">
           <li>
-            <a href="" class="pl-1 text-end text-sm text-gray-200">Home</a>
+            <a href="" class="pl-1 text-end text-sm text-gray-200">{% trans "home" %}</a>
           </li>
         </ol>
       </nav>
     </div>
     <div class="container mx-auto mt-4">
-      <h2 class="mb-2 p-1 text-2xl font-bold">Dashboard</h2>
+      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "dashboard" %}</h2>
     </div>
     <div class="container mx-auto mt-4 flex flex-wrap p-4">
       <!-- Customers -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
         <div class="flex items-center p-3">
-          <h3 class="mb-2 w-fit pr-3 text-lg font-bold">Customers</h3>
+          <h3 class="mb-2 w-fit pr-3 text-lg font-bold">{% trans "customers" %}</h3>
           <input
             type="text"
             class="search-input bg-whites rounded-sm"
             id="customerSearchInput"
-            placeholder="Search"
+            placeholder="{% trans "search"%}"
           />
         </div>
         <table
@@ -44,9 +44,9 @@
         >
           <thead>
             <tr>
-              <th class="border p-2">ID</th>
-              <th class="border p-2">Name</th>
-              <th class="border p-2">Balance</th>
+              <th class="border p-2">{% trans "id"%}</th>
+              <th class="border p-2">{% trans "name"%}</th>
+              <th class="border p-2">{% trans "balance"%}</th>
             </tr>
           </thead>
           <tbody>
@@ -59,7 +59,7 @@
             {% endfor %} {% else %}
             <tr>
               <td class="border p-2" colspan="3">
-                No Customer Data available.
+                {% trans "nocustomerdata"%}
               </td>
             </tr>
             {% endif %}
@@ -68,20 +68,20 @@
       </div>
       <!-- Actions -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <h3 class="mb-2 p-3 text-lg font-bold">Actions</h3>
+        <h3 class="mb-2 p-3 text-lg font-bold">{% trans "actions"%}</h3>
         <table
           id="actions-table"
           class="w-full table-auto rounded border bg-white"
         >
           <thead>
             <tr>
-              <th class="border p-2">ID</th>
-              <th class="border p-2">Customer</th>
-              <th class="border p-2">Amount</th>
-              <th class="border p-2">Type</th>
-              <th class="border p-2">Before</th>
-              <th class="border p-2">Related</th>
-              <th class="border p-2">Date</th>
+              <th class="border p-2">{% trans "id"%}</th>
+              <th class="border p-2">{% trans "customer"%}</th>
+              <th class="border p-2">{% trans "amount"%}</th>
+              <th class="border p-2">{% trans "type"%}</th>
+              <th class="border p-2">{% trans "before"%}</th>
+              <th class="border p-2">{% trans "releated"%}</th>
+              <th class="border p-2">{% trans "date"%}</th>
             </tr>
           </thead>
           <tbody>
@@ -121,7 +121,7 @@
             </tr>
             {% endfor %} {% else %}
             <tr>
-              <td class="border p-2" colspan="7">No Action Data available.</td>
+              <td class="border p-2" colspan="7">{% trans "noactiondata"%}</td>
             </tr>
             {% endif %}
           </tbody>

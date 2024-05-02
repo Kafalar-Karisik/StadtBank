@@ -1,0 +1,106 @@
+# StadtBank Multi Lanugages - DE
+# (C) Copyright 2024, Kafalar Karışık. 
+# This file is distributed under the same license as the StadtBank package.
+# Kafalar Karışık <orsmes6145@gmail.com>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-01 12:04+0200\n"
+"PO-Revision-Date: 2024-04-27 11:30+0200\n"
+"Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\Bank\templates\credit.html:21 .\Bank\templates\customer.html:21
+#: .\Bank\templates\customers.html:21 .\Bank\templates\dashboard.html:21
+#: .\Bank\templates\pay.html:21
+msgid "home"
+msgstr "Startseite"
+
+msgid "credit"
+msgstr "Kredit"
+
+msgid "amount"
+msgstr "Betrag"
+
+msgid "givecredit"
+msgstr "Kredit geben"
+
+msgid "actions"
+msgstr "Aktionen"
+
+msgid "id"
+msgstr "ID"
+
+msgid "name"
+msgstr "Name"
+
+msgid "customers"
+msgstr "Kunden"
+
+msgid "dashboard"
+msgstr "Dashboard"
+
+msgid "balance"
+msgstr "Kontostand"
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "type"
+msgstr "Typ"
+
+msgid "before"
+msgstr "Vorher"
+
+msgid "releated"
+msgstr "Empfänger"
+"
+msgid "date"
+msgstr "Datum"
+
+msgid "noactiondata"
+msgstr "Keine Aktionsdaten"
+
+msgid "search"
+msgstr "Suche"
+
+msgid "nocustomerdata"
+msgstr "Keine Kundendaten"
+
+msgid "newcustomer"
+msgstr "Neuer Kunde"
+
+msgid "create"
+msgstr "Erstellen"
+
+msgid "customer"
+msgstr "Kunde"
+
+msgid "login"
+msgstr "Anmelden"
+
+msgid "please"
+msgstr "Bitte"
+
+msgid "enterpassword"
+msgstr "Passwort eingeben"
+
+msgid "pay"
+msgstr "Bezahlen"
+
+msgid "action"
+msgstr "Aktion"
+
+msgid "payin"
+msgstr "Einzahlung"
+
+msgid "payout"
+msgstr "Auszahlung"
+
+msgid "transfer"
+msgstr "Überweisung"

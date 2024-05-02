@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',  # DEBUG
+    'django.middleware.locale.LocaleMiddleware',  # Multi Language
 ]
 
 DEBUG_TOOLBAR_PANELS = [
@@ -141,11 +142,20 @@ CACHES = {
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de'
 
-TIME_ZONE = 'Europe/Berlin'  # Change it
+DEFAULT_LANGUAGE = 1
+
+TIME_ZONE = 'UTC'
+
+LANGUAGES = [
+    ("de", "German"),
+    ("en", "English"),
+]
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 

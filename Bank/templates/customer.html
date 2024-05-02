@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
+    {% load i18n %} {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>StadtBank</title>
   </head>
@@ -18,9 +18,9 @@
       <!-- Breadcrumb -->
       <nav class="ml-auto">
         <ol class="flex list-none">
-          <li><a href="/" class="text-blue-200">Home</a></li>
+          <li><a href="/" class="text-blue-200">{% trans "home"%}</a></li>
           <li class="mx-2">/</li>
-          <li><a href="./" class="text-blue-200">Customers</a></li>
+          <li><a href="./" class="text-blue-200">{% trans "customers"%}</a></li>
           <li class="mx-2">/</li>
           <li class="text-gray-200">{{customer.nr }}</li>
         </ol>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="container mx-auto mt-4">
-      <h2 class="mb-2 p-1 text-2xl font-bold">Dashboard</h2>
+      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "dashboard"%}</h2>
     </div>
 
     <div class="container mx-auto mt-4 flex h-screen flex-wrap">
@@ -36,21 +36,21 @@
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
         <h3 class="mb-2 text-lg font-bold">{{customer.name}}</h3>
         <!--Customer Infos-->
-        <h4 class="mb-2 text-lg font-bold">Balance: {{customer.balance}}</h4>
+        <h4 class="mb-2 text-lg font-bold">{% trans "balance"%}: {{customer.balance}}</h4>
       </div>
 
       <!-- Actions -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <h3 class="mb-2 text-lg font-bold">Actions</h3>
+        <h3 class="mb-2 text-lg font-bold">{% trans "Actions"%}</h3>
         <table class="w-full border bg-white">
           <thead>
             <tr>
-              <th class="border p-2">ID</th>
-              <th class="border p-2">Amount</th>
-              <th class="border p-2">Type</th>
-              <th class="border p-2">Before</th>
-              <th class="border p-2">Releated</th>
-              <th class="border p-2">Date</th>
+              <th class="border p-2">{% trans "id"%}</th>
+              <th class="border p-2">{% trans "amount"%}</th>
+              <th class="border p-2">{% trans "type"%}</th>
+              <th class="border p-2">{% trans "before"%}</th>
+              <th class="border p-2">{% trans "releated"%}</th>
+              <th class="border p-2">{% trans "date"%}</th>
             </tr>
           </thead>
           <tbody>
@@ -84,7 +84,7 @@
               <td class="border p-2">{{action.date}}</td>
             </tr>
             {% endfor %} {% else %}
-            <td class="border p-2" colspan="6">No Action Data available.</td>
+            <td class="border p-2" colspan="6">{% trans "noactiondata"%}</td>
             <!-- TODO: Make it for both Rows -->
             {% endif %}
           </tbody>

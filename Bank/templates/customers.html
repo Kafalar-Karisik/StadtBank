@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
+    {% load i18n %} {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>StadtBank</title>
   </head>
@@ -18,15 +18,15 @@
       <!-- Breadcrumb -->
       <nav class="ml-auto">
         <ol class="flex list-none">
-          <li><a href="/.." class="text-blue-200">Home</a></li>
+          <li><a href="/.." class="text-blue-200">{% trans "home"%}</a></li>
           <li class="mx-2">/</li>
-          <li class="text-gray-200">Customers</li>
+          <li class="text-gray-200">{% trans "customers"%}</li>
         </ol>
       </nav>
     </div>
 
     <div class="container mx-auto mt-4">
-      <h2 class="mb-2 p-1 text-2xl font-bold">Customers</h2>
+      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "customers"%}</h2>
     </div>
 
     <!-- Tables -->
@@ -34,12 +34,12 @@
       <!-- Customers -->
       <div class="w-1/2 p-4">
         <div class="flex items-center p-3">
-          <h3 class="mb-2 w-fit pr-3 text-lg font-bold">Customers</h3>
+          <h3 class="mb-2 w-fit pr-3 text-lg font-bold">{% trans "customers"%}</h3>
           <input
             type="text"
             class="search-input bg-whites rounded-sm"
             id="customerSearchInput"
-            placeholder="Search"
+            placeholder="{% trans "search"%}"
           />
         </div>
         <table
@@ -48,9 +48,9 @@
         >
           <thead>
             <tr>
-              <th class="border p-2">ID</th>
-              <th class="border p-2">Name</th>
-              <th class="border p-2">Balance</th>
+              <th class="border p-2">{% trans "id"%}</th>
+              <th class="border p-2">{% trans "name"%}</th>
+              <th class="border p-2">{% trans "balance"%}</th>
             </tr>
           </thead>
           <tbody>
@@ -63,7 +63,7 @@
             {% endfor %} {% else %}
             <tr>
               <td class="border p-2" colspan="3">
-                No Customer Data available.
+                {% trans "nocustomerdata"%}
               </td>
             </tr>
             {% endif %}
@@ -73,21 +73,21 @@
       <div class="w-1/2 p-4 pt-20">
         <form method="post" action="{% url 'Bank:newCustomer' %}">
           {% csrf_token %}
-          <h3 class="text-2x1 m-2 p-1 font-bold">New Customer</h3>
+          <h3 class="text-2x1 m-2 p-1 font-bold">{% trans "newcustomer"%}</h3>
           <div class="m-4">
             <input
               type="text"
               id="name"
               name="name"
               class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-              placeholder="Name"
+              placeholder="{% trans "name"%}"
             />
           </div>
           <div class="m-4">
             <button
               class="rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
             >
-              Create
+            {% trans "create"%}
             </button>
           </div>
         </form>

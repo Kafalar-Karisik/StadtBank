@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
+    {% load i18n %} {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>StadtBank</title>
   </head>
@@ -18,15 +18,15 @@
       <!-- Breadcrumb -->
       <nav class="ml-auto">
         <ol class="flex list-none">
-          <li><a href="/" class="text-blue-200">Home</a></li>
+          <li><a href="/" class="text-blue-200">{% trans "home"%}</a></li>
           <li class="mx-2">/</li>
-          <li class="text-gray-200">Credit</li>
+          <li class="text-gray-200">{% trans "credit"%}</li>
         </ol>
       </nav>
     </div>
 
     <div class="container mx-auto mt-4">
-      <h2 class="mb-2 p-1 text-2xl font-bold">Credit</h2>
+      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "credit"%}</h2>
     </div>
 
     {% if user.is_authenticated %}
@@ -54,7 +54,9 @@
               class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
               onblur=""
             >
-              <option selected disabled hidden>Select Customer</option>
+              <option selected disabled hidden onchange="filterCustomers()">
+                {% trans "selectcustomer"%}
+              </option>
               {% for customer in customers %}
               <option value="{{customer.nr}}">
                 {{customer.name}} | {{customer.nr}}
@@ -70,7 +72,7 @@
               id="amount"
               name="amount"
               class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-              placeholder="Amount"
+              placeholder="{% trans "amount"%}"
             />
           </div>
 
@@ -82,59 +84,24 @@
               value="payin"
               name="type"
             >
-              Give Credit
+            {% trans "givecredit"%}
             </button>
           </div>
         </form>
       </div>
       <!-- Actions -->
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <h3 class="mb-2 text-lg font-bold">Actions</h3>
-        <table class="w-full border bg-white">
+        <h3 class="mb-2 text-lg font-bold">{% trans "actions"%}</h3>
+        <table id="customer-table" class="w-full border bg-white">
           <thead>
             <tr>
-              <th class="border p-2">ID</th>
-              <th class="border p-2">Amount</th>
-              <th class="border p-2">Type</th>
-              <th class="border p-2">Before</th>
-              <th class="border p-2">Releated</th>
-              <th class="border p-2">Date</th>
+              <th class="border p-2">{% trans "id"%}</th>
+              <th class="border p-2">{% trans "name"%}</th>
+              <!-- Add more table headers as needed -->
             </tr>
           </thead>
-          <tbody>
-            {% if actions %} {% for action in customers.{{document.getElementById('customer').value}} %}
-            <tr class="">
-              <td class="border p-2">{{action.id}}</td>
-              <td class="border p-2">{{action.amount}}</td>
-              <td class="border p-2">{{action.get_type_display}}</td>
-              <td class="border p-2">{{action.before|default_if_none:"-"}}</td>
-              <td
-                class="relatie group border p-2"
-                {%
-                if
-                customer.related_nr
-                %}
-                onclick="customerDet('{{action.related_nr}}');"
-                {%
-                endif
-                %}
-              >
-                {% if customer.related %} {{action.related.name|
-                default_if_none:""}}
-                <p
-                  class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
-                >
-                  {{action.related.nr}}
-                </p>
-                {% endif %}
-              </td>
-              <!-- TODO: Hover ID-->
-              <td class="border p-2">{{action.date}}</td>
-            </tr>
-            {% endfor %} {% else %}
-            <td class="border p-2" colspan="6">No Action Data available.</td>
-            <!-- TODO: Make it for both Rows -->
-            {% endif %}
+          <tbody id="customer-list">
+            <!-- Filtered customers will be displayed here -->
           </tbody>
         </table>
       </div>
@@ -144,6 +111,39 @@
       document.location = "/login?next=/credit";
     </script>
     {% endif %}
+    <script>
+      var customers = [
+          {% for customer in customers %}
+              { id: {{ customer.nr }}, name: '{{ customer.name }}' },
+          {%endfor%}
+      ];
+
+      function filterCustomers() {
+          var customerId = document.getElementById('customer-select').value;
+          var filteredCustomers = customers.filter(function(customer) {
+              return customer.id == customerId;
+          });
+
+          displayCustomers(filteredCustomers);
+      }
+
+      function displayCustomers(customers) {
+          var customerTable = document.getElementById('customer-list');
+          customerTable.innerHTML = '';
+
+          customers.forEach(function(customer) {
+              var row = customerTable.insertRow();
+              var idCell = row.insertCell(0);
+              var nameCell = row.insertCell(1);
+
+              idCell.textContent = customer.id;
+              nameCell.textContent = customer.name;
+          });
+      }
+
+      // Initial display when the page loads
+      filterCustomers();
+    </script>
     <script src="{% static 'index.js' %}"></script>
   </body>
 </html>

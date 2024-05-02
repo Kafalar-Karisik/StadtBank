@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
+    {% load i18n %} {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>Stadt Bank</title>
   </head>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="container mx-auto mt-4">
-      <h2 class="mb-2 p-1 text-2xl font-bold">Log In</h2>
+      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "login" %}</h2>
     </div>
 
     <!-- Body -->
@@ -39,14 +39,14 @@
           action="{% url 'Bank:login' %}{% if next %}?next={{next}}{% endif %}"
         >
           {% csrf_token %}
-          <h3 class="text-2x1 mb-2 p-1 font-bold">Please</h3>
+          <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "please" %}</h3>
           <div class="mb-4">
             <input
               type="password"
               id="passw"
               name="passw"
               class="w-2/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-              placeholder="Enter Password..."
+              placeholder="{% trans 'enterpassword' %}"
               inputmode="numeric"
               maxlength="5"
             />
@@ -60,7 +60,7 @@
               value="payin"
               name="type"
             >
-              Log In
+              {% trans "login" %}
             </button>
           </div>
         </form>

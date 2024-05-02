@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
+    {% csrf_token %} {% load i18n %} {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>Stadt Bank</title>
   </head>
@@ -18,28 +18,63 @@
       <!-- Breadcrumb -->
       <nav class="ml-auto">
         <ol class="flex list-none">
-          <li><a href="/" class="text-blue-200">Home</a></li>
+          <li><a href="/" class="text-blue-200">{% trans "home"%}</a></li>
           <li class="mx-2">/</li>
-          <li class="text-gray-200">Pay</li>
+          <li class="text-gray-200">{% trans "pay"%}</li>
         </ol>
       </nav>
     </div>
 
     <div class="container mx-auto mt-4">
-      <h2 class="mb-2 p-1 text-2xl font-bold">Action</h2>
+      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "action"%}</h2>
     </div>
 
     {% if user.is_authenticated %}
     <!-- Body -->
     <div class="container mx-auto mt-8 flex">
       <!-- Left Side -->
+
       <div class="w-1/2 p-4">
-        <!-- Name and Amount Inputs -->
-        <form method="post" action="{% url 'Bank:pay' %}">
-          {% csrf_token %}
-          <h3 class="text-2x1 mb-2 p-1 font-bold">Pay</h3>
-          <div class="mb-4">
-            <!--
+        <!-- Top -->
+        <div class="h-1/2">
+          <form method="post" action="">
+            <h3 class="text-2x1 mb-2 p-1 font-bold">{%trans "salary" %}</h3>
+            <div class="mb-4">
+              <select
+                required
+                name="customer"
+                id="customer"
+                class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
+              >
+                <option selected disabled hidden>
+                  {% trans "selectcustomer"%}
+                </option>
+                {% for customer in customers %}
+                <option value="{{customer.nr}}">
+                  {{customer.name}} | {{customer.nr}}
+                </option>
+                {%endfor%}
+              </select>
+            </div>
+            <div class="mb-4">
+              <input
+                required
+                type="number"
+                id="amount"
+                name="amount"
+                class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+                placeholder="{% trans 'amount'%}"
+              />
+            </div>
+          </form>
+        </div>
+        <!-- Bottom -->
+        <div class="h-1/2">
+          <!-- Name and Amount Inputs -->
+          <form method="post" action="{% url 'Bank:pay' %}">
+            <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "pay"%}</h3>
+            <div class="mb-4">
+              <!--
             <input
               type="text"
               id="customer"
@@ -47,53 +82,57 @@
               class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="Name/ID"
             />-->
-            <select
-              required
-              name="customer"
-              id="customer"
-              class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
-            >
-              <option selected disabled hidden>Select Customer</option>
-              {% for customer in customers %}
-              <option value="{{customer.nr}}">
-                {{customer.name}} | {{customer.nr}}
-              </option>
-              {%endfor%}
-            </select>
-            <!-- TODO: Add Name/User Check on write-->
-          </div>
-          <div class="mb-4">
-            <input
-              required
-              type="number"
-              id="amount"
-              name="amount"
-              class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-              placeholder="Amount"
-            />
-          </div>
+              <select
+                required
+                name="customer"
+                id="customer"
+                class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
+              >
+                <option selected disabled hidden>
+                  {% trans "selectcustomer"%}
+                </option>
+                {% for customer in customers %}
+                <option value="{{customer.nr}}">
+                  {{customer.name}} | {{customer.nr}}
+                </option>
+                {%endfor%}
+              </select>
+              <!-- TODO: Add Name/User Check on write-->
+            </div>
+            <div class="mb-4">
+              <input
+                required
+                type="number"
+                id="amount"
+                name="amount"
+                class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+                placeholder="{% trans 'amount'%}"
+                onblur="checkBalance()"
+              />
+            </div>
 
-          <!-- Pay In and Pay Out Buttons -->
-          <div class="flex">
-            <button
-              class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-              type="submit"
-              value="payin"
-              name="type"
-            >
-              Pay In
-            </button>
+            <!-- Pay In and Pay Out Buttons -->
+            <div class="flex">
+              <button
+                class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+                type="submit"
+                value="payin"
+                name="type"
+              >
+                {% trans "payin"%}
+              </button>
 
-            <button
-              class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-              type="submit"
-              value="payout"
-              name="type"
-            >
-              Pay Out
-            </button>
-          </div>
-        </form>
+              <button
+                class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+                type="submit"
+                value="payout"
+                name="type"
+              >
+                {% trans "payout"%}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <!-- Right Side -->
@@ -101,7 +140,7 @@
         <!-- Two Name Inputs and Amount Input -->
         <form method="post" action="{% url 'Bank:transfer' %}">
           {% csrf_token %}
-          <h3 class="text-2x1 mb-2 p-1 font-bold">Transfer</h3>
+          <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "transfer"%}</h3>
 
           <div class="mb-4">
             <!--
@@ -119,7 +158,9 @@
               id="nr"
               class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
             >
-              <option value="" selected disabled hidden>Select Customer</option>
+              <option value="" selected disabled hidden>
+                {% trans "selectcustomer"%}
+              </option>
               {% for customer in customers%}
               <option value="{{customer.nr}}">
                 {{customer.name}} | {{customer.nr}}
@@ -143,7 +184,9 @@
               id="related"
               class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
             >
-              <option value="" selected disabled hidden>Select Customer</option>
+              <option value="" selected disabled hidden>
+                {% trans "selectcustomer"%}
+              </option>
               {% for customer in customers%}
               <option value="{{customer.nr}}">
                 {{customer.name}} | {{customer.nr}}
@@ -158,7 +201,7 @@
               id="amount"
               name="amount"
               class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-              placeholder="Amount"
+              placeholder="{% trans 'amount'%}"
             />
           </div>
 
@@ -166,7 +209,7 @@
           <button
             class="rounded-md bg-blue-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
           >
-            Transfer
+            {% trans "transfer"%}
           </button>
           <input type="hidden" name="type" value="transfer" />
         </form>
