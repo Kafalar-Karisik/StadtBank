@@ -142,7 +142,7 @@ CACHES = {
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'de'
+LANGUAGE_CODE = 'en'
 
 DEFAULT_LANGUAGE = 1
 
