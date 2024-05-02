@@ -66,7 +66,7 @@ To access the admin GUI, you need to create a superuser account first. Run the f
 python manage.py createsuperuser
 ```
 
-> or you can run [bin/TOTP.py](bin/TOTP.py) for Account Setup
+> or you can run [bin/userSetup.py](bin/userSetup.py) for Account Setup
 
 For access, you need to go to `http://IP_ADDRESS/admin`
 

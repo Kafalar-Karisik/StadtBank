@@ -9,11 +9,12 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'StadtBank.settings')
 django.setup()
 
-from bin.TOTP import newWorkerPassword
 from django.contrib.auth.models import Group, Permission, User
 
-# User.objects.create_superuser(
-#    username="admin", email="", password="password")  # Please Change it
+from bin.TOTP import newWorkerPassword
+
+User.objects.create_superuser(
+    username="admin", email="", password="password")  # Don't forget to change
 
 User.objects.create_user("worker", "", "").save()
 print(newWorkerPassword())

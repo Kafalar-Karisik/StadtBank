@@ -3,7 +3,7 @@ StadtBank
 
 |Pylint|
 
-`Documents <https://kafalar-karisik.github.io/StadtBank/>`__
+`Documents <https://kafalar-karisik.github.io/StadtBank/#>`__
 
 Basic Bank System with Web GUI and database
 
@@ -83,7 +83,7 @@ Run the following command:
 
 ..
 
-   or you can run `bin/TOTP.py <bin/TOTP.py>`__ for Account Setup
+   or you can run `bin/userSetup.py <modules/scripts.html#bin.userSetup>`__ for Account Setup
 
 For access, you need to go to ``http://IP_ADDRESS/admin``
 
