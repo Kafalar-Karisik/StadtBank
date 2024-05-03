@@ -35,46 +35,11 @@
       <!-- Left Side -->
 
       <div class="w-1/2 p-4">
-        <!-- Top -->
-        <div class="h-1/2">
-          <form method="post" action="">
-            <h3 class="text-2x1 mb-2 p-1 font-bold">{%trans "salary" %}</h3>
-            <div class="mb-4">
-              <select
-                required
-                name="customer"
-                id="customer"
-                class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
-              >
-                <option selected disabled hidden>
-                  {% trans "selectcustomer"%}
-                </option>
-                {% for customer in customers %}
-                <option value="{{customer.nr}}">
-                  {{customer.name}} | {{customer.nr}}
-                </option>
-                {%endfor%}
-              </select>
-            </div>
-            <div class="mb-4">
-              <input
-                required
-                type="number"
-                id="amount"
-                name="amount"
-                class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-                placeholder="{% trans 'amount'%}"
-              />
-            </div>
-          </form>
-        </div>
-        <!-- Bottom -->
-        <div class="h-1/2">
-          <!-- Name and Amount Inputs -->
-          <form method="post" action="{% url 'Bank:pay' %}">
-            <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "pay"%}</h3>
-            <div class="mb-4">
-              <!--
+        <!-- Name and Amount Inputs -->
+        <form method="post" action="{% url 'Bank:pay' %}">
+          <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "pay"%}</h3>
+          <div class="mb-4">
+            <!--
             <input
               type="text"
               id="customer"
@@ -82,57 +47,59 @@
               class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="Name/ID"
             />-->
-              <select
-                required
-                name="customer"
-                id="customer"
-                class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
-              >
-                <option selected disabled hidden>
-                  {% trans "selectcustomer"%}
-                </option>
-                {% for customer in customers %}
-                <option value="{{customer.nr}}">
-                  {{customer.name}} | {{customer.nr}}
-                </option>
-                {%endfor%}
-              </select>
-              <!-- TODO: Add Name/User Check on write-->
-            </div>
-            <div class="mb-4">
-              <input
-                required
-                type="number"
-                id="amount"
-                name="amount"
-                class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-                placeholder="{% trans 'amount'%}"
-                onblur="checkBalance()"
-              />
-            </div>
+            <select
+              required
+              name="customer"
+              id="customer"
+              class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
+            >
+              <option selected disabled hidden>
+                {% trans "selectcustomer"%}
+              </option>
+              {% for customer in customers %}
+              <option value="{{customer.nr}}">
+                {{customer.name}} | {{customer.nr}}
+              </option>
+              {%endfor%}
+            </select>
+            <!-- TODO: Add Name/User Check on write-->
+          </div>
+          <div class="mb-4">
+            <input
+              required
+              checked
+              type="number"
+              id="amount"
+              name="amount"
+              class="w-1/4 min-w-5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              placeholder="{% trans 'amount'%}"
+              onblur="checkBalance()"
+            />
+            <input type="checkbox" id="isSalary" />
+            <label for="isSalary">{% trans "isSalary" %}</label>
+          </div>
 
-            <!-- Pay In and Pay Out Buttons -->
-            <div class="flex">
-              <button
-                class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-                type="submit"
-                value="payin"
-                name="type"
-              >
-                {% trans "payin"%}
-              </button>
+          <!-- Pay In and Pay Out Buttons -->
+          <div class="flex">
+            <button
+              class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+              type="submit"
+              value="payin"
+              name="type"
+            >
+              {% trans "payin"%}
+            </button>
 
-              <button
-                class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-                type="submit"
-                value="payout"
-                name="type"
-              >
-                {% trans "payout"%}
-              </button>
-            </div>
-          </form>
-        </div>
+            <button
+              class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+              type="submit"
+              value="payout"
+              name="type"
+            >
+              {% trans "payout"%}
+            </button>
+          </div>
+        </form>
       </div>
 
       <!-- Right Side -->
@@ -220,6 +187,23 @@
       document.location = "/login?next=/pay";
     </script>
     {% endif %}
+    <script>
+      const checkbox = document.getElementById("isSalary");
+      const output = document.getElementById("amount");
+      if (checkbox.checked) {
+        output.placeholder = '{% trans "hour" %}';
+      } else {
+        output.placeholder = '{% trans "amount" %}';
+      }
+
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          output.placeholder = '{% trans "hour" %}';
+        } else {
+          output.placeholder = '{% trans "amount" %}';
+        }
+      });
+    </script>
     <script src="{% static 'index.js' %}"></script>
   </body>
 </html>

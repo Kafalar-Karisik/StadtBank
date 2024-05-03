@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 12:04+0200\n"
+"POT-Creation-Date: 2024-05-03 16:42+0200\n"
 "PO-Revision-Date: 2024-04-27 11:30+0200\n"
 "Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -26,15 +26,15 @@ msgstr "Home"
 msgid "credit"
 msgstr "Credit"
 
-#: .\Bank\templates\credit.html:58 .\Bank\templates\pay.html:50
-#: .\Bank\templates\pay.html:92 .\Bank\templates\pay.html:162
-#: .\Bank\templates\pay.html:188
+#: .\Bank\templates\credit.html:58 .\Bank\templates\pay.html:57
+#: .\Bank\templates\pay.html:129 .\Bank\templates\pay.html:155
 msgid "selectcustomer"
 msgstr "Select Customer"
 
 #: .\Bank\templates\credit.html:75 .\Bank\templates\customer.html:49
-#: .\Bank\templates\dashboard.html:80 .\Bank\templates\pay.html:66
-#: .\Bank\templates\pay.html:109 .\Bank\templates\pay.html:204
+#: .\Bank\templates\dashboard.html:80 .\Bank\templates\pay.html:75
+#: .\Bank\templates\pay.html:171 .\Bank\templates\pay.html:196
+#: .\Bank\templates\pay.html:203
 msgid "amount"
 msgstr "Amount"
 
@@ -128,7 +128,7 @@ msgstr "Please"
 msgid "enterpassword"
 msgstr "Enter Password"
 
-#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:75
+#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:40
 msgid "pay"
 msgstr "Pay"
 
@@ -136,18 +136,24 @@ msgstr "Pay"
 msgid "action"
 msgstr "Action"
 
-#: .\Bank\templates\pay.html:41
-msgid "salary"
-msgstr "Salary"
+#: .\Bank\templates\pay.html:79
+#, fuzzy
+#| msgid "salary"
+msgid "isSalary"
+msgstr "Salary ?"
 
-#: .\Bank\templates\pay.html:122
+#: .\Bank\templates\pay.html:90
 msgid "payin"
 msgstr "Pay-in"
 
-#: .\Bank\templates\pay.html:131
+#: .\Bank\templates\pay.html:99
 msgid "payout"
 msgstr "Pay-out"
 
-#: .\Bank\templates\pay.html:143 .\Bank\templates\pay.html:212
+#: .\Bank\templates\pay.html:110 .\Bank\templates\pay.html:179
 msgid "transfer"
 msgstr "Transfer"
+
+#: .\Bank\templates\pay.html:194 .\Bank\templates\pay.html:201
+msgid "hour"
+msgstr "Hour"

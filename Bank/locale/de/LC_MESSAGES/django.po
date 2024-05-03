@@ -8,99 +8,152 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 12:04+0200\n"
+"POT-Creation-Date: 2024-05-03 16:42+0200\n"
 "PO-Revision-Date: 2024-04-27 11:30+0200\n"
 "Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\Bank\templates\credit.html:21 .\Bank\templates\customer.html:21
 #: .\Bank\templates\customers.html:21 .\Bank\templates\dashboard.html:21
 #: .\Bank\templates\pay.html:21
 msgid "home"
 msgstr "Startseite"
 
+#: .\Bank\templates\credit.html:23 .\Bank\templates\credit.html:29
 msgid "credit"
 msgstr "Kredit"
 
+#: .\Bank\templates\credit.html:58 .\Bank\templates\pay.html:57
+#: .\Bank\templates\pay.html:129 .\Bank\templates\pay.html:155
+#, fuzzy
+#| msgid "customer"
+msgid "selectcustomer"
+msgstr "Kunde"
+
+#: .\Bank\templates\credit.html:75 .\Bank\templates\customer.html:49
+#: .\Bank\templates\dashboard.html:80 .\Bank\templates\pay.html:75
+#: .\Bank\templates\pay.html:171 .\Bank\templates\pay.html:196
+#: .\Bank\templates\pay.html:203
 msgid "amount"
 msgstr "Betrag"
 
+#: .\Bank\templates\credit.html:87
 msgid "givecredit"
 msgstr "Kredit geben"
 
+#: .\Bank\templates\credit.html:94 .\Bank\templates\dashboard.html:71
 msgid "actions"
 msgstr "Aktionen"
 
+#: .\Bank\templates\credit.html:98 .\Bank\templates\customer.html:48
+#: .\Bank\templates\customers.html:51 .\Bank\templates\dashboard.html:47
+#: .\Bank\templates\dashboard.html:78
 msgid "id"
 msgstr "ID"
 
+#: .\Bank\templates\credit.html:99 .\Bank\templates\customers.html:52
+#: .\Bank\templates\customers.html:83 .\Bank\templates\dashboard.html:48
 msgid "name"
 msgstr "Name"
 
+#: .\Bank\templates\customer.html:23 .\Bank\templates\customers.html:23
+#: .\Bank\templates\customers.html:29 .\Bank\templates\customers.html:37
+#: .\Bank\templates\dashboard.html:33
 msgid "customers"
 msgstr "Kunden"
 
+#: .\Bank\templates\customer.html:31 .\Bank\templates\dashboard.html:27
 msgid "dashboard"
 msgstr "Dashboard"
 
+#: .\Bank\templates\customer.html:39 .\Bank\templates\customers.html:53
+#: .\Bank\templates\dashboard.html:49
 msgid "balance"
 msgstr "Kontostand"
 
+#: .\Bank\templates\customer.html:44
 msgid "Actions"
 msgstr "Aktionen"
 
+#: .\Bank\templates\customer.html:50 .\Bank\templates\dashboard.html:81
 msgid "type"
 msgstr "Typ"
 
+#: .\Bank\templates\customer.html:51 .\Bank\templates\dashboard.html:82
 msgid "before"
 msgstr "Vorher"
 
+#: .\Bank\templates\customer.html:52 .\Bank\templates\dashboard.html:83
 msgid "releated"
 msgstr "Empfänger"
 
+#: .\Bank\templates\customer.html:53 .\Bank\templates\dashboard.html:84
 msgid "date"
 msgstr "Datum"
 
+#: .\Bank\templates\customer.html:87 .\Bank\templates\dashboard.html:124
 msgid "noactiondata"
 msgstr "Keine Aktionsdaten"
 
+#: .\Bank\templates\customers.html:42 .\Bank\templates\dashboard.html:38
 msgid "search"
 msgstr "Suche"
 
+#: .\Bank\templates\customers.html:66 .\Bank\templates\dashboard.html:62
 msgid "nocustomerdata"
 msgstr "Keine Kundendaten"
 
+#: .\Bank\templates\customers.html:76
 msgid "newcustomer"
 msgstr "Neuer Kunde"
 
+#: .\Bank\templates\customers.html:90
 msgid "create"
 msgstr "Erstellen"
 
+#: .\Bank\templates\dashboard.html:79
 msgid "customer"
 msgstr "Kunde"
 
+#: .\Bank\templates\login.html:29 .\Bank\templates\login.html:63
 msgid "login"
 msgstr "Anmelden"
 
+#: .\Bank\templates\login.html:42
 msgid "please"
 msgstr "Bitte"
 
+#: .\Bank\templates\login.html:49
 msgid "enterpassword"
 msgstr "Passwort eingeben"
 
+#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:40
 msgid "pay"
 msgstr "Bezahlen"
 
+#: .\Bank\templates\pay.html:29
 msgid "action"
 msgstr "Aktion"
 
+#: .\Bank\templates\pay.html:79
+msgid "isSalary"
+msgstr "Lohn ?"
+
+#: .\Bank\templates\pay.html:90
 msgid "payin"
 msgstr "Einzahlung"
 
+#: .\Bank\templates\pay.html:99
 msgid "payout"
 msgstr "Auszahlung"
 
+#: .\Bank\templates\pay.html:110 .\Bank\templates\pay.html:179
 msgid "transfer"
 msgstr "Überweisung"
+
+#: .\Bank\templates\pay.html:194 .\Bank\templates\pay.html:201
+msgid "hour"
+msgstr "Stunde"
