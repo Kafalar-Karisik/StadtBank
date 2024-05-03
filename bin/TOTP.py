@@ -47,4 +47,5 @@ if __name__ == "__main__":
                           'StadtBank.settings')
     django.setup()
     from django.contrib.auth.models import User
-    print(newWorkerPassword(input("Enter Admin Password:")))
+    __pass__ = input("Enter Admin Password:")
+    print(newWorkerPassword(__pass__))
