@@ -22,7 +22,7 @@ Group_L4 = Group.objects.create(name="Authorized-L4")
 Group_L4.permissions.add(
     *Permission.objects.filter(content_type__model='customer'))
 Group_L4.permissions.add(
-    *Permission.objects.filter(content_type__model='actions'))
+    *Permission.objects.filter(content_type__model='action'))
 Group_L4.permissions.add(
     *Permission.objects.filter(content_type__model='credit'))
 User.objects.get(username="worker").groups.add(Group_L4)
