@@ -27,6 +27,7 @@ class Action(models.Model):
         Customer, related_name="action_customer", on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
     type = models.TextField(choices=[('payin', 'Pay In'),
+                                     ('payin-salary', 'Pay In(Salary)'),
                                      ('payout', 'Pay Out'),
                                      ('transfer', 'Transfer')])
     amount = models.IntegerField(null=True)
