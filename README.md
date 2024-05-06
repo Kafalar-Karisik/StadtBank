@@ -71,3 +71,23 @@ python manage.py createsuperuser
 For access, you need to go to `http://IP_ADDRESS/admin`
 
 > **Note:** Please ensure that your database migrations are applied before running the `createsuperuser` command.
+
+## Compile Languages
+
+StadtBank have a multi language system. You can find the translates in [Bank/locale](Bank/locale/). You need to compile them for the see Translates
+
+```shell
+python manage.py compilemessages
+```
+
+### Improve or add Translates
+
+#### Improve Translates
+
+You can change the `msgstr` in the `*.po` files. Every Text have a msgid and over them you can see where they used.
+
+#### Add Translates
+
+```shell
+python manage.py makemessages -l LANGUAGE_CODE
+```
