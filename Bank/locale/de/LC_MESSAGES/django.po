@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 11:21+0200\n"
+"POT-Creation-Date: 2024-05-06 23:23+0200\n"
 "PO-Revision-Date: 2024-04-27 11:30+0200\n"
 "Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,11 @@ msgstr "Name"
 msgid "type"
 msgstr "Typ"
 
+#: .\Bank\templates\credit.html:173 .\Bank\templates\customer.html:87
+#: .\Bank\templates\dashboard.html:124
+msgid "noactiondata"
+msgstr "Keine Aktionsdaten"
+
 #: .\Bank\templates\customer.html:23 .\Bank\templates\customers.html:23
 #: .\Bank\templates\customers.html:29 .\Bank\templates\customers.html:37
 #: .\Bank\templates\dashboard.html:33
@@ -99,10 +104,6 @@ msgstr "Empfänger"
 #: .\Bank\templates\customer.html:53 .\Bank\templates\dashboard.html:84
 msgid "date"
 msgstr "Datum"
-
-#: .\Bank\templates\customer.html:87 .\Bank\templates\dashboard.html:124
-msgid "noactiondata"
-msgstr "Keine Aktionsdaten"
 
 #: .\Bank\templates\customers.html:42 .\Bank\templates\dashboard.html:38
 msgid "search"
