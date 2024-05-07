@@ -53,8 +53,9 @@
               id="customer"
               class="w-2/4 rounded-md border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none"
               onblur=""
+              onchange="filterCustomers()"
             >
-              <option selected disabled hidden onchange="filterCustomers()">
+              <option selected disabled hidden>
                 {% trans "selectcustomer"%}
               </option>
               {% for customer in customers %}
@@ -95,13 +96,14 @@
         <table id="customer-table" class="w-full border bg-white">
           <thead>
             <tr>
-              <th class="border p-2">{% trans "id"%}</th>
+              <th class="border p-2">{% trans "actionID"%}</th>
               <th class="border p-2">{% trans "name"%}</th>
-              <!-- Add more table headers as needed -->
+              <th class="border p-2">{% trans "type"%}</th>
+              <th class="border p-2">{% trans "amount"%}</th>
+              
             </tr>
           </thead>
           <tbody id="customer-list">
-            <!-- Filtered customers will be displayed here -->
           </tbody>
         </table>
       </div>
@@ -112,33 +114,66 @@
     </script>
     {% endif %}
     <script>
-      var customers = [
-          {% for customer in customers %}
-              { id: {{ customer.nr }}, name: '{{ customer.name }}' },
+      var actions = [
+          {% for action in actions %}
+              { id: {{ action.id }}, 
+                customerName: '{{ action.customer.name }}', 
+                customerID: {{action.customer.nr}},
+                type: '{{action.get_type_display}}',
+                amount: '{{action.amount}}',
+                relatedID: '{{action.related.nr}}',
+              },
           {%endfor%}
       ];
 
       function filterCustomers() {
-          var customerId = document.getElementById('customer-select').value;
-          var filteredCustomers = customers.filter(function(customer) {
-              return customer.id == customerId;
+          var customerId = Number(document.getElementById('customer').value);
+          var filteredActions = actions.filter(function(action) {
+              return action.customerID == customerId || action.relatedID == customerId ;
           });
-
-          displayCustomers(filteredCustomers);
+          
+          displayActions(filteredActions);
       }
 
-      function displayCustomers(customers) {
+      function displayActions(actions) {
           var customerTable = document.getElementById('customer-list');
           customerTable.innerHTML = '';
 
-          customers.forEach(function(customer) {
+          if (actions.length != 0) {
+          actions.forEach(function(action) {
               var row = customerTable.insertRow();
               var idCell = row.insertCell(0);
               var nameCell = row.insertCell(1);
+              var typeCell = row.insertCell(2);
+              var amountCell = row.insertCell(3);
 
-              idCell.textContent = customer.id;
-              nameCell.textContent = customer.name;
+              idCell.classList.add("border");
+              nameCell.classList.add("border");
+              typeCell.classList.add("border");
+              amountCell.classList.add("border");
+            
+              idCell.classList.add("p-2");
+              nameCell.classList.add("p-2");
+              typeCell.classList.add("p-2");
+              amountCell.classList.add("p-2");
+
+              idCell.textContent = action.id;
+              nameCell.textContent = action.customerName;
+              typeCell.textContent = action.type;
+              amountCell.textContent = action.amount;
           });
+        } else{
+            console.log(actions);
+            var row = customerTable.insertRow();
+            var noAction = row.insertCell();
+
+            noAction.classList.add("border");
+            noAction.classList.add("p-2");
+            noAction.colSpan = 4;
+
+            noAction.textContent = '{% trans "noactiondata"%}'
+
+          }
       }
 
       // Initial display when the page loads

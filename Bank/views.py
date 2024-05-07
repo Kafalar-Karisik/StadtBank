@@ -88,11 +88,12 @@ class Pay(View):
 
 class CreditManagment(View):
     """Credit Page"""
+    actions = Action.objects.all()
     customers = Customer.objects.all()
 
     def get(self, request) -> HttpResponse:
         """Credit.get"""
-        return render(request, 'credit.html', {'customers': self.customers})
+        return render(request, 'credit.html', {'customers': self.customers, 'actions': self.actions})
 
 
 def pay_in(request) -> HttpResponseRedirect:
@@ -213,14 +214,16 @@ def newCustomer(request) -> HttpResponseRedirect:
 def credit(request) -> HttpResponseRedirect:
     """Crediy API"""
     if request.method == "POST":
-        form = CreditF(request)
+        form = CreditF(request.POST)
         if form.is_valid():
             datas = form.cleaned_data
             target = datas["customer"]
             amount = datas["amount"]
 
             Credit(customer=target, amount=amount).save()
-            target.credit = target.credit + amount
+            target.credits = target.credits + amount
+
+            target.save()
     return HttpResponseRedirect("/creditManagment")
 
 
