@@ -12,8 +12,8 @@ import sys
 import django
 
 project = 'StadtBank'
-copyright = '2024, Kafalar Karışık'
-author = 'Kafalar Karışık'
+copyright = '2024, Ömer Rasim Sak'
+author = 'Ömer Rasim Sak'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
