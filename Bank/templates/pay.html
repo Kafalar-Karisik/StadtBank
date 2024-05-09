@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% csrf_token %} {% load i18n %} {% load static %}
+    {% load i18n %} {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>Stadt Bank</title>
   </head>
@@ -37,6 +37,7 @@
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
         <form method="post" action="{% url 'Bank:pay' %}">
+          {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "pay"%}</h3>
           <div class="mb-4">
             <!--
@@ -73,9 +74,10 @@
               name="amount"
               class="w-1/4 min-w-5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="{% trans 'amount'%}"
+              min="1"
               onblur="checkBalance()"
             />
-            <input type="checkbox" id="isSalary" />
+            <input type="checkbox" id="isSalary" name="isSalary" />
             <label for="isSalary">{% trans "isSalary" %}</label>
           </div>
 
@@ -164,10 +166,11 @@
           <div class="mb-4">
             <input
               required
-              type="text"
+              type="number"
               id="amount"
               name="amount"
               class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+              min="1"
               placeholder="{% trans 'amount'%}"
             />
           </div>
@@ -188,6 +191,7 @@
     </script>
     {% endif %}
     <script>
+      /*
       const checkbox = document.getElementById("isSalary");
       const output = document.getElementById("amount");
       if (checkbox.checked) {
@@ -195,12 +199,23 @@
       } else {
         output.placeholder = '{% trans "amount" %}';
       }
-
+    
       checkbox.addEventListener("change", function () {
         if (checkbox.checked) {
           output.placeholder = '{% trans "hour" %}';
         } else {
           output.placeholder = '{% trans "amount" %}';
+        }
+      });
+      */
+
+      const checkbox = document.getElementById("isSalary");
+      const output = document.getElementById("amount");
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          output.type = "text"
+        } else {
+          output.type = "number"
         }
       });
     </script>

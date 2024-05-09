@@ -36,7 +36,12 @@
       <div class="w-full p-4 md:w-1/2 lg:w-1/2 xl:w-1/2">
         <h3 class="mb-2 text-lg font-bold">{{customer.name}}</h3>
         <!--Customer Infos-->
-        <h4 class="mb-2 text-lg font-bold">{% trans "balance"%}: {{customer.balance}}</h4>
+        <h4 class="mb-2 text-lg font-bold">
+          {% trans "balance"%}: {{customer.balance}}
+        </h4>
+        <h4 class="mb-2 text-lg font-bold">
+          {% trans "Credit"%}: {{customer.credits}}
+        </h4>
       </div>
 
       <!-- Actions -->
@@ -71,10 +76,10 @@
                 endif
                 %}
               >
-                {% if customer.related %} {{action.related.name|
-                default_if_none:""}}
+                {% if action.related %}
+                {{action.related.name|default_if_none:""}}
                 <p
-                  class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
+                  class="p4 hidden opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
                   {{action.related.nr}}
                 </p>

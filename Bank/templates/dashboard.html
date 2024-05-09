@@ -75,13 +75,13 @@
         >
           <thead>
             <tr>
-              <th class="border p-2">{% trans "actionID"%}</th>
-              <th class="border p-2">{% trans "customer"%}</th>
-              <th class="border p-2">{% trans "amount"%}</th>
-              <th class="border p-2">{% trans "type"%}</th>
-              <th class="border p-2">{% trans "before"%}</th>
-              <th class="border p-2">{% trans "releated"%}</th>
-              <th class="border p-2">{% trans "date"%}</th>
+              <th class="border p-2">{% trans "actionID" %}</th>
+              <th class="border p-2">{% trans "customer" %}</th>
+              <th class="border p-2">{% trans "amount" %}</th>
+              <th class="border p-2">{% trans "type" %}</th>
+              <th class="border p-2">{% trans "before" %}</th>
+              <th class="border p-2">{% trans "releated" %}</th>
+              <th class="border p-2">{% trans "date" %}</th>
             </tr>
           </thead>
           <tbody>
@@ -94,7 +94,7 @@
               >
                 {{action.customer.name}}
                 <p
-                  class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
+                  class="p4 hidden opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
                   {{action.customer.nr}}
                 </p>
@@ -111,7 +111,7 @@
               >
                 {% if action.related %}{{action.related.name | default:""}}
                 <p
-                  class="p4 hidden bg-gray-200 opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
+                  class="p4 hidden opacity-0 transition-opacity group-hover:block group-hover:opacity-100"
                 >
                   {{action.related.nr}}
                 </p>

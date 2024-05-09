@@ -8,10 +8,10 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
-from bin import TOTP  # ignore
+from bin import TOTP  # type: ignore
 
 from .forms import CreditF, CustomerF, PayF, TransferF, newCustomerF
-from .models import Action, Credit, Customer
+from .models import Action, Credit, Customer, Setting
 
 
 def index(request) -> HttpResponse:
@@ -93,11 +93,13 @@ class CreditManagment(View):
 
     def get(self, request) -> HttpResponse:
         """Credit.get"""
-        return render(request, 'credit.html', {'customers': self.customers, 'actions': self.actions})
+        return render(request, 'credit.html', {'customers': self.customers,
+                                               'actions': self.actions})
 
 
+# Not in Use
 def pay_in(request) -> HttpResponseRedirect:
-    """payIn API (Not Used)"""
+    """payIn API"""
 
     if request.method == "POST":
         form = CustomerF(request.POST)
@@ -118,8 +120,9 @@ def pay_in(request) -> HttpResponseRedirect:
     return HttpResponseRedirect("/.")
 
 
+# Not in Use
 def pay_out(request) -> HttpResponseRedirect:
-    """PayOut API (Not Used)"""
+    """PayOut API"""
 
     if request.method == "POST":
         form = CustomerF(request.POST)
@@ -144,18 +147,28 @@ def pay_out(request) -> HttpResponseRedirect:
 def pay(request) -> HttpResponseRedirect:
     """Pay API"""
     if request.method == "POST":
+
+        if 'isSalary' in locals()['request'].POST and request.POST['isSalary'] == 'on':
+            if request.POST["amount"].lower().endswith("h"):
+                hourSalary = Setting.objects.get(key="hourSalary").value['value']
+                request.POST._mutable = True
+                request.POST["amount"] = hourSalary * int(request.POST["amount"][:-1])
+            payType = "payin-salary"
+
         form = PayF(request.POST)
         if form.is_valid():
             payType = request.POST.get("type")
-            if payType == "payin":
+            if payType == "payin" or payType == "payin-salary":
                 datas = form.cleaned_data
                 target = datas["customer"]
+
                 before = target.balance
+                
                 target.balance += datas["amount"]
                 target.save()
 
-                Action(customer=datas["customer"], type="payin",
-                       amount=datas["amount"], before=before).save()
+
+
 
             elif payType == "payout":
                 datas = form.cleaned_data
@@ -164,8 +177,8 @@ def pay(request) -> HttpResponseRedirect:
                 target.balance -= datas["amount"]
                 target.save()
 
-                Action(customer=datas["customer"], type="payout",
-                       amount=datas["amount"], before=before).save()
+            Action(customer=datas["customer"], type=payType,
+                   amount=datas["amount"], before=before).save()
 
     return HttpResponseRedirect("/pay")
 
@@ -250,10 +263,13 @@ class Login(View):
 
 
 @csrf_exempt
-def newWorkerPass(request) -> HttpResponse:
+def newWorkerPass(request):
     """New Worker Password API"""
     if request.method == "POST":
-        passw = TOTP.newWorkerPassword(request.POST['password'])
-        return HttpResponse(passw)
+        passw = TOTP.newWorkerPassword(
+            request.POST['password'], httpRequest=True)
+        return HttpResponse(passw, status=passw.status_code
+                            if hasattr(locals()['passw'], 'status_code') else 200)
+        # passw.status_code if 'passw.status_code' in locals() else 200)
 
     return HttpResponseRedirect("/")
