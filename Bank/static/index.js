@@ -37,7 +37,11 @@ menuItems.forEach(function (item) {
 });
 
 
-
+function checkBalance(){
+  if (balance) {
+    
+  }
+}
 
 
 const table = document.getElementById("customer-table");
