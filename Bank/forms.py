@@ -23,6 +23,7 @@ class PayF(forms.Form):
     customer = forms.ModelChoiceField(Customer.objects.all())
     type = forms.CharField()
     amount = forms.IntegerField()
+    isSalary = forms.CheckboxInput()
 
 
 class CreditF(forms.Form):

@@ -35,9 +35,9 @@
       <!-- Left Side -->
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        <form method="post" action="{% url 'Bank:credit' %}?next=/credit">
-          {% csrf_token %}
+        <form method="post" action="{% url 'Bank:credit' %}">
           <h3 class="text-2x1 mb-2 p-1 font-bold">...</h3>
+          {% csrf_token %}
           <div class="mb-4">
             <!--
             <input
@@ -73,7 +73,7 @@
               id="amount"
               name="amount"
               class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-              placeholder="{% trans "amount"%}"
+              placeholder="{% trans 'amount'%}"
             />
           </div>
 
@@ -85,7 +85,7 @@
               value="payin"
               name="type"
             >
-            {% trans "givecredit"%}
+              {% trans "givecredit"%}
             </button>
           </div>
         </form>
@@ -100,11 +100,9 @@
               <th class="border p-2">{% trans "name"%}</th>
               <th class="border p-2">{% trans "type"%}</th>
               <th class="border p-2">{% trans "amount"%}</th>
-              
             </tr>
           </thead>
-          <tbody id="customer-list">
-          </tbody>
+          <tbody id="customer-list"></tbody>
         </table>
       </div>
     </div>
@@ -116,8 +114,8 @@
     <script>
       var actions = [
           {% for action in actions %}
-              { id: {{ action.id }}, 
-                customerName: '{{ action.customer.name }}', 
+              { id: {{ action.id }},
+                customerName: '{{ action.customer.name }}',
                 customerID: {{action.customer.nr}},
                 type: '{{action.get_type_display}}',
                 amount: '{{action.amount}}',
@@ -127,53 +125,53 @@
       ];
 
       function filterCustomers() {
-          var customerId = Number(document.getElementById('customer').value);
-          var filteredActions = actions.filter(function(action) {
-              return action.customerID == customerId || action.relatedID == customerId ;
-          });
-          
-          displayActions(filteredActions);
+        var customerId = Number(document.getElementById("customer").value);
+        var filteredActions = actions.filter(function (action) {
+          return (
+            action.customerID == customerId || action.relatedID == customerId
+          );
+        });
+
+        displayActions(filteredActions);
       }
 
       function displayActions(actions) {
-          var customerTable = document.getElementById('customer-list');
-          customerTable.innerHTML = '';
+        var customerTable = document.getElementById("customer-list");
+        customerTable.innerHTML = "";
 
-          if (actions.length != 0) {
-          actions.forEach(function(action) {
-              var row = customerTable.insertRow();
-              var idCell = row.insertCell(0);
-              var nameCell = row.insertCell(1);
-              var typeCell = row.insertCell(2);
-              var amountCell = row.insertCell(3);
-
-              idCell.classList.add("border");
-              nameCell.classList.add("border");
-              typeCell.classList.add("border");
-              amountCell.classList.add("border");
-            
-              idCell.classList.add("p-2");
-              nameCell.classList.add("p-2");
-              typeCell.classList.add("p-2");
-              amountCell.classList.add("p-2");
-
-              idCell.textContent = action.id;
-              nameCell.textContent = action.customerName;
-              typeCell.textContent = action.type;
-              amountCell.textContent = action.amount;
-          });
-        } else{
-            console.log(actions);
+        if (actions.length != 0) {
+          actions.forEach(function (action) {
             var row = customerTable.insertRow();
-            var noAction = row.insertCell();
+            var idCell = row.insertCell(0);
+            var nameCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var amountCell = row.insertCell(3);
 
-            noAction.classList.add("border");
-            noAction.classList.add("p-2");
-            noAction.colSpan = 4;
+            idCell.classList.add("border");
+            nameCell.classList.add("border");
+            typeCell.classList.add("border");
+            amountCell.classList.add("border");
 
-            noAction.textContent = '{% trans "noactiondata"%}'
+            idCell.classList.add("p-2");
+            nameCell.classList.add("p-2");
+            typeCell.classList.add("p-2");
+            amountCell.classList.add("p-2");
 
-          }
+            idCell.textContent = action.id;
+            nameCell.textContent = action.customerName;
+            typeCell.textContent = action.type;
+            amountCell.textContent = action.amount;
+          });
+        } else {
+          var row = customerTable.insertRow();
+          var noAction = row.insertCell();
+
+          noAction.classList.add("border");
+          noAction.classList.add("p-2");
+          noAction.colSpan = 4;
+
+          noAction.textContent = '{% trans "noactiondata"%}';
+        }
       }
 
       // Initial display when the page loads

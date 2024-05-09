@@ -236,6 +236,10 @@ def credit(request) -> HttpResponseRedirect:
             Credit(customer=target, amount=amount).save()
             target.credits = target.credits + amount
 
+            Action(customer=target, type='take-credit', amount=amount).save()
+
+            Credit(customer=target, amount=amount).save()
+
             target.save()
     return HttpResponseRedirect("/creditManagment")
 
