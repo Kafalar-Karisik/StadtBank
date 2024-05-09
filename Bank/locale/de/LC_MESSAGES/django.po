@@ -1,14 +1,14 @@
 # StadtBank Multi Lanugages - DE
-# (C) Copyright 2024, Kafalar Karışık. 
+# (C) Copyright 2024, Ömer Rasim Sak. 
 # This file is distributed under the same license as the StadtBank package.
-# Kafalar Karışık <orsmes6145@gmail.com>, 2024.
+# Ömer Rasim Sak <orsmes6145@gmail.com>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-06 23:23+0200\n"
+"POT-Creation-Date: 2024-05-10 00:43+0200\n"
 "PO-Revision-Date: 2024-04-27 11:30+0200\n"
 "Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -26,17 +26,17 @@ msgstr "Startseite"
 msgid "credit"
 msgstr "Kredit"
 
-#: .\Bank\templates\credit.html:59 .\Bank\templates\pay.html:57
-#: .\Bank\templates\pay.html:129 .\Bank\templates\pay.html:155
+#: .\Bank\templates\credit.html:59 .\Bank\templates\pay.html:58
+#: .\Bank\templates\pay.html:131 .\Bank\templates\pay.html:157
 #, fuzzy
 #| msgid "customer"
 msgid "selectcustomer"
 msgstr "Kunde"
 
 #: .\Bank\templates\credit.html:76 .\Bank\templates\credit.html:102
-#: .\Bank\templates\customer.html:49 .\Bank\templates\dashboard.html:80
-#: .\Bank\templates\pay.html:75 .\Bank\templates\pay.html:171
-#: .\Bank\templates\pay.html:196 .\Bank\templates\pay.html:203
+#: .\Bank\templates\customer.html:54 .\Bank\templates\dashboard.html:80
+#: .\Bank\templates\pay.html:76 .\Bank\templates\pay.html:174
+#: .\Bank\templates\pay.html:200 .\Bank\templates\pay.html:207
 msgid "amount"
 msgstr "Betrag"
 
@@ -49,22 +49,20 @@ msgid "actions"
 msgstr "Aktionen"
 
 #: .\Bank\templates\credit.html:99 .\Bank\templates\dashboard.html:78
-#, fuzzy
-#| msgid "action"
 msgid "actionID"
 msgstr "Aktion ID"
 
 #: .\Bank\templates\credit.html:100 .\Bank\templates\customers.html:52
-#: .\Bank\templates\customers.html:83 .\Bank\templates\dashboard.html:48
+#: .\Bank\templates\customers.html:84 .\Bank\templates\dashboard.html:48
 msgid "name"
 msgstr "Name"
 
-#: .\Bank\templates\credit.html:101 .\Bank\templates\customer.html:50
+#: .\Bank\templates\credit.html:101 .\Bank\templates\customer.html:55
 #: .\Bank\templates\dashboard.html:81
 msgid "type"
 msgstr "Typ"
 
-#: .\Bank\templates\credit.html:173 .\Bank\templates\customer.html:87
+#: .\Bank\templates\credit.html:173 .\Bank\templates\customer.html:92
 #: .\Bank\templates\dashboard.html:124
 msgid "noactiondata"
 msgstr "Keine Aktionsdaten"
@@ -79,29 +77,35 @@ msgstr "Kunden"
 msgid "dashboard"
 msgstr "Dashboard"
 
-#: .\Bank\templates\customer.html:39 .\Bank\templates\customers.html:53
+#: .\Bank\templates\customer.html:40 .\Bank\templates\customers.html:53
 #: .\Bank\templates\dashboard.html:49
 msgid "balance"
 msgstr "Kontostand"
 
-#: .\Bank\templates\customer.html:44
+#: .\Bank\templates\customer.html:43
+#, fuzzy
+#| msgid "credit"
+msgid "Credit"
+msgstr "Kredit"
+
+#: .\Bank\templates\customer.html:49
 msgid "Actions"
 msgstr "Aktionen"
 
-#: .\Bank\templates\customer.html:48 .\Bank\templates\customers.html:51
+#: .\Bank\templates\customer.html:53 .\Bank\templates\customers.html:51
 #: .\Bank\templates\dashboard.html:47
 msgid "id"
 msgstr "ID"
 
-#: .\Bank\templates\customer.html:51 .\Bank\templates\dashboard.html:82
+#: .\Bank\templates\customer.html:56 .\Bank\templates\dashboard.html:82
 msgid "before"
 msgstr "Vorher"
 
-#: .\Bank\templates\customer.html:52 .\Bank\templates\dashboard.html:83
+#: .\Bank\templates\customer.html:57 .\Bank\templates\dashboard.html:83
 msgid "releated"
 msgstr "Empfänger"
 
-#: .\Bank\templates\customer.html:53 .\Bank\templates\dashboard.html:84
+#: .\Bank\templates\customer.html:58 .\Bank\templates\dashboard.html:84
 msgid "date"
 msgstr "Datum"
 
@@ -113,21 +117,22 @@ msgstr "Suche"
 msgid "nocustomerdata"
 msgstr "Keine Kundendaten"
 
-#: .\Bank\templates\customers.html:76
+#: .\Bank\templates\customers.html:77 .\Bank\templates\customers.html:96
 msgid "newcustomer"
 msgstr "Neuer Kunde"
 
-#: .\Bank\templates\customers.html:90
+#: .\Bank\templates\customers.html:91
 msgid "create"
 msgstr "Erstellen"
+
+#: .\Bank\templates\customers.html:102 .\Bank\templates\login.html:29
+#: .\Bank\templates\login.html:61
+msgid "login"
+msgstr "Anmelden"
 
 #: .\Bank\templates\dashboard.html:79
 msgid "customer"
 msgstr "Kunde"
-
-#: .\Bank\templates\login.html:29 .\Bank\templates\login.html:63
-msgid "login"
-msgstr "Anmelden"
 
 #: .\Bank\templates\login.html:42
 msgid "please"
@@ -137,7 +142,7 @@ msgstr "Bitte"
 msgid "enterpassword"
 msgstr "Passwort eingeben"
 
-#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:40
+#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:41
 msgid "pay"
 msgstr "Bezahlen"
 
@@ -145,22 +150,22 @@ msgstr "Bezahlen"
 msgid "action"
 msgstr "Aktion"
 
-#: .\Bank\templates\pay.html:79
+#: .\Bank\templates\pay.html:81
 msgid "isSalary"
 msgstr "Lohn ?"
 
-#: .\Bank\templates\pay.html:90
+#: .\Bank\templates\pay.html:92
 msgid "payin"
 msgstr "Einzahlung"
 
-#: .\Bank\templates\pay.html:99
+#: .\Bank\templates\pay.html:101
 msgid "payout"
 msgstr "Auszahlung"
 
-#: .\Bank\templates\pay.html:110 .\Bank\templates\pay.html:179
+#: .\Bank\templates\pay.html:112 .\Bank\templates\pay.html:182
 msgid "transfer"
 msgstr "Überweisung"
 
-#: .\Bank\templates\pay.html:194 .\Bank\templates\pay.html:201
+#: .\Bank\templates\pay.html:198 .\Bank\templates\pay.html:205
 msgid "hour"
 msgstr "Stunde"
