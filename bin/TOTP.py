@@ -1,4 +1,7 @@
+"""bin/TOTP.py"""
 import time
+
+from django.http import HttpResponse, HttpResponseBadRequest
 
 try:
     from django.contrib.auth.models import User
@@ -13,7 +16,7 @@ class TOTPError(Exception):
 
 
 # You can customize it with your Super User Account
-def newWorkerPassword(adminPass: str = ""):
+def newWorkerPassword(adminPass: str = "", httpRequest: bool = False):
     """Change Worker password. It will return the new Password"""
     if User.objects.filter(username='admin', is_superuser=True).exists():
         # If there is, prompt for the password
@@ -29,11 +32,22 @@ def newWorkerPassword(adminPass: str = ""):
             user = User.objects.get(username="worker")
             user.set_password(passw)
             user.save()
-            return passw
+            if httpRequest:
+                return HttpResponse(f"{passw}\n")
+            else:
+                return passw
         else:
-            raise TOTPError("Incorrect password for superuser 'admin'.")
+            if httpRequest:
+                # I dont Know is that the correct Error
+                return HttpResponseBadRequest("Incorrect Password\n")
+            else:
+                raise TOTPError("Incorrect password for superuser 'admin'.")
     else:
-        raise TOTPError("There is no superuser with the username 'admin'.")
+        if httpRequest:
+            # I dont Know is that the correct Error
+            return HttpResponseBadRequest("No Admin Account")
+        else:
+            raise TOTPError("There is no superuser with the username 'admin'.")
 
 
 if __name__ == "__main__":
@@ -44,7 +58,7 @@ if __name__ == "__main__":
     sys.path.append(os.path.abspath(os.path.join(
         os.path.dirname(__file__), '..')))
     os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                            'StadtBank.settings')
+                          'StadtBank.settings')
     django.setup()
     from django.contrib.auth.models import User
 

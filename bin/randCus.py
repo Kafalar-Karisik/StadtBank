@@ -1,4 +1,4 @@
-"""Requirements"""
+"""bin/ranCus.py"""
 import os
 import random
 import sys
