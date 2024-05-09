@@ -57,6 +57,7 @@ class Credit(models.Model):
 
 class Setting(models.Model):
     """Setting Class"""
+    # Setting.objects.get(key="hourSalary").value['value']
     key = models.CharField(max_length=100, unique=True)
     value = models.JSONField()
 
