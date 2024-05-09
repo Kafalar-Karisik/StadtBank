@@ -27,9 +27,11 @@ class Action(models.Model):
         Customer, related_name="action_customer", on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
     type = models.TextField(choices=[('payin', 'Pay In'),
-                                     ('payin-salary', 'Pay In(Salary)'),
+                                     ('payin-salary', 'Pay In (Salary)'),
                                      ('payout', 'Pay Out'),
-                                     ('transfer', 'Transfer')])
+                                     ('transfer', 'Transfer'),
+                                     ('take-credit', 'Take Credit'),
+                                     ('pay-credit', 'Pay Credit')])
     amount = models.IntegerField(null=True)
     related = models.ForeignKey(
         Customer, related_name="action_related", on_delete=models.CASCADE, null=True)
@@ -48,6 +50,7 @@ class Credit(models.Model):
     """Credit Class"""
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     amount = models.IntegerField()
+    payBack = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
