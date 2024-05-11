@@ -151,6 +151,7 @@ def pay(request) -> HttpResponseRedirect:
         if 'isSalary' in locals()['request'].POST and request.POST['isSalary'] == 'on':
             if request.POST["amount"].lower().endswith("h"):
                 hourSalary = Setting.objects.get(key="hourSalary").value['value']
+                    key="hourSalary").value['value']
                 request.POST._mutable = True
                 request.POST["amount"] = hourSalary * int(request.POST["amount"][:-1])
             payType = "payin-salary"
@@ -158,17 +159,14 @@ def pay(request) -> HttpResponseRedirect:
         form = PayF(request.POST)
         if form.is_valid():
             payType = request.POST.get("type")
-            if payType == "payin" or payType == "payin-salary":
+            if payType in ('payin', 'payin-salary'):
                 datas = form.cleaned_data
                 target = datas["customer"]
 
                 before = target.balance
-                
+
                 target.balance += datas["amount"]
                 target.save()
-
-
-
 
             elif payType == "payout":
                 datas = form.cleaned_data
