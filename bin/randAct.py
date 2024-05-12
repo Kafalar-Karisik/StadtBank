@@ -10,6 +10,7 @@ from faker import Faker
 
 
 def randAct(stop: int = 0):
+    """Create Random Action Data."""
     for _ in range(random.randint(20, 30) if stop == 0 else stop):
         action_type = randint(1, 3)
         customer = Customer.objects.get(
@@ -47,5 +48,5 @@ if __name__ == "__main__":
                           'StadtBank.settings')
     django.setup()
 
-    from Bank.models import Action, Customer
+    from Bank.models import Action, Customer  # type: ignore
     randAct()

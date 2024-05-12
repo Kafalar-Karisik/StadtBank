@@ -8,6 +8,7 @@ from faker import Faker
 
 
 def randCus(stop: int = 0):
+    """Create Random Customer Data."""
     for _ in range(random.randint(25, 75) if stop == 0 else stop):
         first_name = fake.first_name()
         last_name = fake.last_name()
@@ -24,5 +25,5 @@ if __name__ == "__main__":
                           'StadtBank.settings')
     django.setup()
 
-    from Bank.models import Customer
+    from Bank.models import Customer  # type: ignore
     randCus()
