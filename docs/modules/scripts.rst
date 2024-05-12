@@ -1,9 +1,12 @@
 Scripts
 =======
-.. automodule:: bin.TOTP
+.. automodule:: bin.randCus
     :members:
     :undoc-members:
 
-.. automodule:: bin.userSetup # I will fix it
+.. automodule:: bin.randAct
     :members:
     :undoc-members:
+
+.. automodule:: bin.TOTP
+    :members: newWorkerPassword
