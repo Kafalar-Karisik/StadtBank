@@ -70,7 +70,7 @@
               required
               checked
               type="number"
-              id="amount"
+              id="payAmount"
               name="amount"
               class="w-1/4 min-w-5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="{% trans 'amount'%}"
@@ -167,7 +167,7 @@
             <input
               required
               type="number"
-              id="amount"
+              id="transferAmount"
               name="amount"
               class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               min="1"
@@ -191,6 +191,9 @@
     </script>
     {% endif %}
     <script>
+      var customers = [
+          {% for customer in customers %}{nr:{{ customer.nr }},balance:{{customer.balance}}},{%endfor%}
+      ];
       /*
       const checkbox = document.getElementById("isSalary");
       const output = document.getElementById("amount");
@@ -210,14 +213,21 @@
       */
 
       const checkbox = document.getElementById("isSalary");
-      const output = document.getElementById("amount");
+      const amount = document.getElementById("amount");
       checkbox.addEventListener("change", function () {
         if (checkbox.checked) {
-          output.type = "text"
+          amount.type = "text";
         } else {
-          output.type = "number"
+          amount.type = "number";
         }
       });
+
+
+      const customer = document.getElementById("customer");
+      customer.addEventListener("change", function () {
+        amount.ariaValueMax = customers[customer.value]["balance"];
+      });
+
     </script>
     <script src="{% static 'index.js' %}"></script>
   </body>

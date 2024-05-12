@@ -148,13 +148,16 @@ def pay(request) -> HttpResponseRedirect:
     """Pay API"""
     if request.method == "POST":
 
+        # Calculating Hour Salary before Form validation.
         if 'isSalary' in locals()['request'].POST and request.POST['isSalary'] == 'on':
             if request.POST["amount"].lower().endswith("h"):
-                hourSalary = Setting.objects.get(key="hourSalary").value['value']
+                hourSalary = Setting.objects.get(
                     key="hourSalary").value['value']
-                request.POST._mutable = True
-                request.POST["amount"] = hourSalary * int(request.POST["amount"][:-1])
-            payType = "payin-salary"
+                # I know that is no the right way to do this. But anyway
+                request.POST._mutable = True  # pylint: disable=protected-access
+                request.POST["amount"] = hourSalary * \
+                    int(request.POST["amount"][:-1])
+            request.POST["type"] = "payin-salary"
 
         form = PayF(request.POST)
         if form.is_valid():
