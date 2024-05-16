@@ -72,6 +72,7 @@
       </div>
       <div class="w-1/2 p-4 pt-20">
         {% if user.is_authenticated %}
+        {% if perms.auth.add_user %}
         <form method="post" action="{% url 'Bank:newCustomer' %}">
           {% csrf_token %}
           <h3 class="text-2x1 m-2 p-1 font-bold">{% trans "newcustomer"%}</h3>
@@ -92,6 +93,10 @@
             </button>
           </div>
         </form>
+        {% else %}
+        <h3 class="text-2x1 m-2 p-1 font-bold">{% trans "newcustomer"%}</h3>
+        <p class=" m-2 p-1 font-mono text-red-700">{% trans "notAllowed" %}</p>
+        {% endif %}
         {% else %}
         <h3 class="text-2x1 m-2 p-1 font-bold">{% trans "newcustomer"%}</h3>
         <div class="m-4">

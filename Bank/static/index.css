@@ -11,5 +11,3 @@ div#header {
 body {
   background-color: rgb(243, 244, 246);
 }
-
-/* npx tailwindcss -w -i Bank\\static\\index.css -o Bank\\static\\style.css -c Bank\\static\\tailwind.config.js*/
