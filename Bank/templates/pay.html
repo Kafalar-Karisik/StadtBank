@@ -36,7 +36,7 @@
 
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        <form method="post" action="{% url 'Bank:pay' %}">
+        <form method="post" action="{% url 'Bank:pay' %}" id="pay">
           {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "pay"%}</h3>
           <div class="mb-4">
@@ -68,10 +68,8 @@
           <div class="mb-4">
             <input
               required
-              checked
               type="number"
               id="payAmount"
-              name="amount"
               class="w-1/4 min-w-5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="{% trans 'amount'%}"
               min="1"
@@ -83,20 +81,19 @@
 
           <!-- Pay In and Pay Out Buttons -->
           <div class="flex">
+            <input type="hidden" id="payType" value="" />
             <button
               class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-              type="submit"
-              value="payin"
-              name="type"
+              type="button"
+              id="payin"
             >
               {% trans "payin"%}
             </button>
 
             <button
               class="rounded-md bg-red-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-              type="submit"
-              value="payout"
-              name="type"
+              type="button"
+              id="payout"
             >
               {% trans "payout"%}
             </button>
@@ -202,7 +199,7 @@
       } else {
         output.placeholder = '{% trans "amount" %}';
       }
-    
+
       checkbox.addEventListener("change", function () {
         if (checkbox.checked) {
           output.placeholder = '{% trans "hour" %}';
@@ -213,7 +210,7 @@
       */
 
       const checkbox = document.getElementById("isSalary");
-      const amount = document.getElementById("amount");
+      const amount = document.getElementById("payAmount");
       checkbox.addEventListener("change", function () {
         if (checkbox.checked) {
           amount.type = "text";
@@ -228,6 +225,20 @@
         amount.ariaValueMax = customers[customer.value]["balance"];
       });
 
+      document.getElementById("payin").addEventListener("click", function() {
+        document.getElementById("payType").value = "payin";
+        document.getElementById("pay").submit();
+      });
+
+      document.getElementById("payout").addEventListener("click", function() {
+        amount.type = "number";
+        if (parseInt(document.getElementById("payAmount").value) <= customers[customer.value]["balance"]) {
+          document.getElementById("payType").value = "payin";
+          document.getElementById("pay").submit();
+        } else {
+          alert("{% trans 'notEnoughtMoney'%}");
+        }
+      });
     </script>
     <script src="{% static 'index.js' %}"></script>
   </body>
