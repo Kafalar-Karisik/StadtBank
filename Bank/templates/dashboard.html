@@ -83,7 +83,6 @@
               <th class="border p-2">{% trans "customer" %}</th>
               <th class="border p-2">{% trans "amount" %}</th>
               <th class="border p-2">{% trans "type" %}</th>
-              <th class="border p-2">{% trans "before" %}</th>
               <th class="border p-2">{% trans "releated" %}</th>
               <th class="border p-2">{% trans "date" %}</th>
             </tr>
@@ -105,9 +104,6 @@
               </td>
               <td class="border p-2">{{action.amount}}</td>
               <td class="border p-2">{{action.get_type_display }}</td>
-              <td class="border p-2">
-                {{action.before | default_if_none:"-"}}
-              </td>
               <td
                 class="relatie group border p-2"
                 {%
@@ -131,7 +127,7 @@
             </tr>
             {% endfor %} {% else %}
             <tr>
-              <td class="border p-2" colspan="7">{% trans "noactiondata"%}</td>
+              <td class="border p-2" colspan="6">{% trans "noactiondata"%}</td>
             </tr>
             {% endif %}
           </tbody>

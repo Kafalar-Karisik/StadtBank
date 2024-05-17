@@ -53,7 +53,6 @@
               <th class="border p-2">{% trans "id"%}</th>
               <th class="border p-2">{% trans "amount"%}</th>
               <th class="border p-2">{% trans "type"%}</th>
-              <th class="border p-2">{% trans "before"%}</th>
               <th class="border p-2">{% trans "releated"%}</th>
               <th class="border p-2">{% trans "date"%}</th>
             </tr>
@@ -64,17 +63,11 @@
               <td class="border p-2">{{action.id}}</td>
               <td class="border p-2">{{action.amount}}</td>
               <td class="border p-2">{{action.get_type_display}}</td>
-              <td class="border p-2">{{action.before|default_if_none:"-"}}</td>
               <td
                 class="relatie group border p-2"
-                {%
-                if
-                customer.related_nr
-                %}
-                onclick="customerDet('{{action.related_nr}}');"
-                {%
-                endif
-                %}
+                {% if action.related %}
+                onclick="customerDet('{{action.related.nr}}');"
+                {% endif %}
               >
                 {% if action.related %}
                 {{action.related.name|default_if_none:""}}
@@ -89,7 +82,7 @@
               <td class="border p-2">{{action.date}}</td>
             </tr>
             {% endfor %} {% else %}
-            <td class="border p-2" colspan="6">{% trans "noactiondata"%}</td>
+            <td class="border p-2" colspan="5">{% trans "noactiondata"%}</td>
             <!-- TODO: Make it for both Rows -->
             {% endif %}
           </tbody>

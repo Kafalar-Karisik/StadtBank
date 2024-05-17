@@ -21,8 +21,8 @@ class TransferF(forms.Form):
 class PayF(forms.Form):
     """Pay Form"""
     customer = forms.ModelChoiceField(Customer.objects.all())
-    type = forms.CharField()
-    amount = forms.IntegerField()
+    payType = forms.CharField()
+    payAmount = forms.IntegerField()
     isSalary = forms.CheckboxInput()
 
 

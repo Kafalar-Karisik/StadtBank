@@ -50,33 +50,10 @@ class CustomerDV(View):
         try:
             customer = get_object_or_404(Customer, nr=nr)
 
-            actions = Action.objects.filter(customer=nr)
+            actions = Action.objects.filter(customer=nr).union(
+                Action.objects.filter(related=nr))
 
             return render(request, 'customer.html', {'customer': customer, 'actions': actions})
-        except Http404:
-            return render(request, '404.html')
-
-
-class ActionDV(View):
-    """Action Detail View page"""
-
-    def get(self, request, nr) -> HttpResponse:
-        """CustomerDV.get"""
-        try:
-            customer = get_object_or_404(Customer, nr=nr)
-            saldo = customer.balance
-            name = customer.name
-
-            actions = Action.objects.filter(nr=nr)
-
-            table = []
-            if actions:
-                table = actions.values_list(
-                    'id', 'nr', 'date', 'type')
-
-            data = {"nr": nr, "name": name, "saldo": saldo}
-
-            return render(request, 'customer.html', {'main': data, 'actions': table})
         except Http404:
             return render(request, '404.html')
 
@@ -154,36 +131,36 @@ def pay(request) -> HttpResponseRedirect:
 
         # Calculating Hour Salary before Form validation.
         if 'isSalary' in locals()['request'].POST and request.POST['isSalary'] == 'on':
-            if request.POST["amount"].lower().endswith("h"):
+            request.POST._mutable = True  # pylint: disable=protected-access
+            if request.POST["payAmount"].lower().endswith("h"):
                 hourSalary = Setting.objects.get(
                     key="hourSalary").value['value']
                 # I know that is no the right way to do this. But anyway
-                request.POST._mutable = True  # pylint: disable=protected-access
-                request.POST["amount"] = hourSalary * \
-                    int(request.POST["amount"][:-1])
-            request.POST["type"] = "payin-salary"
+                request.POST["payAmount"] = hourSalary * \
+                    int(request.POST["payAmount"][:-1])
+            request.POST["payType"] = "payin-salary"
 
         form = PayF(request.POST)
         if form.is_valid():
-            payType = request.POST.get("type")
+            payType = request.POST.get("payType")
             if payType in ('payin', 'payin-salary'):
                 datas = form.cleaned_data
                 target = datas["customer"]
 
                 before = target.balance
 
-                target.balance += datas["amount"]
+                target.balance += datas["payAmount"]
                 target.save()
 
             elif payType == "payout":
                 datas = form.cleaned_data
                 target = datas["customer"]
                 before = target.balance
-                target.balance -= datas["amount"]
+                target.balance -= datas["payAmount"]
                 target.save()
 
             Action(customer=datas["customer"], type=payType,
-                   amount=datas["amount"], before=before).save()
+                   amount=datas["payAmount"], before=before).save()
 
     return HttpResponseRedirect("/pay")
 

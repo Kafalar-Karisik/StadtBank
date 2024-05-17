@@ -70,6 +70,7 @@
               required
               type="number"
               id="payAmount"
+              name="payAmount"
               class="w-1/4 min-w-5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="{% trans 'amount'%}"
               min="1"
@@ -77,11 +78,11 @@
             />
             <input type="checkbox" id="isSalary" name="isSalary" />
             <label for="isSalary">{% trans "isSalary" %}</label>
+            <input type="hidden" id="payType" name="payType" value="" />
           </div>
 
           <!-- Pay In and Pay Out Buttons -->
           <div class="flex">
-            <input type="hidden" id="payType" value="" />
             <button
               class="mr-2 rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
               type="button"
@@ -233,7 +234,7 @@
       document.getElementById("payout").addEventListener("click", function() {
         amount.type = "number";
         if (parseInt(document.getElementById("payAmount").value) <= customers[customer.value]["balance"]) {
-          document.getElementById("payType").value = "payin";
+          document.getElementById("payType").value = "payout";
           document.getElementById("pay").submit();
         } else {
           alert("{% trans 'notEnoughtMoney'%}");
