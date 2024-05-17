@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',  # DEBUG
+    'django_extensions',  # HTTPS
 ]
 
 MIDDLEWARE = [
@@ -273,8 +274,11 @@ LOGIN_URL = '/login'
 # Security
 # manage.py check --deploy
 
+# https://timonweb.com/django/https-django-development-server-ssl-certificate/
+# https://support.networkoptix.com/hc/en-us/articles/16635062678039-How-to-generate-and-add-a-self-signed-trusted-certificate
+
+# Enable them for Security. (In Development. Disable if come Error)
+
 # SECURE_SSL_REDIRECT = True
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
-# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "'https,http")
-# SECURE_HSTS_SECONDS =
