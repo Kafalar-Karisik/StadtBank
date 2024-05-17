@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import datetime
 import os
 from pathlib import Path
 
@@ -136,6 +137,100 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache",  # for development
     }
+}
+
+
+# Logging
+# https://docs.djangoproject.com/en/5.0/topics/logging/
+
+LOG_FILE_PATH = os.path.join(BASE_DIR, 'debug.log')
+
+
+dailyLogs = datetime.now().strftime("%Y-%m-%d")
+os.makedirs(f"logs\\{dailyLogs}", exist_ok=True)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'django': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'django.log'),
+            'formatter': 'verbose',
+        },
+        'debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'debug.log'),
+            'formatter': 'verbose',
+        },
+        'backends': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'backends.log'),
+            'formatter': 'verbose',
+        },
+        'requests': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'requests.log'),
+            'formatter': 'verbose',
+        },
+        'views': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'views.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['debug'],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        # I think 'root' doing the same thing
+        # 'django': {
+        #    'handlers': ['django', 'debug'],
+        #    'level': 'DEBUG',
+        #    'propagate': True,
+        # },
+        'django.request': {
+            'handlers': ['requests'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['backends'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'Bank.views': {
+            'handlers': ['views', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }
 
 
