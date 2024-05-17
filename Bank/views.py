@@ -13,6 +13,10 @@ from bin import TOTP  # type: ignore
 from .forms import CreditF, CustomerF, PayF, TransferF, newCustomerF
 from .models import Action, Credit, Customer, Setting
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def index(request) -> HttpResponse:
     """Index Page"""
@@ -255,6 +259,7 @@ class Login(View):
 
     def post(self, request):
         """Login.post"""
+        logger.debug("Requested Login")
         passw = request.POST["passw"]
         user = authenticate(request, username="worker", password=passw)
         if user is not None:
@@ -271,10 +276,15 @@ class Login(View):
 def newWorkerPass(request):
     """New Worker Password API"""
     if request.method == "POST":
+        logger.debug(f"""Requested new Worker Password from '{
+                     request.META['REMOTE_ADDR']}' ({request.META['HTTP_USER_AGENT']})""")
         passw = TOTP.newWorkerPassword(
             request.POST['password'], httpRequest=True)
         return HttpResponse(passw, status=passw.status_code
                             if hasattr(locals()['passw'], 'status_code') else 200)
         # passw.status_code if 'passw.status_code' in locals() else 200)
+    else:
+        logger.critical(f"""FALSE request for new Worker Password from '{
+            request.META['REMOTE_ADDR']}' ({request.META['HTTP_USER_AGENT']})""")
 
     return HttpResponseRedirect("/")
