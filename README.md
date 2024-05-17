@@ -97,6 +97,20 @@ python manage.py makemessages -l LANGUAGE_CODE
 It is still in development. I'm not very good with it. Up now I only did what I found in internet for it.,
 You can find the links in settings.py
 
+### Create Certificates
+
+You can run this command
+
+```shell
+openssl req -x509 -newkey rsa:4096 -keyout cets/server.key -out cers/server.pem -days 365 -nodes
+```
+
+or you can use the [certs/file.sh](certs/file.sh) for CA certificate
+
+> CHECK THE CONFIGURATION IN [certs/file.sh](certs/file.sh) BEFORE RUN IT !!!
+
+### Run Server
+
 ```shell
 sudo python manage.py runserver_plus --cert-file certs/server.pem --key-file certs/server.key --insecure 127.0.0.1:443
 ```
