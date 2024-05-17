@@ -150,7 +150,7 @@ LOG_FILE_PATH = os.path.join(BASE_DIR, 'debug.log')
 
 
 dailyLogs = datetime.now().strftime("%Y-%m-%d")
-os.makedirs(f"logs\\{dailyLogs}", exist_ok=True)
+os.makedirs(os.path.join("logs", dailyLogs), exist_ok=True)
 
 LOGGING = {
     'version': 1,
