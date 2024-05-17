@@ -146,9 +146,6 @@ CACHES = {
 # Logging
 # https://docs.djangoproject.com/en/5.0/topics/logging/
 
-LOG_FILE_PATH = os.path.join(BASE_DIR, 'debug.log')
-
-
 dailyLogs = datetime.now().strftime("%Y-%m-%d")
 os.makedirs(os.path.join("logs", dailyLogs), exist_ok=True)
 
