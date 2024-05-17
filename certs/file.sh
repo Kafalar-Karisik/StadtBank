@@ -3,6 +3,7 @@ openssl genrsa -out ca.key 2048
 
 # Create the CA configuration file
 cat > csr.conf <<EOL
+[req]
 default_bits = 2048
 prompt = no
 default_md = sha256
