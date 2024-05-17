@@ -1,0 +1,88 @@
+{
+	"folders": [
+		{
+			"name": "Root",
+			"path": ".",
+		},
+		{
+			"name": "StadtBank",
+			"path": "StadtBank"
+		},
+		{
+			"name": "Bank",
+			"path": "Bank"
+		},
+		{
+			"name": "bin",
+			"path": "bin"
+		},
+		{
+			"name": "docs",
+			"path": "docs",
+		},
+		{
+			"path": "logs"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"Bank": true,
+			"bin": true,
+			"docs": true,
+			"StadtBank": true,
+			".venv": true,
+			"logs": true,
+			"__pycache__": true
+		},
+		"python.analysis.autoImportCompletions": true,
+		"python.analysis.typeCheckingMode": "basic",
+		"pylint.importStrategy": "fromEnvironment",
+		"pylint.severity": {
+			"convention": "Information",
+			"error": "Error",
+			"fatal": "Error",
+			"refactor": "Hint",
+			"warning": "Warning",
+			"info": "Information"
+		},
+		"pylint.interpreter": [
+			".venv/Scripts/python"
+		],
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.autopep8",
+			"editor.formatOnSave": true,
+			"editor.codeActionsOnSave": {
+				"source.organizeImports": "explicit"
+			},
+		},
+		"isort.check": true,
+		"isort.importStrategy": "fromEnvironment",
+		"isort.severity": {
+			"W": "Warning",
+			"E": "Hint"
+		},
+		"[django-html]": {
+			"editor.formatOnSave": false
+		},
+		"codesnap.showLineNumbers": true,
+		"codesnap.roundedCorners": true,
+		"codesnap.showWindowControls": false,
+		"codesnap.showWindowTitle": false,
+		"codesnap.transparentBackground": true,
+		"codesnap.shutterAction": "copy",
+		"codesnap.target": "container",
+		"codesnap.boxShadow": "",
+		"esbonio.sphinx.confDir": "${workspaceFolder}\\docs",
+		"codeQL.createQuery.qlPackLocation": "c:\\Users\\orsme\\Kodlama\\StadtBank",
+		"pylint.args": [
+			"--rcfile=.prlintrc"
+		],
+		"esbonio.sphinx.pythonCommand": [
+			".venv/Scripts/python",
+		],
+		"esbonio.sphinx.buildCommand": ".venv\\Scripts\\sphinx-build.exe -b html docs docs/_build/html -T -a -E",
+		"esbonio.logging.level": "debug",
+		"esbonio.logging.window": false,
+		"esbonio.server.debug": true,
+	}
+}
