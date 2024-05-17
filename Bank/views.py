@@ -1,4 +1,7 @@
 """Django Modules"""
+import logging
+
+from bin import TOTP  # type: ignore
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import (Http404, HttpResponse,  # HttpResponse,
@@ -8,12 +11,8 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
-from bin import TOTP  # type: ignore
-
 from .forms import CreditF, CustomerF, PayF, TransferF, newCustomerF
 from .models import Action, Credit, Customer, Setting
-
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -253,15 +252,14 @@ class Login(View):
 def newWorkerPass(request):
     """New Worker Password API"""
     if request.method == "POST":
-        logger.debug(f"""Requested new Worker Password from '{
-                     request.META['REMOTE_ADDR']}' ({request.META['HTTP_USER_AGENT']})""")
+        logger.debug("Requested new Worker Password from '%s' (%s)",
+                     request.META['REMOTE_ADDR'], request.META['HTTP_USER_AGENT'])
         passw = TOTP.newWorkerPassword(
             request.POST['password'], httpRequest=True)
         return HttpResponse(passw, status=passw.status_code
                             if hasattr(locals()['passw'], 'status_code') else 200)
         # passw.status_code if 'passw.status_code' in locals() else 200)
-    else:
-        logger.critical(f"""FALSE request for new Worker Password from '{
-            request.META['REMOTE_ADDR']}' ({request.META['HTTP_USER_AGENT']})""")
+    logger.critical("FALSE request for new Worker Password from '%s' (%s)",
+                    request.META['REMOTE_ADDR'], request.META['HTTP_USER_AGENT'])
 
     return HttpResponseRedirect("/")
