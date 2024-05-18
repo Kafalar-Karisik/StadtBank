@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from datetime import datetime
 import os
+from datetime import datetime
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
@@ -137,8 +137,9 @@ AUTH_PASSWORD_VALIDATORS = [
 CACHES = {
     "default": {
         # "BACKEND": "django.core.cache.backends.dummy.DummyCache",  # for development
-        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-        "LOCATION": "django_caches",
+        # "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        # "LOCATION": "django_caches",
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
 }
 
