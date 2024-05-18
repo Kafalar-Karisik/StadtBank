@@ -48,6 +48,8 @@ class Action(models.Model):
 
 class Credit(models.Model):
     """Credit Class"""
+    id = models.IntegerField(
+        primary_key=True, auto_created=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     amount = models.IntegerField()
     payBack = models.BooleanField(default=False)
