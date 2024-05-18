@@ -20,13 +20,13 @@
         <ol class="flex list-none">
           <li><a href="/" class="text-blue-200">{% trans "home"%}</a></li>
           <li class="mx-2">/</li>
-          <li class="text-gray-200">{% trans "credit"%}</li>
+          <li class="text-gray-200">{% trans "creditManagment"%}</li>
         </ol>
       </nav>
     </div>
 
     <div class="container mx-auto mt-4">
-      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "credit"%}</h2>
+      <h2 class="mb-2 p-1 text-2xl font-bold">{% trans "creditManagment"%}</h2>
     </div>
 
     {% if user.is_authenticated %}
@@ -35,7 +35,7 @@
       <!-- Left Side -->
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        <form method="post" action="{% url 'Bank:credit' %}">
+        <form method="post" action="{% url 'Bank:credit' %}" autocomplete="off">
           <h3 class="text-2x1 mb-2 p-1 font-bold">...</h3>
           {% csrf_token %}
           <div class="mb-4">
@@ -72,6 +72,7 @@
               type="number"
               id="amount"
               name="amount"
+              min="0"
               class="w-1/4 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="{% trans 'amount'%}"
             />
@@ -108,10 +109,11 @@
     </div>
     {% else %}
     <script>
-      document.location = "/login?next=/credit";
+      document.location = "/login?next=/creditManagment";
     </script>
     {% endif %}
     <script>
+      {% if user.is_authenticated %}
       var actions = [
           {% for action in actions %}
               { id: {{ action.id }},
@@ -123,6 +125,18 @@
               },
           {%endfor%}
       ];
+
+      var credits = [
+          {% for credit in credits %}
+              { id: {{ credit.id }},
+                customerName: '{{ credit.customer.name }}',
+                customerID: {{credit.customer.nr}},
+                amount: '{{credit.amount}}',
+                credit: '{{action.date}}',
+              },
+          {% endfor %}
+      ];
+      {% endif %}
 
       function filterCustomers() {
         var customerId = Number(document.getElementById("customer").value);

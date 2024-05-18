@@ -18,7 +18,7 @@ var menuItems = [
   { text: "Customers", href: "../customers" },
   //{ text: "Actions", href: "../actions" },
   { text: "Pay", href: "../pay" },
-  { text: "Credit", href: "../credit" }
+  { text: "Credit", href: "../creditManagment" }
 ];
 
 // Create a function to dynamically generate the menu

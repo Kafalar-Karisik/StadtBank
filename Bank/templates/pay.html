@@ -36,7 +36,12 @@
 
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        <form method="post" action="{% url 'Bank:pay' %}" id="pay">
+        <form
+          method="post"
+          action="{% url 'Bank:pay' %}"
+          id="pay"
+          autocomplete="off"
+        >
           {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "pay"%}</h3>
           <div class="mb-4">
@@ -105,7 +110,11 @@
       <!-- Right Side -->
       <div class="w-1/2 p-4">
         <!-- Two Name Inputs and Amount Input -->
-        <form method="post" action="{% url 'Bank:transfer' %}">
+        <form
+          method="post"
+          action="{% url 'Bank:transfer' %}"
+          autocomplete="off"
+        >
           {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "transfer"%}</h3>
 
@@ -189,9 +198,11 @@
     </script>
     {% endif %}
     <script>
+          {% if user.is_authenticated %}
       var customers = [
           {% for customer in customers %}{nr:{{ customer.nr }},balance:{{customer.balance}}},{%endfor%}
       ];
+      {% endif %}
       /*
       const checkbox = document.getElementById("isSalary");
       const output = document.getElementById("amount");

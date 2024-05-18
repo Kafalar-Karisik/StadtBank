@@ -4,6 +4,7 @@ import logging
 from bin import TOTP  # type: ignore
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.http import (Http404, HttpResponse,  # HttpResponse,
                          HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect, render
@@ -23,14 +24,6 @@ def index(request) -> HttpResponse:
     return render(request, 'dashboard.html',
                   {'customers': Customer.objects.all(),
                    'actions': Action.objects.select_related('customer', 'related').all()})
-
-
-class Actions(View):
-    """Actions Page"""
-
-    def get(self, request) -> HttpResponse:
-        """Actions.get"""
-        return render(request, 'actions.html', {'actions': Action.objects.all()})
 
 
 class Customers(View):
@@ -68,13 +61,16 @@ class Pay(View):
 
 class CreditManagment(View):
     """Credit Page"""
-    actions = Action.objects.all()
+
     customers = Customer.objects.all()
+    actions = Action.objects.all()
+    credits = Credit.objects.all()
 
     def get(self, request) -> HttpResponse:
         """Credit.get"""
         return render(request, 'credit.html', {'customers': self.customers,
-                                               'actions': self.actions})
+                                               'actions': self.actions,
+                                               'credits': self.credits})
 
 
 # Not in Use
