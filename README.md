@@ -112,5 +112,5 @@ or you can use the [certs/file.sh](certs/file.sh) for CA certificate
 ### Run Server
 
 ```shell
-sudo python manage.py runserver_plus --cert-file certs/server.pem --key-file certs/server.key --insecure 127.0.0.1:443
+python manage.py runserver_plus --cert-file certs/server.pem --key-file certs/server.key --insecure 127.0.0.1:443
 ```
