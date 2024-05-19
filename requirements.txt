@@ -1,10 +1,15 @@
 asgiref
+cffi4
+cryptography
 Django
 django-debug-toolbar
+django-extensions
 Faker
+MarkupSafe
+pycparse
+pyOpenSSL
 python-dateutil
 six
 sqlparse
 tzdata
-django-extensions
 Werkzeug
