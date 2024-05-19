@@ -37,87 +37,29 @@ menuItems.forEach(function (item) {
 });
 
 
-function checkBalance() {
-  if (balance) {
-
-  }
-}
-
-
 const table = document.getElementById("customer-table");
 if (table) {
   const thead = table.getElementsByTagName("thead")[0];
   const tbody = table.getElementsByTagName("tbody")[0];
   const searchInput = document.getElementById("customerSearchInput");
 
-  let currentSortKey = null;
-  let sortAscending = true;
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      const rows = tbody.rows;
 
-  const sortTable = (key) => {
-    currentSortKey = key;
-    sortAscending = !sortAscending;
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].cells;
+        const shouldShow = Array.from(cells).slice(0, 2).some((cell) =>
+          cell.innerText.toLowerCase().includes(searchTerm),
+        );
 
-    const rows = Array.from(tbody.rows);
-    const sortedRows = rows.sort((a, b) => {
-      const cellA = a.cells[getKeyIndex(key)].innerText;
-      const cellB = b.cells[getKeyIndex(key)].innerText;
-
-      if (sortAscending) {
-        return cellA.localeCompare(cellB);
-      } else {
-        return cellB.localeCompare(cellA);
+        if (shouldShow) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
+        }
       }
     });
-
-    while (tbody.firstChild) {
-      tbody.removeChild(tbody.firstChild);
-    }
-
-    sortedRows.forEach((row) => {
-      tbody.appendChild(row);
-    });
-  };
-
-  const getKeyIndex = (key) => {
-    switch (key.toLowerCase()) {
-      case "customer number":
-        return 0;
-      case "name":
-        return 1;
-      case "date action":
-        return 2;
-      case "action type":
-        return 3;
-      case "amount related":
-        return 4;
-      case "saldo":
-        return 5;
-      default:
-        throw new Error(`Invalid key: ${key}`);
-    }
-  };
-
-  Array.from(thead.rows[0].cells).forEach((cell) => {
-    cell.addEventListener("click", () => {
-      sortTable(cell.innerText);
-    });
-  });
-
-  searchInput.addEventListener("input", () => {
-    const searchTerm = searchInput.value.toLowerCase();
-    const rows = tbody.rows;
-
-    for (let i = 0; i < rows.length; i++) {
-      const cells = rows[i].cells;
-      const shouldShow = Array.from(cells).slice(0, 2).some((cell) =>
-        cell.innerText.toLowerCase().includes(searchTerm),
-      );
-
-      if (shouldShow) {
-        rows[i].style.display = "";
-      } else {
-        rows[i].style.display = "none";
-      }
-    }
-  });
+  }
 }
