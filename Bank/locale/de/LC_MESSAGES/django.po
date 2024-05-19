@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-15 17:06+0200\n"
+"POT-Creation-Date: 2024-05-19 11:41+0200\n"
 "PO-Revision-Date: 2024-04-27 11:30+0200\n"
 "Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -23,47 +23,47 @@ msgid "home"
 msgstr "Startseite"
 
 #: .\Bank\templates\credit.html:23 .\Bank\templates\credit.html:29
-msgid "credit"
-msgstr "Kredit"
+msgid "creditManagment"
+msgstr "Kreditmanagment"
 
-#: .\Bank\templates\credit.html:59 .\Bank\templates\pay.html:58
-#: .\Bank\templates\pay.html:128 .\Bank\templates\pay.html:154
+#: .\Bank\templates\credit.html:59 .\Bank\templates\pay.html:63
+#: .\Bank\templates\pay.html:138 .\Bank\templates\pay.html:164
 #, fuzzy
 #| msgid "customer"
 msgid "selectcustomer"
 msgstr "Kunde"
 
-#: .\Bank\templates\credit.html:76 .\Bank\templates\credit.html:102
+#: .\Bank\templates\credit.html:77 .\Bank\templates\credit.html:103
 #: .\Bank\templates\customer.html:54 .\Bank\templates\dashboard.html:84
-#: .\Bank\templates\pay.html:74 .\Bank\templates\pay.html:171
-#: .\Bank\templates\pay.html:200 .\Bank\templates\pay.html:207
+#: .\Bank\templates\pay.html:80 .\Bank\templates\pay.html:181
+#: .\Bank\templates\pay.html:212 .\Bank\templates\pay.html:219
 msgid "amount"
 msgstr "Betrag"
 
-#: .\Bank\templates\credit.html:88
+#: .\Bank\templates\credit.html:89
 msgid "givecredit"
 msgstr "Kredit geben"
 
-#: .\Bank\templates\credit.html:95 .\Bank\templates\dashboard.html:75
+#: .\Bank\templates\credit.html:96 .\Bank\templates\dashboard.html:75
 msgid "actions"
 msgstr "Aktionen"
 
-#: .\Bank\templates\credit.html:99 .\Bank\templates\dashboard.html:82
+#: .\Bank\templates\credit.html:100 .\Bank\templates\dashboard.html:82
 msgid "actionID"
 msgstr "Aktion ID"
 
-#: .\Bank\templates\credit.html:100 .\Bank\templates\customers.html:52
+#: .\Bank\templates\credit.html:101 .\Bank\templates\customers.html:52
 #: .\Bank\templates\customers.html:85 .\Bank\templates\dashboard.html:52
 msgid "name"
 msgstr "Name"
 
-#: .\Bank\templates\credit.html:101 .\Bank\templates\customer.html:55
+#: .\Bank\templates\credit.html:102 .\Bank\templates\customer.html:55
 #: .\Bank\templates\dashboard.html:85
 msgid "type"
 msgstr "Typ"
 
-#: .\Bank\templates\credit.html:173 .\Bank\templates\customer.html:92
-#: .\Bank\templates\dashboard.html:134
+#: .\Bank\templates\credit.html:187 .\Bank\templates\customer.html:85
+#: .\Bank\templates\dashboard.html:130
 msgid "noactiondata"
 msgstr "Keine Aktionsdaten"
 
@@ -98,14 +98,10 @@ msgid "id"
 msgstr "ID"
 
 #: .\Bank\templates\customer.html:56 .\Bank\templates\dashboard.html:86
-msgid "before"
-msgstr "Vorher"
-
-#: .\Bank\templates\customer.html:57 .\Bank\templates\dashboard.html:87
 msgid "releated"
 msgstr "Empfänger"
 
-#: .\Bank\templates\customer.html:58 .\Bank\templates\dashboard.html:88
+#: .\Bank\templates\customer.html:57 .\Bank\templates\dashboard.html:87
 msgid "date"
 msgstr "Datum"
 
@@ -147,7 +143,7 @@ msgstr "Bitte"
 msgid "enterpassword"
 msgstr "Passwort eingeben"
 
-#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:41
+#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:46
 msgid "pay"
 msgstr "Bezahlen"
 
@@ -155,26 +151,32 @@ msgstr "Bezahlen"
 msgid "action"
 msgstr "Aktion"
 
-#: .\Bank\templates\pay.html:79
+#: .\Bank\templates\pay.html:85
 msgid "isSalary"
 msgstr "Lohn ?"
 
-#: .\Bank\templates\pay.html:90
+#: .\Bank\templates\pay.html:96
 msgid "payin"
 msgstr "Einzahlung"
 
-#: .\Bank\templates\pay.html:98
+#: .\Bank\templates\pay.html:104
 msgid "payout"
 msgstr "Auszahlung"
 
-#: .\Bank\templates\pay.html:109 .\Bank\templates\pay.html:179
+#: .\Bank\templates\pay.html:119 .\Bank\templates\pay.html:189
 msgid "transfer"
 msgstr "Überweisung"
 
-#: .\Bank\templates\pay.html:198 .\Bank\templates\pay.html:205
+#: .\Bank\templates\pay.html:210 .\Bank\templates\pay.html:217
 msgid "hour"
 msgstr "Stunde"
 
-#: .\Bank\templates\pay.html:239
+#: .\Bank\templates\pay.html:251
 msgid "notEnoughtMoney"
 msgstr "Kunden hat nicht genug Geld"
+
+#~ msgid "credit"
+#~ msgstr "Kredit"
+
+#~ msgid "before"
+#~ msgstr "Vorher"
