@@ -39,7 +39,7 @@
         <form
           method="post"
           action="{% url 'Bank:pay' %}"
-          id="pay"
+          id="Pay"
           autocomplete="off"
         >
           {% csrf_token %}
@@ -79,7 +79,6 @@
               class="w-1/4 min-w-5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
               placeholder="{% trans 'amount'%}"
               min="1"
-              onblur="checkBalance()"
             />
             <input type="checkbox" id="isSalary" name="isSalary" />
             <label for="isSalary">{% trans "isSalary" %}</label>
@@ -114,6 +113,7 @@
           method="post"
           action="{% url 'Bank:transfer' %}"
           autocomplete="off"
+          id="Transfer"
         >
           {% csrf_token %}
           <h3 class="text-2x1 mb-2 p-1 font-bold">{% trans "transfer"%}</h3>
@@ -185,6 +185,8 @@
           <!-- Transfer Button -->
           <button
             class="rounded-md bg-blue-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+            type="button"
+            id="transfer"
           >
             {% trans "transfer"%}
           </button>
@@ -233,20 +235,32 @@
 
 
       const customer = document.getElementById("customer");
-      customer.addEventListener("change", function () {
-        amount.ariaValueMax = customers[customer.value]["balance"];
-      });
 
       document.getElementById("payin").addEventListener("click", function() {
+        if (confirm()){
         document.getElementById("payType").value = "payin";
-        document.getElementById("pay").submit();
+        document.getElementById("Pay").submit();
+        }
       });
 
       document.getElementById("payout").addEventListener("click", function() {
         amount.type = "number";
-        if (parseInt(document.getElementById("payAmount").value) <= customers[customer.value]["balance"]) {
+        if (parseInt(document.getElementById("payAmount").value) <= parseInt(customers.filter(d => d.nr === parseInt(customer.value))[0]["balance"])) {
+          if (confirm()){
           document.getElementById("payType").value = "payout";
-          document.getElementById("pay").submit();
+          document.getElementById("Pay").submit();
+        }
+        } else {
+          alert("{% trans 'notEnoughtMoney'%}");
+        }
+      });
+
+      const nr = document.getElementById("nr");
+      document.getElementById("transfer").addEventListener("click", function() {
+        if (parseInt(document.getElementById("transferAmount").value) <= parseInt(customers.filter(d => d.nr === parseInt(nr.value))[0]["balance"])) {
+          if (confirm()){
+          document.getElementById("Transfer").submit();
+          }
         } else {
           alert("{% trans 'notEnoughtMoney'%}");
         }

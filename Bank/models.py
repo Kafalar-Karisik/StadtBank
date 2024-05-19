@@ -46,20 +46,6 @@ class Action(models.Model):
         db_table = 'actions'
 
 
-class Credit(models.Model):
-    """Credit Class"""
-    id = models.IntegerField(
-        primary_key=True, auto_created=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    amount = models.IntegerField()
-    payBack = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        """Action.Meta Class"""
-        db_table = 'credits'
-
-
 class Setting(models.Model):
     """Setting Class"""
     # Setting.objects.get(key="hourSalary").value['value']

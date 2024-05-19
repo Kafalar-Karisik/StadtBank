@@ -35,7 +35,12 @@
       <!-- Left Side -->
       <div class="w-1/2 p-4">
         <!-- Name and Amount Inputs -->
-        <form method="post" action="{% url 'Bank:credit' %}" autocomplete="off">
+        <form
+          method="post"
+          action="{% url 'Bank:credit' %}"
+          id="Credit"
+          autocomplete="off"
+        >
           <h3 class="text-2x1 mb-2 p-1 font-bold">...</h3>
           {% csrf_token %}
           <div class="mb-4">
@@ -82,13 +87,20 @@
           <div class="flex">
             <button
               class="mr-2 rounded-md bg-blue-900 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
-              type="submit"
-              value="payin"
-              name="type"
+              type="button"
+              id="givecredit"
             >
               {% trans "givecredit"%}
             </button>
+            <button
+              class="mr-2 rounded-md bg-indigo-950 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
+              type="button"
+              id="paycredit"
+            >
+              {% trans "paycredit"%}
+            </button>
           </div>
+          <input type="hidden" name="type" id="type" value="" />
         </form>
       </div>
       <!-- Actions -->
@@ -190,6 +202,23 @@
 
       // Initial display when the page loads
       filterCustomers();
+
+
+      document.getElementById("givecredit").addEventListener("click", function() {
+        if (confirm("Yes ?")){
+
+        document.getElementById("type").value = "take-credit"
+        document.getElementById("Credit").submit();
+        }
+      });
+
+      document.getElementById("paycredit").addEventListener("click", function() {
+        if (confirm()){
+
+        document.getElementById("type").value = "pay-credit"
+        document.getElementById("Credit").submit();
+        }
+      });
     </script>
     <script src="{% static 'index.js' %}"></script>
   </body>

@@ -12,7 +12,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CreditF, CustomerF, PayF, TransferF, newCustomerF
-from .models import Action, Credit, Customer, Setting
+from .models import Action, Customer, Setting
 
 logger = logging.getLogger(__name__)
 
@@ -63,13 +63,11 @@ class CreditManagment(View):
 
     customers = Customer.objects.all()
     actions = Action.objects.all()
-    credits = Credit.objects.all()
 
     def get(self, request) -> HttpResponse:
         """Credit.get"""
         return render(request, 'credit.html', {'customers': self.customers,
-                                               'actions': self.actions,
-                                               'credits': self.credits})
+                                               'actions': self.actions})
 
 
 # Not in Use
@@ -211,15 +209,15 @@ def credit(request) -> HttpResponseRedirect:
             datas = form.cleaned_data
             target = datas["customer"]
             amount = datas["amount"]
-
-            Credit(customer=target, amount=amount).save()
-            target.credits = target.credits + amount
-
-            Action(customer=target, type='take-credit', amount=amount).save()
-
-            Credit(customer=target, amount=amount).save()
+            if request.POST["type"] == "take-credit":
+                target.credits = target.credits + amount
+            elif request.POST["type"] == "pay-credit":
+                target.credits = target.credits - amount
 
             target.save()
+            Action(customer=target,
+                   type=request.POST["type"], amount=amount).save()
+
     return HttpResponseRedirect("/creditManagment")
 
 
