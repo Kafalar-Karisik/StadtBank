@@ -37,9 +37,9 @@ menuItems.forEach(function (item) {
 });
 
 
-function checkBalance(){
+function checkBalance() {
   if (balance) {
-    
+
   }
 }
 
