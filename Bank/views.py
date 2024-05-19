@@ -4,7 +4,6 @@ import logging
 from bin import TOTP  # type: ignore
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.core.cache import cache
 from django.http import (Http404, HttpResponse,  # HttpResponse,
                          HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect, render
@@ -120,7 +119,7 @@ def pay_out(request) -> HttpResponseRedirect:
 
 
 @login_required
-def pay(request) -> HttpResponseRedirect:
+def pay(request) -> HttpResponseRedirect | HttpResponse:
     """Pay API"""
     if request.method == "POST":
 
@@ -153,6 +152,9 @@ def pay(request) -> HttpResponseRedirect:
                 before = target.balance
                 target.balance -= datas["payAmount"]
                 target.save()
+
+            else:
+                return HttpResponse(status=500)
 
             Action(customer=datas["customer"], type=payType,
                    amount=datas["payAmount"], before=before).save()
