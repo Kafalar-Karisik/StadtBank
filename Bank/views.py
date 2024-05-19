@@ -119,7 +119,7 @@ def pay_out(request) -> HttpResponseRedirect:
 
 
 @login_required
-def pay(request) -> HttpResponseRedirect | HttpResponse:
+def pay(request):
     """Pay API"""
     if request.method == "POST":
 
