@@ -147,8 +147,9 @@ CACHES = {
 # Logging
 # https://docs.djangoproject.com/en/5.0/topics/logging/
 
-dailyLogs = datetime.now().strftime("%Y-%m-%d")
-os.makedirs(os.path.join("logs", dailyLogs), exist_ok=True)
+dailyLogs = Path(os.path.join(BASE_DIR, "logs",
+                 datetime.now().strftime("%Y-%m-%d")))
+dailyLogs.mkdir(parents=True, exist_ok=True)
 
 LOGGING = {
     'version': 1,
@@ -172,31 +173,30 @@ LOGGING = {
         'django': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'django.log'),
+            'filename': str(dailyLogs / 'django.log'),
             'formatter': 'verbose',
         },
         'debug': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'debug.log'),
+            'filename': str(dailyLogs / 'debug.log'),
             'formatter': 'verbose',
         },
         'backends': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'backends.log'),
-            'formatter': 'verbose',
+            'filename': str(dailyLogs / 'backends.log'),
         },
         'requests': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'requests.log'),
+            'filename': str(dailyLogs / 'requests.log'),
             'formatter': 'verbose',
         },
         'views': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', dailyLogs, 'views.log'),
+            'filename': str(dailyLogs / 'views.log'),
             'formatter': 'verbose',
         },
     },
