@@ -12,6 +12,7 @@ function customerDet(nr) {
   window.location.href = window.location.origin + "/customers/" + nr
 }
 
+/*
 // Define menu items as an array of objects for better organization
 var menuItems = [
   { text: "Dashboard", href: "/" },
@@ -35,7 +36,7 @@ menuItems.forEach(function (item) {
   menuItem.textContent = item.text;
   containerDiv.appendChild(menuItem);
 });
-
+*/
 
 const table = document.getElementById("customer-table");
 if (table) {
