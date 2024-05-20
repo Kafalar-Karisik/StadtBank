@@ -3,8 +3,5 @@ Models
 .. autoclass:: Bank.models.Customer
 ..    :members:
 
-.. autoclass:: Bank.models.tion
-..    :members:
-
-.. autoclass:: Bank.models.Credit
+.. autoclass:: Bank.models.Action
 ..    :members:
