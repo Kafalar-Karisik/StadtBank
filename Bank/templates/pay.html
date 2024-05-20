@@ -207,7 +207,7 @@
     <script>
           {% if user.is_authenticated %}
       var customers = [
-          {% for customer in customers %}{nr:{{ customer.nr }},balance:{{customer.balance}}},{%endfor%}
+          {% for customer in customers %}{nr:{{ customer.nr }}, balance:{{customer.balance}}, name:"{{customer.name}}" },{%endfor%}
       ];
       {% endif %}
       /*
@@ -242,7 +242,7 @@
       const customer = document.getElementById("customer");
 
       document.getElementById("payin").addEventListener("click", function() {
-        if (confirm()){
+        if (confirm(`{{ _('doyouwant') }} {{ _('payin') }}\n{{ _('customer') }}: ${customers.filter(d => d.nr === parseInt(customer.value))[0]["name"]} (${document.getElementById("customer").value})\n{{ _('amount') }}: ${amount.value}`)){
         document.getElementById("payType").value = "payin";
         document.getElementById("Pay").submit();
         }
@@ -250,20 +250,23 @@
 
       document.getElementById("payout").addEventListener("click", function() {
         amount.type = "number";
+        if (confirm(`{{ _('doyouwant') }} {{ _('payout') }}\n{{ _('customer') }}: ${customers.filter(d => d.nr === parseInt(customer.value))[0]["name"]} (${document.getElementById("customer").value})\n{{ _('amount') }}: ${amount.value}`)){
         if (parseInt(document.getElementById("payAmount").value) <= parseInt(customers.filter(d => d.nr === parseInt(customer.value))[0]["balance"])) {
-          if (confirm()){
+
           document.getElementById("payType").value = "payout";
           document.getElementById("Pay").submit();
         }
-        } else {
+         else {
           alert("{% trans 'notEnoughtMoney'%}");
         }
+      }
       });
 
       const nr = document.getElementById("nr");
+      const related = document.getElementById("related");
       document.getElementById("transfer").addEventListener("click", function() {
         if (parseInt(document.getElementById("transferAmount").value) <= parseInt(customers.filter(d => d.nr === parseInt(nr.value))[0]["balance"])) {
-          if (confirm()){
+          if(confirm(`{{ _('doyouwant') }} {{ _('transfer') }}\n{{ _('from') }}: ${customers.filter(d => d.nr === parseInt(nr.value))[0]["name"]} (${nr.value}) {{ _('to') }}: ${customers.filter(d => d.nr === parseInt(related.value))[0]["name"]} (${related.value}) \n{{ _('amount') }}: ${amount.value}`)){
           document.getElementById("Transfer").submit();
           }
         } else {
