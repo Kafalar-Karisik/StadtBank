@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-19 11:41+0200\n"
+"POT-Creation-Date: 2024-05-20 21:31+0200\n"
 "PO-Revision-Date: 2024-04-27 11:30+0200\n"
 "Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -16,165 +16,180 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Bank\templates\credit.html:21 .\Bank\templates\customer.html:21
-#: .\Bank\templates\customers.html:21 .\Bank\templates\dashboard.html:22
-#: .\Bank\templates\pay.html:21
-msgid "home"
-msgstr "Home"
-
-#: .\Bank\templates\credit.html:23 .\Bank\templates\credit.html:29
-msgid "creditManagment"
-msgstr "Credit Managment"
-
-#: .\Bank\templates\credit.html:59 .\Bank\templates\pay.html:63
-#: .\Bank\templates\pay.html:138 .\Bank\templates\pay.html:164
-msgid "selectcustomer"
-msgstr "Select Customer"
-
-#: .\Bank\templates\credit.html:77 .\Bank\templates\credit.html:103
-#: .\Bank\templates\customer.html:54 .\Bank\templates\dashboard.html:84
-#: .\Bank\templates\pay.html:80 .\Bank\templates\pay.html:181
-#: .\Bank\templates\pay.html:212 .\Bank\templates\pay.html:219
-msgid "amount"
-msgstr "Amount"
-
-#: .\Bank\templates\credit.html:89
-msgid "givecredit"
-msgstr "Give credit"
-
-#: .\Bank\templates\credit.html:96 .\Bank\templates\dashboard.html:75
-msgid "actions"
-msgstr "Actions"
-
-#: .\Bank\templates\credit.html:100 .\Bank\templates\dashboard.html:82
-msgid "actionID"
-msgstr "Action ID"
-
-#: .\Bank\templates\credit.html:101 .\Bank\templates\customers.html:52
-#: .\Bank\templates\customers.html:85 .\Bank\templates\dashboard.html:52
-msgid "name"
-msgstr "Name"
-
-#: .\Bank\templates\credit.html:102 .\Bank\templates\customer.html:55
-#: .\Bank\templates\dashboard.html:85
-msgid "type"
-msgstr "Type"
-
-#: .\Bank\templates\credit.html:187 .\Bank\templates\customer.html:85
-#: .\Bank\templates\dashboard.html:130
-msgid "noactiondata"
-msgstr "No Action Data avaiable."
-
-#: .\Bank\templates\customer.html:23 .\Bank\templates\customers.html:23
-#: .\Bank\templates\customers.html:29 .\Bank\templates\customers.html:37
-#: .\Bank\templates\dashboard.html:36
-msgid "customers"
-msgstr "Customers"
-
-#: .\Bank\templates\customer.html:31 .\Bank\templates\dashboard.html:29
+#: .\Bank\templates\credit.html:17 .\Bank\templates\customer.html:17
+#: .\Bank\templates\customer.html:40 .\Bank\templates\customers.html:17
+#: .\Bank\templates\dashboard.html:17 .\Bank\templates\dashboard.html:34
+#: .\Bank\templates\login.html:17 .\Bank\templates\pay.html:17
 msgid "dashboard"
 msgstr "Dashboard"
 
-#: .\Bank\templates\customer.html:40 .\Bank\templates\customers.html:53
-#: .\Bank\templates\dashboard.html:53
+#: .\Bank\templates\credit.html:18 .\Bank\templates\customer.html:19
+#: .\Bank\templates\customer.html:32 .\Bank\templates\customers.html:18
+#: .\Bank\templates\customers.html:28 .\Bank\templates\customers.html:34
+#: .\Bank\templates\customers.html:43 .\Bank\templates\dashboard.html:18
+#: .\Bank\templates\dashboard.html:41 .\Bank\templates\login.html:18
+#: .\Bank\templates\pay.html:18
+msgid "customers"
+msgstr "Customers"
+
+#: .\Bank\templates\credit.html:19 .\Bank\templates\customer.html:21
+#: .\Bank\templates\customers.html:19 .\Bank\templates\dashboard.html:19
+#: .\Bank\templates\login.html:19 .\Bank\templates\pay.html:19
+#: .\Bank\templates\pay.html:28 .\Bank\templates\pay.html:51
+msgid "pay"
+msgstr "Pay"
+
+#: .\Bank\templates\credit.html:20 .\Bank\templates\credit.html:28
+#: .\Bank\templates\credit.html:34 .\Bank\templates\customer.html:23
+#: .\Bank\templates\customers.html:20 .\Bank\templates\dashboard.html:20
+#: .\Bank\templates\login.html:20 .\Bank\templates\pay.html:20
+msgid "creditManagment"
+msgstr "Credit Managment"
+
+#: .\Bank\templates\credit.html:26 .\Bank\templates\customer.html:30
+#: .\Bank\templates\customers.html:26 .\Bank\templates\dashboard.html:27
+#: .\Bank\templates\pay.html:26
+msgid "home"
+msgstr "Home"
+
+#: .\Bank\templates\credit.html:69 .\Bank\templates\pay.html:68
+#: .\Bank\templates\pay.html:143 .\Bank\templates\pay.html:169
+msgid "selectcustomer"
+msgstr "Select Customer"
+
+#: .\Bank\templates\credit.html:87 .\Bank\templates\credit.html:120
+#: .\Bank\templates\customer.html:63 .\Bank\templates\dashboard.html:89
+#: .\Bank\templates\pay.html:85 .\Bank\templates\pay.html:186
+#: .\Bank\templates\pay.html:219 .\Bank\templates\pay.html:226
+msgid "amount"
+msgstr "Amount"
+
+#: .\Bank\templates\credit.html:98
+msgid "givecredit"
+msgstr "Give credit"
+
+#: .\Bank\templates\credit.html:105
+#, fuzzy
+#| msgid "credit"
+msgid "paycredit"
+msgstr "Credit"
+
+#: .\Bank\templates\credit.html:113 .\Bank\templates\dashboard.html:80
+msgid "actions"
+msgstr "Actions"
+
+#: .\Bank\templates\credit.html:117 .\Bank\templates\dashboard.html:87
+msgid "actionID"
+msgstr "Action ID"
+
+#: .\Bank\templates\credit.html:118 .\Bank\templates\customers.html:59
+#: .\Bank\templates\customers.html:91 .\Bank\templates\dashboard.html:57
+msgid "name"
+msgstr "Name"
+
+#: .\Bank\templates\credit.html:119 .\Bank\templates\customer.html:64
+#: .\Bank\templates\dashboard.html:90
+msgid "type"
+msgstr "Type"
+
+#: .\Bank\templates\credit.html:204 .\Bank\templates\customer.html:99
+#: .\Bank\templates\dashboard.html:135
+msgid "noactiondata"
+msgstr "No Action Data avaiable."
+
+#: .\Bank\templates\customer.html:49 .\Bank\templates\customers.html:60
+#: .\Bank\templates\dashboard.html:58
 msgid "balance"
 msgstr "Balance"
 
-#: .\Bank\templates\customer.html:43
+#: .\Bank\templates\customer.html:52
 #, fuzzy
 #| msgid "credit"
 msgid "Credit"
 msgstr "Credit"
 
-#: .\Bank\templates\customer.html:49
+#: .\Bank\templates\customer.html:58
 msgid "Actions"
 msgstr "Actions"
 
-#: .\Bank\templates\customer.html:53 .\Bank\templates\customers.html:51
-#: .\Bank\templates\dashboard.html:51
+#: .\Bank\templates\customer.html:62 .\Bank\templates\customers.html:58
+#: .\Bank\templates\dashboard.html:56
 msgid "id"
 msgstr "ID"
 
-#: .\Bank\templates\customer.html:56 .\Bank\templates\dashboard.html:86
+#: .\Bank\templates\customer.html:65 .\Bank\templates\dashboard.html:91
 msgid "releated"
 msgstr "Releated Customer"
 
-#: .\Bank\templates\customer.html:57 .\Bank\templates\dashboard.html:87
+#: .\Bank\templates\customer.html:66 .\Bank\templates\dashboard.html:92
 msgid "date"
 msgstr "Date"
 
-#: .\Bank\templates\customers.html:42 .\Bank\templates\dashboard.html:42
+#: .\Bank\templates\customers.html:49 .\Bank\templates\dashboard.html:47
 msgid "search"
 msgstr "Search"
 
-#: .\Bank\templates\customers.html:66 .\Bank\templates\dashboard.html:66
+#: .\Bank\templates\customers.html:73 .\Bank\templates\dashboard.html:71
 msgid "nocustomerdata"
 msgstr "No Customer Data avaiable."
 
-#: .\Bank\templates\customers.html:78 .\Bank\templates\customers.html:97
-#: .\Bank\templates\customers.html:101
+#: .\Bank\templates\customers.html:84 .\Bank\templates\customers.html:103
+#: .\Bank\templates\customers.html:106
 msgid "newcustomer"
 msgstr "New Customer"
 
-#: .\Bank\templates\customers.html:92
+#: .\Bank\templates\customers.html:98
 msgid "create"
 msgstr "Create"
 
-#: .\Bank\templates\customers.html:98
+#: .\Bank\templates\customers.html:104
 msgid "notAllowed"
 msgstr "You are not allowed"
 
-#: .\Bank\templates\customers.html:107 .\Bank\templates\login.html:29
-#: .\Bank\templates\login.html:61
+#: .\Bank\templates\customers.html:112 .\Bank\templates\login.html:34
+#: .\Bank\templates\login.html:66
 msgid "login"
 msgstr "Login"
 
-#: .\Bank\templates\dashboard.html:83
+#: .\Bank\templates\dashboard.html:88
 msgid "customer"
 msgstr "Customer"
 
-#: .\Bank\templates\login.html:42
+#: .\Bank\templates\login.html:47
 msgid "please"
 msgstr "Please"
 
-#: .\Bank\templates\login.html:49
+#: .\Bank\templates\login.html:54
 msgid "enterpassword"
 msgstr "Enter Password"
 
-#: .\Bank\templates\pay.html:23 .\Bank\templates\pay.html:46
-msgid "pay"
-msgstr "Pay"
-
-#: .\Bank\templates\pay.html:29
+#: .\Bank\templates\pay.html:34
 msgid "action"
 msgstr "Action"
 
-#: .\Bank\templates\pay.html:85
+#: .\Bank\templates\pay.html:89
 msgid "isSalary"
 msgstr "Salary ?"
 
-#: .\Bank\templates\pay.html:96
+#: .\Bank\templates\pay.html:100
 msgid "payin"
 msgstr "Pay-in"
 
-#: .\Bank\templates\pay.html:104
+#: .\Bank\templates\pay.html:108
 msgid "payout"
 msgstr "Pay-out"
 
-#: .\Bank\templates\pay.html:119 .\Bank\templates\pay.html:189
+#: .\Bank\templates\pay.html:124 .\Bank\templates\pay.html:196
 msgid "transfer"
 msgstr "Transfer"
 
-#: .\Bank\templates\pay.html:210 .\Bank\templates\pay.html:217
+#: .\Bank\templates\pay.html:217 .\Bank\templates\pay.html:224
 msgid "hour"
 msgstr "Hour"
 
-#: .\Bank\templates\pay.html:251
+#: .\Bank\templates\pay.html:259 .\Bank\templates\pay.html:270
 msgid "notEnoughtMoney"
 msgstr "Customer dont't have enought Money"
-
-#~ msgid "credit"
-#~ msgstr "Credit"
 
 #~ msgid "before"
 #~ msgstr "Before balance"
