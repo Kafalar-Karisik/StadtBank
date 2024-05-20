@@ -1,7 +1,6 @@
 """Django Modules"""
 import logging
 
-from bin import TOTP  # type: ignore
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import (Http404, HttpResponse,  # HttpResponse,
@@ -10,6 +9,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
+
+from bin import TOTP  # type: ignore
 
 from .forms import CreditF, CustomerF, PayF, TransferF, newCustomerF
 from .models import Action, Customer, Setting
