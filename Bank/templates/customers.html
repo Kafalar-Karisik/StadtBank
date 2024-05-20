@@ -39,12 +39,14 @@
       <!-- Customers -->
       <div class="w-1/2 p-4">
         <div class="flex items-center p-3">
-          <h3 class="mb-2 w-fit pr-3 text-lg font-bold">{% trans "customers"%}</h3>
+          <h3 class="mb-2 w-fit pr-3 text-lg font-bold">
+            {% trans "customers"%}
+          </h3>
           <input
             type="text"
             class="search-input bg-whites rounded-sm"
             id="customerSearchInput"
-            placeholder="{% trans "search"%}"
+            placeholder="{% trans 'search'%}"
           />
         </div>
         <table
@@ -76,8 +78,7 @@
         </table>
       </div>
       <div class="w-1/2 p-4 pt-20">
-        {% if user.is_authenticated %}
-        {% if perms.auth.add_user %}
+        {% if user.is_authenticated %} {% if perms.auth.add_user %}
         <form method="post" action="{% url 'Bank:newCustomer' %}">
           {% csrf_token %}
           <h3 class="text-2x1 m-2 p-1 font-bold">{% trans "newcustomer"%}</h3>
@@ -87,31 +88,31 @@
               id="name"
               name="name"
               class="w-3/5 rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-              placeholder="{% trans "name"%}"
+              placeholder="{% trans 'name'%}"
             />
           </div>
           <div class="m-4">
             <button
               class="rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
             >
-            {% trans "create"%}
+              {% trans "create"%}
             </button>
           </div>
         </form>
         {% else %}
         <h3 class="text-2x1 m-2 p-1 font-bold">{% trans "newcustomer"%}</h3>
-        <p class=" m-2 p-1 font-mono text-red-700">{% trans "notAllowed" %}</p>
-        {% endif %}
-        {% else %}
+        <p class="m-2 p-1 font-mono text-red-700">{% trans "notAllowed" %}</p>
+        {% endif %} {% else %}
         <h3 class="text-2x1 m-2 p-1 font-bold">{% trans "newcustomer"%}</h3>
         <div class="m-4">
           <button
             class="rounded-md bg-green-500 px-4 py-2 text-white focus:border-blue-300 focus:outline-none focus:ring"
             onclick='document.location = "/login?next=/customers";'
           >
-          {% trans "login"%}
+            {% trans "login"%}
           </button>
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
     </div>
     <script src="{% static 'index.js' %}"></script>

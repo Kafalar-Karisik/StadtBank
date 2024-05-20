@@ -23,9 +23,9 @@
       <nav class="ml-auto">
         <ol class="flex list-none">
           <li>
-            <a href="" class="pl-1 text-end text-sm text-gray-200"
-              >{% trans "home" %}</a
-            >
+            <a href="" class="pl-1 text-end text-sm text-gray-200">
+              {% trans "home" %}
+            </a>
           </li>
         </ol>
       </nav>
@@ -111,14 +111,9 @@
               <td class="border p-2">{{action.get_type_display }}</td>
               <td
                 class="relatie group border p-2"
-                {%
-                if
-                action.related.nr
-                %}
+                {% if action.related.nr %}
                 onclick="customerDet('{{action.related.nr}}');"
-                {%
-                endif
-                %}
+                {% endif %}
               >
                 {% if action.related %}{{action.related.name | default:""}}
                 <p
