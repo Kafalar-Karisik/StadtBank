@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 21:31+0200\n"
+"POT-Creation-Date: 2024-05-21 08:33+0200\n"
 "PO-Revision-Date: 2024-04-27 11:30+0200\n"
 "Last-Translator: Ömer Rasim Sak <orsmes6145@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,8 @@ msgstr "Kunde"
 #: .\Bank\templates\customer.html:63 .\Bank\templates\dashboard.html:89
 #: .\Bank\templates\pay.html:85 .\Bank\templates\pay.html:186
 #: .\Bank\templates\pay.html:219 .\Bank\templates\pay.html:226
+#: .\Bank\templates\pay.html:245 .\Bank\templates\pay.html:253
+#: .\Bank\templates\pay.html:269
 msgid "amount"
 msgstr "Betrag"
 
@@ -94,8 +96,8 @@ msgstr "Name"
 msgid "type"
 msgstr "Typ"
 
-#: .\Bank\templates\credit.html:204 .\Bank\templates\customer.html:99
-#: .\Bank\templates\dashboard.html:135
+#: .\Bank\templates\credit.html:204 .\Bank\templates\customer.html:94
+#: .\Bank\templates\dashboard.html:130
 msgid "noactiondata"
 msgstr "Keine Aktionsdaten"
 
@@ -153,7 +155,8 @@ msgstr "Sie dürfen nicht."
 msgid "login"
 msgstr "Anmelden"
 
-#: .\Bank\templates\dashboard.html:88
+#: .\Bank\templates\dashboard.html:88 .\Bank\templates\pay.html:245
+#: .\Bank\templates\pay.html:253
 msgid "customer"
 msgstr "Kunde"
 
@@ -173,15 +176,16 @@ msgstr "Aktion"
 msgid "isSalary"
 msgstr "Lohn ?"
 
-#: .\Bank\templates\pay.html:100
+#: .\Bank\templates\pay.html:100 .\Bank\templates\pay.html:245
 msgid "payin"
 msgstr "Einzahlung"
 
-#: .\Bank\templates\pay.html:108
+#: .\Bank\templates\pay.html:108 .\Bank\templates\pay.html:253
 msgid "payout"
 msgstr "Auszahlung"
 
 #: .\Bank\templates\pay.html:124 .\Bank\templates\pay.html:196
+#: .\Bank\templates\pay.html:269
 msgid "transfer"
 msgstr "Überweisung"
 
@@ -189,9 +193,22 @@ msgstr "Überweisung"
 msgid "hour"
 msgstr "Stunde"
 
-#: .\Bank\templates\pay.html:259 .\Bank\templates\pay.html:270
+#: .\Bank\templates\pay.html:245 .\Bank\templates\pay.html:253
+#: .\Bank\templates\pay.html:269
+msgid "doyouwant"
+msgstr "Willst du"
+
+#: .\Bank\templates\pay.html:260 .\Bank\templates\pay.html:273
 msgid "notEnoughtMoney"
 msgstr "Kunden hat nicht genug Geld"
+
+#: .\Bank\templates\pay.html:269
+msgid "from"
+msgstr "von"
+
+#: .\Bank\templates\pay.html:269
+msgid "to"
+msgstr "zu"
 
 #~ msgid "before"
 #~ msgstr "Vorher"
