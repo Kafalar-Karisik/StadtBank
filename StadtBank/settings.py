@@ -186,6 +186,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': str(dailyLogs / 'backends.log'),
+            'formatter': 'verbose',
         },
         'requests': {
             'level': 'DEBUG',
