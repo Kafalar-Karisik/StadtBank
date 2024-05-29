@@ -155,11 +155,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# Local Style Configs
-prettier.config.js
-tailwind.config.js
-.pylintrc
-
 # Project Managment Files
 TODO.md
 
