@@ -32,5 +32,75 @@
 			"logs": true,
 			"__pycache__": true,
 		},
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Django Debug",
+				"type": "debugpy",
+				"request": "launch",
+				"program": "${workspaceFolder}/manage.py",
+				"args": [
+					"runserver",
+					"${input:host}:${input:port}"
+				],
+				"django": true,
+				"justMyCode": true
+			},
+			{
+				"name": "Python: Current File",
+				"type": "debugpy",
+				"request": "launch",
+				"program": "${file}",
+				"console": "integratedTerminal"
+			}
+		],
+		"inputs": [
+			{
+				"id": "host",
+				"type": "promptString",
+				"description": "Enter the host",
+				"default": "127.0.0.1"
+			},
+			{
+				"id": "port",
+				"type": "promptString",
+				"description": "Enter the port",
+				"default": "80"
+			}
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Sphinx: Create Documentation",
+				"type": "shell",
+				"command": "sphinx-build -b html docs docs/_build/html -T -a -E",
+				"args": [],
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+				"problemMatcher": []
+			},
+			{
+				"label": "Sphinx: Auto Generate Documentation",
+				"type": "shell",
+				"command": "make",
+				"args": [
+					"html"
+				],
+				"options": {
+					"cwd": "${workspaceFolder}/docs"
+				},
+				"group": {
+					"kind": "build",
+					"isDefault": false
+				},
+				"problemMatcher": []
+			}
+		]
 	}
 }
