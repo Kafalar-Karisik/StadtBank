@@ -87,7 +87,7 @@
 				"problemMatcher": []
 			},
 			{
-				"label": "Sphinx: Auto Generate Documentation",
+				"label": "Sphinx: Make html",
 				"type": "shell",
 				"command": "make",
 				"args": [
