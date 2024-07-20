@@ -101,7 +101,17 @@
 					"isDefault": false
 				},
 				"problemMatcher": []
-			}
+			},
+			{
+				"label": "Sphinx: Auto Create Documentation",
+				"type": "shell",
+				"command": "sphinx-autobuild -b html docs docs/_build/html -T -a -E",
+				"args": [],
+				"group": {
+					"kind": "build",
+				},
+				"problemMatcher": []
+			},
 		]
 	}
 }
