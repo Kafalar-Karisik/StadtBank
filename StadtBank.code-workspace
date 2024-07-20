@@ -40,7 +40,8 @@
 				"name": "Django Debug",
 				"type": "debugpy",
 				"request": "launch",
-				"program": "${workspaceFolder}/manage.py",
+				"cwd": "${workspaceFolder}",
+				"program": "manage.py",
 				"args": [
 					"runserver",
 					"${input:host}:${input:port}"
