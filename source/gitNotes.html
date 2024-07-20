@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Git Notes" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kafalar-karisik.github.io/StadtBank/source/gitNotes.html" />
+<meta property="og:site_name" content="StadtBank" />
+<meta property="og:description" content="This project uses a Gitflow Workflow tailored for a single developer, focusing on maintaining a main branch with feature, release, and hotfix branches. Gitflow Workflow Overview: The Gitflow Workfl..." />
+<meta property="og:image" content="https://opengraph.githubassets.com/6271a1f0466d012fbbf634faea54b21639eff616dbdd86109debc296a45803d8/Kafalar-Karisik/StadtBank" />
+<meta property="og:image:alt" content="StadtBank" />
+<meta property="description" content="Basic Bank System with Web GUI and database">
+
+    <title>Git Notes &#8212; StadtBank</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/gitNotes';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Scripts" href="../modules/scripts.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">StadtBank</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="README.html">StadtBank</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modules.html">Modules</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scripts.html">Scripts</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Git Notes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Kafalar-Karisik/StadtBank" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/source/gitNotes.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Git Notes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitflow-workflow-overview">Gitflow Workflow Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-message-template">Commit Message Template</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-message-examples">Commit Message Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-types">Commit Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-tags-and-incrementing-version-numbers">Version Tags and Incrementing Version Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-command-tips">Git Command Tips</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="git-notes">
+<h1>Git Notes<a class="headerlink" href="#git-notes" title="Link to this heading">#</a></h1>
+<p>This project uses a Gitflow Workflow tailored for a single developer,
+focusing on maintaining a main branch with feature, release, and hotfix
+branches.</p>
+<section id="gitflow-workflow-overview">
+<h2>Gitflow Workflow Overview<a class="headerlink" href="#gitflow-workflow-overview" title="Link to this heading">#</a></h2>
+<p>The Gitflow Workflow is ideal for managing complex projects with
+multiple release stages. Here’s a detailed explanation of how to use
+this workflow in your project:</p>
+<ol class="arabic">
+<li><p><strong>Create a Feature Branch</strong>: For each new feature, create a new
+branch off the <code class="docutils literal notranslate"><span class="pre">development</span></code> branch. Use descriptive names like
+<code class="docutils literal notranslate"><span class="pre">feature/add-login</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name<span class="w"> </span>development
+</pre></div>
+</div>
+</li>
+<li><p><strong>Make Commits</strong>: Commit your changes in small, logical chunks with
+clear and descriptive commit messages.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add user login feature&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Push Feature Branch to Remote</strong>: Regularly push your branch to the
+remote repository to back up your work.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+</li>
+<li><p><strong>Finish Feature Branch</strong>: Once your feature is complete, merge it
+back into the <code class="docutils literal notranslate"><span class="pre">development</span></code> branch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>development
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>development
+git<span class="w"> </span>merge<span class="w"> </span>feature/your-feature-name
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>development
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clean Up</strong>: After merging, delete the feature branch locally and
+remotely to keep your branch list clean.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/your-feature-name
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create a Release Branch</strong>: When you’re ready to prepare a new
+release, create a release branch from <code class="docutils literal notranslate"><span class="pre">development</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>release/1.0.0<span class="w"> </span>development
+</pre></div>
+</div>
+</li>
+<li><p><strong>Finalize the Release</strong>: Finalize your release by merging the
+release branch into both <code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">development</span></code>, then tag the
+release.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>release/1.0.0
+git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v1.0.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Release v1.0.0&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main<span class="w"> </span>--tags
+
+git<span class="w"> </span>checkout<span class="w"> </span>development
+git<span class="w"> </span>merge<span class="w"> </span>release/1.0.0
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>development
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clean Up Release Branch</strong>: After merging, delete the release
+branch locally and remotely.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>release/1.0.0
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>release/1.0.0
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create a Hotfix Branch</strong>: For urgent fixes on production, create a
+hotfix branch from <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>hotfix/1.0.1<span class="w"> </span>main
+</pre></div>
+</div>
+</li>
+<li><p><strong>Apply the Hotfix</strong>: Commit your hotfix and merge it back into both
+<code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">development</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Fix critical issue&quot;</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>hotfix/1.0.1
+git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v1.0.1<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Hotfix v1.0.1&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main<span class="w"> </span>--tags
+
+git<span class="w"> </span>checkout<span class="w"> </span>development
+git<span class="w"> </span>merge<span class="w"> </span>hotfix/1.0.1
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>development
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clean Up Hotfix Branch</strong>: After merging, delete the hotfix branch
+locally and remotely.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>hotfix/1.0.1
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>hotfix/1.0.1
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="commit-message-template">
+<h2>Commit Message Template<a class="headerlink" href="#commit-message-template" title="Link to this heading">#</a></h2>
+<p>A good commit message should explain what and why rather than how. Use
+the following template to structure your commit messages:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Type: Short description of the change (use imperative mood)
+
+Detailed explanation of the change and its context, if necessary. Include references to issues or tickets (e.g., &quot;Closes <span class="ni">#123</span>&quot;).
+</pre></div>
+</div>
+<section id="commit-message-examples">
+<h3>Commit Message Examples<a class="headerlink" href="#commit-message-examples" title="Link to this heading">#</a></h3>
+<section id="examples">
+<h4>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Feature Addition</strong>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>feat: add user login feature
+
+Add a new feature that allows users to log in using their email and password. This includes the login form, validation, and API integration. Closes <span class="ni">#45</span>.
+</pre></div>
+</div>
+</li>
+<li><p><strong>Bug Fix</strong>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>fix: resolve issue with user session timeout
+
+Fix a bug that caused user sessions to timeout prematurely. The session duration is now correctly set to 30 minutes. Closes <span class="ni">#67</span>.
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="commit-types">
+<h4>Commit Types<a class="headerlink" href="#commit-types" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>feat</strong>: New feature</p></li>
+<li><p><strong>fix</strong>: Bug fix</p></li>
+<li><p><strong>refactor</strong>: Rewrite/restructure code</p></li>
+<li><p><strong>perf</strong>: Performance improvements</p></li>
+<li><p><strong>style</strong>: Non-functional update (white space, formatting, missing
+semi-colons, …)</p></li>
+<li><p><strong>test</strong>: Test management/correcting</p></li>
+<li><p><strong>docs</strong>: Documentation updates</p></li>
+<li><p><strong>build</strong>: Build components updates (build tool, dependencies,
+project version, …)</p></li>
+<li><p><strong>ops</strong>: Operational updates (deployment, backup, recovery, …)</p></li>
+<li><p><strong>chore</strong>: Miscellaneous commits (.gitignore, …)</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="version-tags-and-incrementing-version-numbers">
+<h2>Version Tags and Incrementing Version Numbers<a class="headerlink" href="#version-tags-and-incrementing-version-numbers" title="Link to this heading">#</a></h2>
+<p>We follow <a class="reference external" href="https://semver.org/">Semantic Versioning</a> for versioning
+our releases. The version number is composed of three parts:
+<code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.PATCH</span></code>.</p>
+<ul class="simple">
+<li><p><strong>MAJOR</strong>: Increment when you make incompatible API changes.</p></li>
+<li><p><strong>MINOR</strong>: Increment when you add functionality in a
+backward-compatible manner.</p></li>
+<li><p><strong>PATCH</strong>: Increment when you make backward-compatible bug fixes.</p></li>
+</ul>
+<section id="explanation">
+<h3>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Initial release</strong>: <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code></p></li>
+<li><p><strong>Backward-compatible feature addition</strong>: <code class="docutils literal notranslate"><span class="pre">1.1.0</span></code></p></li>
+<li><p><strong>Backward-compatible bug fix</strong>: <code class="docutils literal notranslate"><span class="pre">1.1.1</span></code></p></li>
+<li><p><strong>Incompatible API change</strong>: <code class="docutils literal notranslate"><span class="pre">2.0.0</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="git-command-tips">
+<h2>Git Command Tips<a class="headerlink" href="#git-command-tips" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>Check Current Branch</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create a New Branch</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>branch-name
+</pre></div>
+</div>
+</li>
+<li><p><strong>Stage Changes for Commit</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p><strong>Commit Changes</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;your commit message&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Push Branch to Remote</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>branch-name
+</pre></div>
+</div>
+</li>
+<li><p><strong>Update Local Main Branch</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</li>
+<li><p><strong>Merge Branch into Main</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>branch-name
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</li>
+<li><p><strong>Delete a Branch Locally</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>branch-name
+</pre></div>
+</div>
+</li>
+<li><p><strong>Delete a Branch Remotely</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>branch-name
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../modules/scripts.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Scripts</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitflow-workflow-overview">Gitflow Workflow Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-message-template">Commit Message Template</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-message-examples">Commit Message Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-types">Commit Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-tags-and-incrementing-version-numbers">Version Tags and Incrementing Version Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-command-tips">Git Command Tips</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ömer Rasim Sak
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Ömer Rasim Sak.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
