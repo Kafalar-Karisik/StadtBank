@@ -2,6 +2,28 @@
 
 This project uses a Gitflow Workflow tailored for a single developer, focusing on maintaining a main branch with feature, release, and hotfix branches.
 
+## Contents
+
+1. [Gitflow Workflow Overview](#gitflow-workflow-overview)
+    - [Create a Feature Branch](#create-a-feature-branch)
+    - [Make Commits](#make-commits)
+    - [Push Feature Branch to Remote](#push-feature-branch-to-remote)
+    - [Finish Feature Branch](#finish-feature-branch)
+    - [Clean Up](#clean-up)
+    - [Create a Release Branch](#create-a-release-branch)
+    - [Finalize the Release](#finalize-the-release)
+    - [Clean Up Release Branch](#clean-up-release-branch)
+    - [Create a Hotfix Branch](#create-a-hotfix-branch)
+    - [Apply the Hotfix](#apply-the-hotfix)
+    - [Clean Up Hotfix Branch](#clean-up-hotfix-branch)
+2. [Commit Message Template](#commit-message-template)
+    - [Commit Message Examples](#commit-message-examples)
+        - [Examples](#examples)
+        - [Commit Types](#commit-types)
+3. [Version Tags and Incrementing Version Numbers](#version-tags-and-incrementing-version-numbers)
+    - [Explanation](#explanation)
+4. [Git Command Tips](#git-command-tips)
+
 ## Gitflow Workflow Overview
 
 The Gitflow Workflow is ideal for managing complex projects with multiple release stages. Here’s a detailed explanation of how to use this workflow in your project:
