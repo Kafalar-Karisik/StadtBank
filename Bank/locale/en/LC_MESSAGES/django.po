@@ -71,8 +71,6 @@ msgid "givecredit"
 msgstr "Give credit"
 
 #: .\Bank\templates\credit.html:105
-#, fuzzy
-#| msgid "credit"
 msgid "paycredit"
 msgstr "Credit"
 
