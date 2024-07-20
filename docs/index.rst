@@ -13,6 +13,11 @@ StadtBank
    source/README.rst
    modules.rst
 
+.. toctree::
+   :maxdepth: 1
+
+   source/gitNotes.rst
+
 
 
 Indices and tables
