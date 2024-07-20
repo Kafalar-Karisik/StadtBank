@@ -1,4 +1,4 @@
-"""bin/ranCus.py"""
+"""bin/randCus.py"""
 import os
 import random
 import sys
