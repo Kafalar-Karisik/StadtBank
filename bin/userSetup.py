@@ -15,7 +15,9 @@ from django.contrib.auth.models import Group, Permission, User
 
 from TOTP import newWorkerPassword
 
-passw = getpass()
+if (passw := getpass("Enter new admin password: ")) != getpass("Confirm new password: "):
+    print("Passwords does not match!")
+    exit(-1)
 
 User.objects.create_superuser(
     username="admin", email="", password=passw)
