@@ -40,7 +40,7 @@
 				"name": "Django Debug",
 				"type": "debugpy",
 				"request": "launch",
-				"cwd": "${workspaceFolder}",
+				"cwd": "${workspaceFolder:Root}",
 				"program": "manage.py",
 				"args": [
 					"runserver",
@@ -94,7 +94,7 @@
 					"html"
 				],
 				"options": {
-					"cwd": "${workspaceFolder}/docs"
+					"cwd": "${workspaceFolder:docs}"
 				},
 				"group": {
 					"kind": "build",
