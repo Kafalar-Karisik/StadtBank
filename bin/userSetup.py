@@ -1,6 +1,8 @@
 import os
 import sys
 
+from getpass import getpass
+
 import django
 
 sys.path.append(os.path.abspath(os.path.join(
@@ -11,13 +13,16 @@ django.setup()
 
 from django.contrib.auth.models import Group, Permission, User
 
-from bin.TOTP import newWorkerPassword
+from TOTP import newWorkerPassword
+
+passw = getpass()
 
 User.objects.create_superuser(
-    username="admin", email="", password="password")  # Don't forget to change
+    username="admin", email="", password=passw)
 
 User.objects.create_user("worker", "", "").save()
-print(newWorkerPassword())
+print(newWorkerPassword(adminPass=passw))
+
 Group_L4 = Group.objects.create(name="Authorized-L4")
 Group_L4.permissions.add(
     *Permission.objects.filter(content_type__model='customer'))
