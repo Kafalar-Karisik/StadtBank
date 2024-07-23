@@ -31,7 +31,8 @@ def newWorkerPassword(adminPass: str = "", httpRequest: bool = False):
             passw = str(int(time.time()))[-5:]
             user = User.objects.get(username="worker")
             user.set_password(passw)
-            user.save()
+            user.save(update_fields=["password"])
+
             if httpRequest:
                 return HttpResponse(f"{passw}\n")
             else:
