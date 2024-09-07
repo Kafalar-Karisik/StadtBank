@@ -1,3 +1,15 @@
+# Get configuration from user
+read -p "Country Code (e.g., US): " Country
+read -p "State/Province name (e.g., California): " State
+read -p "City (e.g., San Francisco): " City
+read -p "Department (e.g., IT): " Department
+read -p "Department (e.g., IT): " DepartmentU
+read -p "Organization (Best Company): " Organization
+read -p "Your server name (e.g., localhost, test.com): " DNS
+read -p "Your server IP address (e.g., 127.0.0.1): " IP
+
+read -p "Confirm ? (Y/N): " confirm && [[ $confirm = [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+
 # Generate the CA key
 openssl genrsa -out ca.key 2048
 
@@ -11,19 +23,19 @@ req_extensions = req_ext
 distinguished_name = dn
 
 [dn]
-C = Country Code (e.g., US)
-ST = State/Province name (e.g., California)
-L = City (e.g., San Francisco)
-O = Department (e.g., IT)
-OU = Department (e.g., IT)
-CN = Organization (Best Company)
+C = $Country
+ST = $State
+L = $City
+O = $Department
+OU = $DepartmentU
+CN = $Organization
 
 [req_ext]
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1 = Your server name (e.g., localhost, test.com)
-IP.1 = Your server IP address (e.g., 127.0.0.1)
+DNS.1 = $DNS
+IP.1 = $IP
 EOL
 
 # Create a certificate signing request (CSR) using the CA key and configuration
@@ -46,7 +58,7 @@ keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1 = Your server name (e.g., localhost, test.com)
+DNS.1 = $DNS
 EOL
 
 # Create a signed certificate for the server using the CA certificate and key
