@@ -112,6 +112,15 @@
 				},
 				"problemMatcher": []
 			},
+			{
+				"label": "Tailwind: Build",
+				"type": "shell",
+				"command": "npx tailwindcss -w -i Bank/static/index.css -o Bank/static/style.css -c Bank/static/tailwind.config.js",
+				"group": {
+					"kind": "build"
+				},
+				"problemMatcher": []
+			}
 		]
 	}
 }
