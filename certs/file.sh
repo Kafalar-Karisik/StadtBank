@@ -59,6 +59,7 @@ subjectAltName = @alt_names
 
 [alt_names]
 DNS.1 = $DNS
+IP.1 = $IP
 EOL
 
 # Create a signed certificate for the server using the CA certificate and key
