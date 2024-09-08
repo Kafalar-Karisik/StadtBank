@@ -1,10 +1,10 @@
-# Get configuration from user
-read -p "Country Code (e.g., US): " Country
-read -p "State/Province name (e.g., California): " State
-read -p "City (e.g., San Francisco): " City
-read -p "Department (e.g., IT): " Department
-read -p "Department (e.g., IT): " DepartmentU
-read -p "Organization (Best Company): " Organization
+# Get configuration from user                                   # [dn]
+read -p "Country Code (e.g., US): " Country                     # C
+read -p "State/Province name (e.g., California): " State        # ST
+read -p "City (e.g., San Francisco): " City                     # L
+read -p "Organization (Best Company) " Organization             # O
+read -p "Department (e.g., IT): " Department                    # OU
+read -p "Common Name (www.mycompany.com): " CommonName          # CN
 read -p "Your server name (e.g., localhost, test.com): " DNS
 read -p "Your server IP address (e.g., 127.0.0.1): " IP
 
@@ -26,9 +26,9 @@ distinguished_name = dn
 C = $Country
 ST = $State
 L = $City
-O = $Department
-OU = $DepartmentU
-CN = $Organization
+O = $Organization
+OU = $Department
+CN = $CommonName
 
 [req_ext]
 subjectAltName = @alt_names
