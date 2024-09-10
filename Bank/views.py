@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import (Http404, HttpResponse,  # HttpResponse,
                          HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.http import url_has_allowed_host_and_scheme
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.http import url_has_allowed_host_and_scheme
@@ -239,7 +238,8 @@ class Login(View):
         if user is not None:
             login(request, user)
 
-        if request.GET.get('next') and url_has_allowed_host_and_scheme(request.GET.get('next'), allowed_hosts=request.get_host()):
+        if request.GET.get('next') and url_has_allowed_host_and_scheme(request.GET.get('next'),
+                                                                       allowed_hosts=request.get_host()):
             return HttpResponseRedirect(request.GET["next"])
 
         return redirect('/')
