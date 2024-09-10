@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from bin import TOTP  # type: ignore
 
@@ -238,8 +239,7 @@ class Login(View):
         if user is not None:
             login(request, user)
 
-        if 'next' in request.GET and url_has_allowed_host_and_scheme(
-                request.GET['next'], allowed_hosts=None):
+        if request.GET.get('next') and url_has_allowed_host_and_scheme(request.GET.get('next'), allowed_hosts=request.get_host()):
             return HttpResponseRedirect(request.GET["next"])
 
         return redirect('/')
