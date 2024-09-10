@@ -1,5 +1,6 @@
 """bin/TOTP.py"""
 import time
+import getpass
 
 from django.http import HttpResponse, HttpResponseBadRequest
 
@@ -64,7 +65,8 @@ if __name__ == "__main__":
     from django.contrib.auth.models import User
 
     try:
-        new_password = newWorkerPassword(input("Enter Admin Password:"))
+        new_password = newWorkerPassword(
+            getpass.getpass("Enter Admin Password: "))
         print("New password for worker:", new_password)
     except TOTPError as e:
         print("Error:", e)
