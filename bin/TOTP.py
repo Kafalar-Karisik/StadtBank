@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 
 try:
     from django.contrib.auth.models import User
-except:
+except django.core.exceptions.ImproperlyConfigured:
     pass
 
 
