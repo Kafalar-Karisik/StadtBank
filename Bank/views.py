@@ -239,7 +239,8 @@ class Login(View):
             login(request, user)
 
         if request.GET.get('next') and \
-                url_has_allowed_host_and_scheme(request.GET.get('next'), allowed_hosts=request.get_host()):
+                url_has_allowed_host_and_scheme(request.GET.get('next'),
+                                                allowed_hosts=request.get_host()):
             return HttpResponseRedirect(request.GET["next"])
 
         return redirect('/')
