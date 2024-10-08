@@ -11,22 +11,22 @@ import sys
 
 import django
 
-project = 'StadtBank'
-copyright = '2024, Ömer Rasim Sak'
-author = 'Ömer Rasim Sak'
+project = "StadtBank"
+copyright = "2024, Ömer Rasim Sak"
+author = "Ömer Rasim Sak"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinxcontrib_django',
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
+    "sphinxcontrib_django",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
     "sphinxext.opengraph",
 ]
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -34,20 +34,20 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # https://sphinx-themes.org/
-html_theme = 'sphinx_book_theme'
-# html_static_path = ['_static']
+html_theme = "sphinx_book_theme"
+# html_static_path = ["_static"]
 
 html_theme_options = {
-    'repository_url': 'https://github.com/Kafalar-Karisik/StadtBank',
+    "repository_url": "https://github.com/Kafalar-Karisik/StadtBank",
     "repository_branch": "Django-Tailwind",
-    'use_repository_button': True,
-    'use_issues_button': False,
-    'navigation_with_keys': False
+    "use_repository_button": True,
+    "use_issues_button": False,
+    "navigation_with_keys": False
 }
 html_title = "StadtBank"
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # -- Open Graph Configuration ------------------------------------------------
 # https://sphinxext-opengraph.readthedocs.io/en/latest/
@@ -57,12 +57,12 @@ ogp_image = "https://opengraph.githubassets.com/6271a1f0466d012fbbf634faea54b216
 # ogp_description_length = 300
 # ogp_type = "article"
 ogp_custom_meta_tags = [
-    '<meta property="description" content="Basic Bank System with Web GUI and database">',
+    """<meta property="description" content="Basic Bank System with Web GUI and database">""",
 ]
 ogp_enable_meta_description = False
 
 
 # Django Setup
-sys.path.insert(0, os.path.abspath('..'))
-os.environ['DJANGO_SETTINGS_MODULE'] = 'StadtBank.settings'
+sys.path.insert(0, os.path.abspath(".."))
+os.environ["DJANGO_SETTINGS_MODULE"] = "StadtBank.settings"
 django.setup()
